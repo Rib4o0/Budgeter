@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgeter</title>
+    <link rel="stylesheet" href="style.css" data-styleLink>
+    <!-- <script src="script.js" defer></script> -->
+    <script src="script.js" defer></script>
+    <script src="https://kit.fontawesome.com/7f6397aeb7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="transitionFade" data-fade></div>
+    <div class="question-holder hideQuestion" data-quizHolder>
+        <div class="questionText" data-quizText>Have you used <div class="blueText smallText" data-BudgeterText>Budgeter</div> before?</div>
+        <div class="usedBudBeforeConfirmBtn" data-usedBudBeforeConfirm>Yep!</div>
+        <div class="usedBudBeforeCancelBtn" data-usedBudBeforeCancel>Nope!</div>
+    </div>
+    <header class="header">
+        <div class="header-title">Budgets</div>
+        <div class="header-btn-container">
+            <button class="add-budget-btn" data-add-budget-btn>Add Budget</button>
+            <!-- <button class="add-expense-btn" data-add-expense-btn>Add Expense</button> -->
+
+        </div>
+         <div class="profile" data-switchstyles><!--<a href="/BudgetApp/BudgeterPro+Patch/404.html">--><img src="/Images/blackhole1.jpg" class="imgProfile"><!--</a>--></div> 
+    </header>
+
+    <center>
+
+        <div class="detaisbudget" data-detail-budget>
+            
+
+            <input type="text" class="detailNameOfBudget" data-detailnameofbudget>
+
+            <input type="number" class="AmountOfBudget" data-amountofbudget>
+
+            <button class="add-budget-confirm" data-addbudget-confirm>Add Budget</button>
+
+            <button class="closedetails" data-close-details>Close</button>
+
+            <label class="labelfordnob" data-labelfordnob>Enter The Name of The budget</label>
+
+            <label class="AlertforAddbudget" data-AlertforAddbudget>Please Enter All of them</label>
+
+            <!-- <div class="createbudgettitle fas fa-hourglass"></div> -->
+
+            <label class="labelforaob" data-labelforaob>Enter The Budget</label>
+
+            <div class="titleCB">Create a budget</div>
+
+        </div>
+
+        <div class="settings-container">
+            
+        </div>
+
+    </center>
+
+    
+    <main class="budgets-container" data-budget-container>
+        <!-- <div class="budget-box pop-up expanded" data-dashlane-rid="76362aa7be1d0ace"><div class="name-budgetAddedBudget ontop">Test</div><div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="444" data-total-expenses-added-budget-r-e="1208">$444</div><div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="1200" data-totalbudgethalf="600" data-totalbudgetquarter="300" data-totalbudgetthreeforths="900">/ $1200</div><div class="percentage-bar-mainAddedBudget ontop" data-divider="2.7027027027027026"><div class="way-thereAddedBudget ontop" data-percentage="37" style="width: 37%;"></div></div><label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide A Value</label><input type="number" class="expenseAddedBudget ontop" id="expenseAddedBudget" data-dashlane-rid="f31577c189d74cb9"><button class="Add-expenseAddedBudget ontop" data-dashlane-rid="56c3cc1c1f4b3bc0">Add Expense</button><button class="View-expensesAddedBudget ontop" data-dashlane-rid="4eb2c31bcb262393">Close</button><div class="hiderAddedBudget ontopmid"></div><div class="expensesboxAddedBudget onbottom"><div class="expenses"><div class="amount" data-amount="321">$321</div><button class="removebtn" data-dashlane-rid="4fdb4f146693d30c"></button></div><div class="expenses"><div class="amount" data-amount="123">$123</div><button class="removebtn" data-dashlane-rid="d642dc8f4ba95760"></button></div></div><button class="delete-budget-btn"></button><div class="percentageAddedBudget">37%</div><div class="increaser neutral">0%</div><div class="expensestextAddedBudget">Expenses</div><div class="BudgetNameEditText">Change Budget Name</div><div class="BudgetNameEditBtn"></div><input class="BudgetNameEditInput"></input> </div> -->
+        <!-- <div class="budget-box pop-up" data-dashlane-rid="065acc8cf7ab03b4" data-form-type="other"><div class="name-budgetAddedBudget ontop">Entertainment</div><div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="0" data-total-expenses-added-budgetbefore="0" data-total-expenses-added-budget-r-e="123">$0</div><div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="1200" data-totalbudgethalf="600" data-totalbudgetquarter="300" data-totalbudgetthreeforths="900">/ $1200</div><div class="percentage-bar-mainAddedBudget ontop" data-divider="Infinity"><div class="way-thereAddedBudget ontop" data-percentage="0" style="width: 0%;"></div></div><label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide a Value</label><input type="number" class="expenseAddedBudget ontop doneonce" id="expenseAddedBudget" data-dashlane-rid="ccdeeff9a526f43d" data-input="" data-form-type="other"><button class="Add-expenseAddedBudget ontop" data-dashlane-rid="4b1897dd46a0d91e" data-dashlane-label="true" data-form-type="other">Add Expense</button><button class="View-expensesAddedBudget ontop" data-dashlane-rid="5c22858abe5d02cc" data-dashlane-label="true" data-form-type="other">settings</button><div class="hiderAddedBudget ontopmid"></div><div class="expensesboxAddedBudget onbottom"></div><div class="percentageAddedBudget">0%</div><div class="increaser neutral down" data-current-value="10.25">-10%</div><div class="expensestextAddedBudget">Expenses</div><button class="delete-budget-btn" data-dashlane-rid="38c5c85c4d4a48b2" data-dashlane-label="true" data-form-type="other"></button></div> -->
+        <!-- <div class="budget-box pop-up" data-dashlane-rid="bd56bf99c2aa7794" data-form-type="other"><div class="name-budgetAddedBudget ontop">New Budget</div><div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="0">$0</div><div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="1200" data-totalbudgethalf="600" data-totalbudgetquarter="300" data-totalbudgetthreeforths="900">/ $1200</div><div class="percentage-bar-mainAddedBudget ontop" data-divider="Infinity"><div class="way-thereAddedBudget ontop" data-percentage="0" style="width: 0%;"></div></div><label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide A Value</label><input type="number" class="expenseAddedBudget ontop" id="expenseAddedBudget" data-dashlane-rid="f301978c74ef3fd4" data-form-type="other"><button class="Add-expenseAddedBudget ontop" data-dashlane-rid="9271f19b73151f02" data-dashlane-label="true" data-form-type="other">Add Expense</button><button class="View-expensesAddedBudget ontop" data-dashlane-rid="0cfa0ccfb1bbc167">View Expenses</button><div class="hiderAddedBudget ontopmid"></div><div class="expensesboxAddedBudget onbottom show"><button class="delete-budget-btn" data-dashlane-rid="4af81403807ea11a" data-dashlane-label="true" data-form-type="other"></button></div><div class="percentageAddedBudget">0%</div><div class="settingsBtn"></div><div class="increaser neutral">0%</div></div> -->
+
+        <!-- <div class="budget-box pop-up" data-dashlane-rid="f67d4ef6a9ebd9aa" data-form-type="other"><div class="name-budgetAddedBudget ontop">Hello</div><div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="0">$0</div><div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="1200" data-totalbudgethalf="600" data-totalbudgetquarter="300" data-totalbudgetthreeforths="900">/ $1200</div><div class="percentage-bar-mainAddedBudget ontop"><div class="way-thereAddedBudget ontop"></div></div><label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide A Value</label><input type="number" class="expenseAddedBudget ontop" id="expenseAddedBudget" data-dashlane-rid="94ce80a56963367e" data-form-type="other"><button class="Add-expenseAddedBudget ontop" data-dashlane-label="true" data-dashlane-rid="783d48a02fce4515" data-form-type="other">Add Expense</button><button class="View-expensesAddedBudget ontop" data-dashlane-label="true" data-dashlane-rid="d77cf5faa8294fca" data-form-type="other">View Expenses</button><div class="hiderAddedBudget ontopmid"></div><div class="expensesboxAddedBudget onbottom"><button class="delete-budget-btn" data-dashlane-label="true" data-dashlane-rid="b54205322a71d3b9" data-form-type="other"></button></div><div class="percentageAddedBudget">0%</div></div>  -->
+        <!-- <div class="budget-box" data-dashlane-rid="10e2cdc4e5e64600" data-form-type="other"><div class="name-budgetAddedBudget ontop">1200</div><div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="0">$0</div><div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="123">/ $123</div><div class="percentage-bar-mainAddedBudget ontop"><div class="way-thereAddedBudget ontop"></div></div><label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide A Value</label><input type="number" class="expenseAddedBudget ontop" id="expenseAddedBudget" data-dashlane-rid="c377bc624f22704e" data-form-type="other"><button class="Add-expenseAddedBudget ontop" data-dashlane-rid="b103b4431fb1550e" data-dashlane-label="true" data-form-type="other">Add Expense</button><button class="View-expensesAddedBudget ontop" data-dashlane-rid="b3fe562c4c11bc99" data-dashlane-label="true" data-form-type="other">View Expenses</button><div class="hiderAddedBudget ontopmid"></div><div class="expensesboxAddedBudget onbottom"></div></div> -->
+
+        <!-- <div class="budget-box" data-number-of-box="1">
+
+            <div class="name-budget" data-name-budget>All</div>
+
+            <div class="total-expenses" data-total-expenses="0"></div>
+
+            <div class="total-budget" data-total-budget="1000"> / $1000 </div>
+
+            <div class="percentage-bar-main" data-percentage-bar-main>
+
+                <div class="way-there" data-way-there>
+
+                </div>
+
+            </div>
+
+            <label class="label" for="expense" data-label>Please Provide a value</label>
+
+            <input type="number" class="expense" data-expense id="expense">
+
+            <!-- <label class="expenselabel" for="expense" data-expense-label>Enter</label> -->
+
+           <!-- <button class="Add-expense" data-add-expense-btn-budget>Add expense</button>
+
+            <button class="View-expense" data-view-expenses>View Expenses</button>
+
+            <div class="hider" data-hider></div>
+
+            <div class="expensesbox" data-expenses-box="1"></div>
+
+        </div> -->
+
+        <!-- <div class="budget-box" data-number-of-box="1">
+
+            <div class="name-budget" data-name-budget>Entarteinment</div>
+
+            <div class="total-expenses" data-total-expenses="200">$200</div>
+
+            <div class="total-budget" data-total-budget="1000"> / $1000 </div>
+
+            <div class="percentage-bar-main" data-percentage-bar-main>
+
+                <div class="way-there" data-way-there>
+
+                </div>
+
+            </div>
+
+            <button class="Add-expense" data-add-expense-btn-budget>Add expense</button>
+
+            <button class="View-expense" data-view>View Expenses</button>
+
+        </div> -->
+
+        <!-- <div class="budget-box">
+
+            <div class="name-budget" data-name-budget></div>
+
+            <div class="total-expenses" data-total-expenses></div>
+
+            <div class="total-budget" data-total-budget></div>
+
+            <div class="percentage-bar-main" data-percentage-bar-main>
+
+                <div class="total-bar"></div>
+
+                <div class="way-there" data-way-there></div>
+
+            </div>
+
+            <button class="Add-expense" data-add-expense-btn-budget>Add expense</button>
+
+            <button class="View expense" data-view>View Expenses</button>
+
+        </div> -->
+        <div class="total-box">
+            <div class="total-name">Total</div>
+            <div class="total-total-expenses" data-total-total-expenses="0">$0</div>
+            <div class="total-total-budget" data-total-total-budget="0">/ $0</div>   
+            <div class="total-percentage-bar-main" data-total-percentage-bar-main>
+                <div class="total-way-there" data-total-way-there>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="blackout" data-blackout></div>
+    <div class="settings-container" data-setting-container>
+
+    </div>
+
+    <!-- <template class="budget-template">
+
+        <div class="budget-box">
+
+            <div class="name-budget" data-name-budget></div>
+
+            <div class="total-expenses" data-total-expenses></div>
+
+            <div class="total-budget" data-total-budget></div>
+
+            <div class="percentage-bar-main" data-percentage-bar-main>
+
+                <div class="total-bar"></div>
+
+                <div class="way-there" data-way-there></div>
+
+            </div>
+
+            <button class="Add-expense" data-add-expense-btn-budget>Add expense</button>
+
+            <button class="View expense" data-view>View Expenses</button>
+
+        </div>
+
+    </template> -->
+    <footer>
+        <div class="cookie-container" data-cookieContainer>
+            <div class="cookieInfo">This site uses cookies to save data.</div>
+            <a href="" class="LearnMoreCookies">Learn more about the cookies of this website.</a>
+            <div class="acceptbtn" data-accept-btn>Got it!</div>
+            <div class="dismissbtn" data-dismiss-btn>Nope!</div>
+        </div>
+        <div class="deleteMemoryContainer hide" data-deleteMemoryContainer>
+            <div class="deleteMemoryText">Want to delete your data?</div>
+            <button class="deleteMemoryBtn" data-deleteMemoryBtn>Yes!</button>
+            <button class="cancelMemoryBtn" data-cancelMemoryBtn>Nope!</button>
+            <div class="deleteMemoryLine"></div>
+            <button class="openDeleteMemorybtn" data-openDeleteMemory></button>
+        </div>
+        <nav class="nav-bar">
+            <div class="budgetsNav navElem"><i class="fa-solid fa-vault icon"></i></div>
+            <div class="goalsNav navElem" data-link="/BudgetApp/BudgeterPro+Patch/goals/index.html"><i class="fa-solid fa-bullseye icon"></i></div>
+            <div class="statsNav navElem" data-link=""><i class="fa-solid fa-chart-column icon"></i></div>
+            <div class="advanceSavingNav navElem" data-link=""><i class="fa-solid fa-coins icon"></i></div>
+            <div class="todo-listNav navElem" data-link="/BudgetApp/BudgeterPro+Patch/todo-list/index.html"><i class="fa-solid fa-list icon"></i></div>
+            <div class="settingsNav navElem" data-settings-btn><i class="fa-solid fa-gear icon"></i></div>
+        </nav>
+    </footer>
+    <div class="cover-hider" data-cover></div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
