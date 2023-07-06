@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" data-styleLink>
     <!-- <script src="script.js" defer></script> -->
     <script src="script.js" defer></script>
-    <script src="https://kit.fontawesome.com/7f6397aeb7.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1ee8f271b9.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="transitionFade" data-fade></div>
@@ -24,7 +24,7 @@
             <!-- <button class="add-expense-btn" data-add-expense-btn>Add Expense</button> -->
 
         </div>
-         <div class="profile" data-switchstyles><!--<a href="/BudgetApp/BudgeterPro+Patch/404.html">--><img src="/Images/blackhole1.jpg" class="imgProfile"><!--</a>--></div> 
+         <!-- <div class="profile" data-switchstyles><a href="/BudgetApp/BudgeterPro+Patch/404.html"><img src="/Images/blackhole1.jpg" class="imgProfile"><!--</a></div>  -->
     </header>
 
     <center>
@@ -52,8 +52,21 @@
 
         </div>
 
-        <div class="settings-container">
-            
+        <div class="settings-container" data-settings-container>
+            <div class="titleSettings">Settings</div>
+            <button class="closeSettings" data-close-settings-btn>Close</button>
+            <div class="darkMode">
+                <label class="darkModeTitle">Dark Mode</label>
+                <button class="darkModeToggle" data-dark-mode-toggle><i class="fa-regular fa-sun-bright"></i></button>
+            </div>
+            <div class="mainColor">
+                <label class="mainColor">Main Colour</label>
+                <input type="color" class="mainColorInput " data-main-color-input>
+            </div>
+            <div class="accColor">
+                <label class="accColor">Accent Colour</label>
+                <input type="color" class="accColorInput" data-acc-color-input>
+            </div>
         </div>
 
     </center>
