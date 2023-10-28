@@ -44,11 +44,17 @@ const darkModeToggle = document.querySelector('[data-dark-mode-toggle]')
 const mainColorInput = document.querySelector('[data-main-color-input]')
 const accColorInput = document.querySelector('[data-acc-color-input]')
 
+const alertBox = document.querySelector('[data-alert-box]')
+const alertText = document.querySelector('[data-alert-text]')
+const alertSubText = document.querySelector('[data-alert-sub-text]')
+const alertDismissBtn = document.querySelector('[data-alert-dismiss-btn]')
+
 const budgetscontainer = document.querySelector('[data-budget-container]')
 const totaltotalexpenses = document.querySelector('[data-total-total-expenses]')
 const totaltotalbudget = document.querySelector('[data-total-total-budget]')
 const totalpercentage = document.querySelector('[data-total-percentage-bar-main]')
 const totalwaythere = document.querySelector('[data-total-way-there]')
+const totalpercentageNum = document.querySelector('[data-total-percentage')
 
 const quizHolder = document.querySelector('[data-quizHolder]')
 const quizYes = document.querySelector('[data-usedBudBeforeConfirm]')
@@ -96,66 +102,11 @@ var mainColor = '#0C5DD8'
 
 var accColor = '#0954c5'
 
-//
-//GetTheProgressbars()
 
 addEventListeners()
 updatetotal()
 cookiesInitialize()
 fadein()
-
-//update()
-
-// function GetTheProgressbars() {
-
-//     const totalbudgetpb = totalbudget.getAttribute('data-total-budget')
-
-//     const totalexpensespb = totalexpenses.getAttribute('data-total-expenses')
-
-//     console.log(totalbudgetpb, totalexpensespb)
-
-//     const dividerpb = totalbudgetpb / totalexpensespb
-
-//     console.log(dividerpb);
-
-//     const percentagepb = 100 / dividerpb + '%'
-
-//     if (100 / dividerpb > 100) {
-
-//         console.log("WHAT")
-
-//         waythere.style.width = '100%'
-
-//         return
-
-//     }
-
-//     console.log(percentagepb);
-
-//     waythere.style.width = percentagepb
-
-// }
-
-// const testThingy = "hello mr meSix look at me"
-// console.log(testThingy.slice(-1));
-// const otherTestThingy = testThingy.slice(0, -1)
-// console.log(otherTestThingy);
-
-// var numOfEs = 0
-// var numofesstring = "132#321#32#213#3#32#23#32#32#23#32#12#342#12#34#12#34#12#43#12#43#12#43#12#34#12#43#12#"
-// var numofesstringB = numofesstring
-// console.log(numofesstring.length);
-
-// for (let i = 1; i < numofesstring.length; i++) {
-//     if (numofesstringB.slice(-1) == "#")
-//     {
-//         numOfEs += 1
-//     }
-//    // console.log(i);
-//     numofesstringB = numofesstringB.slice(0, -1)
-// }
-
-//console.log(numOfEs);
 
 function fadein() {
     setTimeout(() => {
@@ -296,25 +247,21 @@ function updatetotalpercentage() {
         if (100 / totalwaythere.dataset.divider > 100)
         {
             totalwaythere.style.width = '100%'
+            totalpercentageNum.textContent = '>100%'
             return
         }
         totalwaythere.style.width = 100 / totalwaythere.dataset.divider + "%"
+        totalpercentageNum.textContent = `${totalwaythere.style.width}`
+        
     }
 
 }
 
 function addEventListeners() {
 
-   // expenseGather()
-
     nameofbudgetGather()
 
     gatherBudgetAmount()
-
-   // addexpense.addEventListener('click', AddExpense)
-
-    //
-  //viewexpenses.addEventListener('click', showhideExpenses)
 
     link.forEach(link => {
         link.addEventListener('click', () => {
@@ -347,19 +294,6 @@ function addEventListeners() {
     deleteMemoryBtn.addEventListener('click', DeleteLocalMemory)
 
     cancelMemoryBtn.addEventListener('click', DeleteMemoryClose)
-
-    // switchStylesBtn.addEventListener('click', () => {
-    //     if (pcOrMob == 0) {
-    //         styleLink.setAttribute("href", "mobile.css")
-    //         pcOrMob = 1
-    //         addbudgetbtn.textContent = "+"
-    //     }
-    //     else if (pcOrMob == 1) {
-    //         styleLink.setAttribute("href", "style.css")
-    //         pcOrMob = 0
-    //         addbudgetbtn.textContent = "Add Budget"
-    //     }
-    // })
 
     darkModeToggle.addEventListener('click', () => {
         if (darkMode == 1) {
@@ -401,6 +335,11 @@ function addEventListeners() {
         settingsContainer.classList.remove('show')
         cover.classList.remove('show')
     });
+
+    alertDismissBtn.addEventListener('click', () => {
+        alertBox.classList.remove('active')
+        setTimeout(() => {alertBox.classList.remove('overbudget')},400) 
+    })
 }
 
 function CreateBudget() {
@@ -438,8 +377,6 @@ function CreateBudget() {
 
     console.log(budgetname, budgetAmount);
 
-    // addBudget()
-
     var numofbudget = localStorage.getItem('numofbudget');
 
     localStorage.setItem("nameOfBudget" + numofbudget, budgetname)
@@ -453,6 +390,9 @@ function CreateBudget() {
     budgetAmount = ""
 
     budgetname = ""
+
+    labelforbudget.classList.remove('hide')
+    labelfornameofbudget.classList.remove('hide')
 
     addbudgetdetails.classList.remove('show')
     cover.classList.remove('show')
@@ -498,7 +438,7 @@ function gatherBudgetAmount() {
 
         }
 
-        if (e.target.value == ""){
+        if (e.target.value == "" || e.target.value == null || e.target.value == undefined ) {
 
             labelforbudget.classList.remove('hide')
 
@@ -555,17 +495,21 @@ function DetailsforAddbudget() {
 
 function ApplySettings() {
     if (darkMode == 1) {
-        document.documentElement.style.setProperty('--main-color', '#111');
+        document.documentElement.style.setProperty('--main-color', '#121212');
         document.documentElement.style.setProperty('--font-color', '#fff');
         document.documentElement.style.setProperty('--lighter-shade', '#222');
         document.documentElement.style.setProperty('--total-color', '#111');
         document.documentElement.style.setProperty('--nav-hover-color', '#222');
+        document.documentElement.style.setProperty('--overbudget-color', '#3b0505')
+        document.documentElement.style.setProperty('--overbudget-text-color', '#fff')
     } else if (darkMode == 0) {
         document.documentElement.style.setProperty('--main-color', '#fff');
         document.documentElement.style.setProperty('--font-color', '#000');
         document.documentElement.style.setProperty('--lighter-shade', '#d8d8d8');
         document.documentElement.style.setProperty('--total-color', '#ecebeb');
         document.documentElement.style.setProperty('--nav-hover-color', '#ddebff');
+        document.documentElement.style.setProperty('--overbudget-color', '#ecacac')
+        document.documentElement.style.setProperty('--overbudget-text-color', '#db4848')
     }
     document.documentElement.style.setProperty('--main-blue', mainColor)
     document.documentElement.style.setProperty('--acc-blue', accColor)
@@ -834,7 +778,54 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
             BudgetNameEditInput.dataset.dataValue = ""
             BudgetNameEditInput.value = ""
         }
-    })                                
+    })     
+    
+    //
+    // const BudgetAmountEditInput = document.createElement('input')
+    // BudgetAmountEditInput.classList.add('BudgetAmountEditInput')
+    // budgetbox.append(BudgetAmountEditInput)
+    // BudgetAmountEditInput.addEventListener('input', e => {
+    //     BudgetAmountEditInput.dataset.dataValue = e.target.value
+    //     if (!BudgetNameEditBtn.classList.contains('confirm'))
+    //     {
+    //         if (BudgetAmountEditInput.dataset.dataValue != "")
+    //         {
+    //             BudgetNameEditBtn.classList.add('confirm')
+    //             renameOrClose = 2
+    //         }
+    //     }
+    //     else if (BudgetAmountEditInput.dataset.dataValue == "")
+    //     {
+    //         BudgetNameEditBtn.classList.remove('confirm')
+    //         renameOrClose = 1
+    //     }
+    //    // console.log(BudgetAmountEditInput.dataset.dataValue);
+    // })
+    // BudgetNameEditBtn.addEventListener('click', () => {
+    //     if (renameOrClose == 0)
+    //     {
+    //         BudgetAmountEditInput.classList.add('enabled')
+    //         BudgetNameEditBtn.classList.add('close')
+    //         renameOrClose = 1
+    //     }
+    //     else if (renameOrClose == 1)
+    //     {
+    //         BudgetAmountEditInput.classList.remove('enabled')
+    //         BudgetNameEditBtn.classList.remove('close')
+    //         renameOrClose = 0
+    //     }
+    //     else 
+    //     {
+    //         nameOfBudget.textContent = BudgetAmountEditInput.dataset.dataValue
+    //         localStorage.setItem('nameOfBudget' + numID, nameOfBudget.textContent)
+    //         renameOrClose = 0
+    //         BudgetAmountEditInput.classList.remove('enabled')
+    //         BudgetNameEditBtn.classList.remove('close')
+    //         BudgetNameEditBtn.classList.remove('confirm')
+    //         BudgetAmountEditInput.dataset.dataValue = ""
+    //         BudgetAmountEditInput.value = ""
+    //     }
+    // })    
     
 
     deleteBudBtn.addEventListener('click', () => {
@@ -867,6 +858,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
             BudgetNameEditInput.classList.remove('enabled')
             BudgetNameEditBtn.classList.remove('close')
             BudgetNameEditBtn.classList.remove('confirm')
+            BudgetNameEditInput.value = ""
             renameOrClose = 0;
 
         }  
@@ -958,13 +950,16 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     waythereAB.style.width = '100%'
                     percentage.textContent = '>100%'
 
-                }
-
-                else {
+                } else {
 
                     waythereAB.style.width = waythereAB.dataset.percentage + "%"
                     percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
                 } 
+                if (waythereAB.dataset.percentage > 100) {
+                    pushAlert('over100', loadBudgetName)
+                } else if (waythereAB.dataset.percentage > 90) {
+                    pushAlert('over90', loadBudgetName)
+                }
 
                 if (expensesAB.dataset.totalExpensesAddedBudget > parseInt(budgetAB.dataset.totalBudgetAddedBudget) && !budgetbox.classList.contains('overbudget')){
 
@@ -979,14 +974,14 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     buttonViewExpensesAB.classList.add('overbudget')
 
                     hiderAB.classList.add('overbudget')
+                    
+                    expensesboxAB.classList.add('overbudget')
 
                     waythereAB.classList.add('overthreeforths')
 
                     waythereAB.classList.remove("overhalf")
 
-                }
-
-                else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgetthreeforths) && !waythereAB.classList.contains('overthreeforths')){
+                } else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgetthreeforths) && !waythereAB.classList.contains('overthreeforths')){
 
                     waythereAB.classList.add('overthreeforths')
 
@@ -994,9 +989,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     waythereAB.classList.remove("overhalf")
 
-                }
-
-                else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
+                } else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
 
                     console.log("overhalf")
 
@@ -1054,10 +1047,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                         waythereAB.style.width = '100%'
                         percentage.textContent = ">100%"
-                    }
-
-                    else {
-
+                    } else {
                         waythereAB.style.width = waythereAB.dataset.percentage + "%"
                         percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
                     } 
@@ -1079,6 +1069,8 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         buttonViewExpensesAB.classList.remove('overbudget')
 
                         hiderAB.classList.remove('overbudget')
+
+                        expensesboxAB.classList.remove('overbudget')
 
                     }
 
@@ -1127,8 +1119,12 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         buttonAddExpenseAB.classList.add('overbudget')
     
                         buttonViewExpensesAB.classList.add('overbudget')
+
+                        expensesboxAB.classList.add('overbudget')
     
                         hiderAB.classList.add('overbudget')
+
+                        newexpensebtn.classList.add('overbudget')
     
                         waythereAB.classList.add('overthreeforths')
     
@@ -1146,12 +1142,14 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
     
                     }
     
-                    else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
+                    else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf) && !waythereAB.classList.contains('overhalf')){
     
                         console.log("overhalf")
     
                         waythereAB.classList.add("overhalf")
     
+                    } else if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf)) {
+                        waythereAB.classList.remove("overhalf")
                     }
 
                 })
@@ -1206,7 +1204,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 newexpense.classList.add('expenses')
 
-                expensesboxAB.append(newexpense)
+                expensesboxAB.prepend(newexpense)
 
                 const newexpenseamount = document.createElement('div')
 
@@ -1278,6 +1276,8 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                         hiderAB.classList.remove('overbudget')
 
+                        expensesboxAB.classList.remove('overbudget')
+
                     }
 
                     
@@ -1290,7 +1290,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     }
 
-                    if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf) && !waythereAB.classList.contains("overhalf")){
+                    if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf) && waythereAB.classList.contains('overhalf')){
 
                         waythereAB.classList.remove('overhalf')
 
@@ -1374,7 +1374,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 newexpense.classList.add('expenses')
 
-                expensesboxAB.append(newexpense)
+                expensesboxAB.prepend(newexpense)
 
                 const newexpenseamount = document.createElement('div')
 
@@ -1446,6 +1446,8 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                         hiderAB.classList.remove('overbudget')
 
+                        expensesboxAB.classList.remove('overbudget')
+
                     }
 
                     
@@ -1497,6 +1499,8 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                          buttonViewExpensesAB.classList.add('overbudget')
      
                          hiderAB.classList.add('overbudget')
+
+                         expensesboxAB.classList.add('overbudget')
      
                          waythereAB.classList.add('overthreeforths')
      
@@ -1531,241 +1535,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
     updatetotal()
 
     }
-    
-    // buttonAddExpenseAB.addEventListener('click', () => {        
 
-    //     if( inputAB.value == ""){
-
-    //         errormessage.classList.add('show')
-
-    //         setTimeout(() => {
-
-    //             errormessage.classList.remove('show')
-
-    //         }, 1000)
-
-    //     }
-
-    // })
-    // percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
-
-    //             waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
-
-    //             if (waythereAB.dataset.percentage > 100) {
-
-    //                 waythereAB.style.width = '100%'
-
-    //             }
-
-    //             else {
-
-    //                 waythereAB.style.width = waythereAB.dataset.percentage + "%"
-
-    //             } 
-
-    //             if (expensesAB.dataset.totalExpensesAddedBudget > parseInt(budgetAB.dataset.totalBudgetAddedBudget) && !budgetbox.classList.contains('overbudget')){
-
-    //                 budgetbox.classList.add('overbudget')
-
-    //                 inputAB.classList.add('overbudget')
-
-    //                 console.log("overbudget")
-
-    //                 buttonAddExpenseAB.classList.add('overbudget')
-
-    //                 buttonViewExpensesAB.classList.add('overbudget')
-
-    //                 hiderAB.classList.add('overbudget')
-
-    //                 waythereAB.classList.add('overthreeforths')
-
-    //                 waythereAB.classList.remove("overhalf")
-
-    //             }
-
-    //             else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgetthreeforths) && !waythereAB.classList.contains('overthreeforths')){
-
-    //                 waythereAB.classList.add('overthreeforths')
-
-    //                 console.log("over34")
-
-    //                 waythereAB.classList.remove("overhalf")
-
-    //             }
-
-    //             else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
-
-    //                 console.log("overhalf")
-
-    //                 waythereAB.classList.add("overhalf")
-
-    //             }
-    //             // //if (!inputAB.classList.contains('addedremover')) {
-
-    //             //}
-
-    //             //console.log("it works!", e.target.value)
-
-    //             // console.log(inputAB.getAttribute('data-input'))    
-    //             inputAB.dataset.input = loadBudgetExpense
-
-    //             expensesAB.dataset.totalExpensesAddedBudgetbefore = expensesAB.dataset.totalExpensesAddedBudget
-
-    //             expensesAB.dataset.totalExpensesAddedBudget = parseInt(expensesAB.dataset.totalExpensesAddedBudget) + parseInt(inputAB.dataset.input)
-
-    //             //console.log(expensesAB.dataset.totalExpensesAddedBudget); 
-
-    //             expensesAB.textContent = "$" + parseInt(expensesAB.dataset.totalExpensesAddedBudget)
-    //             totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) + parseInt(localStorage.getItem("loadBudgetExpense" + numID ))
-    //             updatetotal()
-    //             percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
-
-    //             waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
-
-    //             if (waythereAB.dataset.percentage > 100) {
-
-    //                 waythereAB.style.width = '100%'
-
-    //             }
-
-    //             else {
-
-    //                 waythereAB.style.width = waythereAB.dataset.percentage + "%"
-
-    //             } 
-
-    //             if (expensesAB.dataset.totalExpensesAddedBudget > parseInt(budgetAB.dataset.totalBudgetAddedBudget) && !budgetbox.classList.contains('overbudget')){
-
-    //                 budgetbox.classList.add('overbudget')
-
-    //                 inputAB.classList.add('overbudget')
-
-    //                 console.log("overbudget")
-
-    //                 buttonAddExpenseAB.classList.add('overbudget')
-
-    //                 buttonViewExpensesAB.classList.add('overbudget')
-
-    //                 hiderAB.classList.add('overbudget')
-
-    //                 waythereAB.classList.add('overthreeforths')
-
-    //                 waythereAB.classList.remove("overhalf")
-
-    //             }
-
-    //             else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgetthreeforths) && !waythereAB.classList.contains('overthreeforths')){
-
-    //                 waythereAB.classList.add('overthreeforths')
-
-    //                 console.log("over34")
-
-    //                 waythereAB.classList.remove("overhalf")
-
-    //             }
-
-    //             else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
-
-    //                 console.log("overhalf")
-
-    //                 waythereAB.classList.add("overhalf")
-
-    //             }
-
-    //             const newexpense = document.createElement('div')
-
-    //             newexpense.classList.add('expenses')
-
-    //             expensesboxAB.append(newexpense)
-
-    //             const newexpenseamount = document.createElement('div')
-
-    //             newexpenseamount.classList.add('amount')
-
-    //             newexpenseamount.dataset.amount = inputAB.dataset.input
-
-    //             newexpenseamount.textContent = "$" + inputAB.dataset.input
-
-    //             newexpense.append(newexpenseamount)
-
-    //             const newexpensebtn = document.createElement('button')
-
-    //             newexpensebtn.classList.add('removebtn')
-
-    //             newexpense.append(newexpensebtn)
-
-    //             newexpensebtn.addEventListener('click', () => {P
-                    
-    //                 console.log("Clicked!");
-
-    //                 expensesAB.dataset.totalExpensesAddedBudgetRE = expensesAB.dataset.totalExpensesAddedBudget
-
-    //                 expensesAB.dataset.totalExpensesAddedBudget = expensesAB.dataset.totalExpensesAddedBudgetRE - newexpenseamount.dataset.amount
-
-    //                 var beforeLB = parseInt(localStorage.getItem("loadBudgetExpense" + numID))
-
-    //                 localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) - parseInt(newexpenseamount.dataset.amount))
-
-    //                 var afterLB = parseInt(beforeLB - parseInt(localStorage.getItem("loadBudgetExpense" + numID)))
-
-    //                 expensesAB.textContent = "$" + parseFloat(expensesAB.dataset.totalExpensesAddedBudget)
-
-    //                 percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
-    //                 totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(newexpenseamount.dataset.amount)
-    //                 updatetotal()
-    //                 waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
-
-    //                 if (waythereAB.dataset.percentage > 100) {
-
-    //                     waythereAB.style.width = '100%'
-
-    //                 }
-
-    //                 else {
-
-    //                     waythereAB.style.width = waythereAB.dataset.percentage + "%"
-
-    //                 } 
-
-                    
-
-    //                 if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalBudgetAddedBudget) )
-
-    //                 {
-
-    //                     budgetbox.classList.remove('overbudget')
-
-    //                     inputAB.classList.remove('overbudget')
-
-    //                     console.log("averbudget")
-
-    //                     buttonAddExpenseAB.classList.remove('overbudget')
-
-    //                     buttonViewExpensesAB.classList.remove('overbudget')
-
-    //                     hiderAB.classList.remove('overbudget')
-
-    //                 }
-
-                    
-
-    //                 if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgetthreeforths))
-
-    //                 {
-
-    //                     waythereAB.classList.remove('overthreeforths')
-
-    //                 }
-
-    //                 if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf) && !waythereAB.classList.contains("overhalf")){
-
-    //                     waythereAB.classList.remove('overhalf')
-
-    //                 }
-
-    //                 newexpense.remove()
-    //                  updatetotal
-    //             })
     percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
 
                 waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
@@ -1796,6 +1566,8 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     hiderAB.classList.add('overbudget')
 
+                    expensesboxAB.classList.add('overbudget')
+
                     waythereAB.classList.add('overthreeforths')
 
                     waythereAB.classList.remove("overhalf")
@@ -1820,4 +1592,36 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 }
 
+}
+
+let buzzesRemaining
+
+function pushAlert(reason, message) {
+    if (reason === 'over90') {
+        alertText.textContent = `You have used over 90 percent of your ${message} budget.`
+        alertSubText.textContent = `Consider lowering your ${message} spendings.`
+    } else if (reason === 'over100') {
+        alertBox.classList.add('overbudget')
+        alertText.textContent = `You have gone over budget on ${message}.`
+        alertSubText.textContent = `Lower your spendings to stay in you ${message} budget. `        
+    }
+    alertBox.classList.add('active')
+    setTimeout(() => {
+        if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')    
+        setTimeout(() => {
+            alertBox.classList.remove('buzz')
+        }, 400);
+        // setTimeout(() => {
+        //     if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')
+        //     setTimeout(() => {
+        //         alertBox.classList.remove('buzz')
+        //     }, 400);  
+        // },800)
+        // setTimeout(() => {
+        //     if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')   
+        //     setTimeout(() => {
+        //         alertBox.classList.remove('buzz')
+        //     }, 400);  
+        // },1600)
+    }, 400)
 }
