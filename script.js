@@ -47,7 +47,9 @@ const accColorInput = document.querySelector('[data-acc-color-input]')
 const alertBox = document.querySelector('[data-alert-box]')
 const alertText = document.querySelector('[data-alert-text]')
 const alertSubText = document.querySelector('[data-alert-sub-text]')
+const alertConfirmBtn = document.querySelector('[data-alert-confirm-btn]')
 const alertDismissBtn = document.querySelector('[data-alert-dismiss-btn]')
+const varListenerAlertList = document.querySelector('[data-var-listener-alertlist]')
 
 const budgetscontainer = document.querySelector('[data-budget-container]')
 const totaltotalexpenses = document.querySelector('[data-total-total-expenses]')
@@ -67,40 +69,30 @@ const BudgeterText = document.querySelector('[data-BudgeterText]')
 var firsttime = 1
 
 var expenseeg
-
 var expensesarray = []
-
 var numberofexpense = 0
 
 var showorhide = 1
 
 var budgetname
-
 var budgetAmount
-
 var budgetnameentered = 0
-
 var budgetAmountentered = 0
-
 var numofbudgetcreated = 1
 
 var showorhideAb = 1
-
 var expenseegAb
 
 var closeOrOpenMemory = 0
-
 var usedOrTut = 0 // 0 = used 1 = tut
-
 var pcOrMob = 0 // 0=pc 1=mobile
-
 var renameOrClose = 0
 
 var darkMode = 0 // 0 = light mode 1 = dark mode 
-
 var mainColor = '#0C5DD8'
-
 var accColor = '#0954c5'
+
+var undoExpense
 
 
 addEventListeners()
@@ -251,7 +243,7 @@ function updatetotalpercentage() {
             return
         }
         totalwaythere.style.width = 100 / totalwaythere.dataset.divider + "%"
-        totalpercentageNum.textContent = `${totalwaythere.style.width}`
+        totalpercentageNum.textContent = Math.round(100 / totalwaythere.dataset.divider) + '%'
         
     }
 
@@ -336,9 +328,28 @@ function addEventListeners() {
         cover.classList.remove('show')
     });
 
+    alertConfirmBtn.addEventListener('click', () => {
+        alertBox.classList.remove('active')
+        setTimeout(() => {
+            alertBox.classList.remove('bigSpend')
+            alertConfirmBtn.textContent = 'Confirm'
+            alertDismissBtn.textContent = 'Dismiss'
+            undoExpense.click()
+        },400) 
+        manageAlerts()
+    })
+
     alertDismissBtn.addEventListener('click', () => {
         alertBox.classList.remove('active')
-        setTimeout(() => {alertBox.classList.remove('overbudget')},400) 
+        setTimeout(() => {
+            if(!alertBox.classList.contains('active')) {
+                alertBox.classList.remove('bigSpend')
+                alertBox.classList.remove('overbudget')
+                alertConfirmBtn.textContent = 'Confirm'
+                alertDismissBtn.textContent = 'Dismiss'
+            }
+            },400) 
+        manageAlerts()
     })
 }
 
@@ -911,6 +922,9 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 else 
 
                 {
+                    
+
+                    
 
                 //if (!inputAB.classList.contains('addedremover')) {
 
@@ -941,7 +955,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     increaser.classList.add('down')
                     increaser.classList.remove('up')
                 }
-                increaser.textContent = "+" + Math.floor(increaser.dataset.currentValue) + "%"
+                increaser.textContent = "+" + Math.round(increaser.dataset.currentValue) + "%"
 
                 waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
 
@@ -1039,7 +1053,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     increaser.classList.add('down')
                     increaser.classList.remove('up')
                     increaser.dataset.currentValue = parseInt(newexpenseamount.dataset.amount) * 100 / budgetAB.dataset.totalBudgetAddedBudget
-                    increaser.textContent = "-" + Math.floor(increaser.dataset.currentValue) + "%"
+                    increaser.textContent = "-" + Math.round(increaser.dataset.currentValue) + "%"
 
                     waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
 
@@ -1154,13 +1168,17 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 })
 
+                if(inputAB.dataset.input >= 200) {
+                    pushAlert(`bigExpense`, loadBudgetName, waythereAB.dataset.percentage, newexpensebtn)
+                }
+
                 localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) + parseInt(inputAB.dataset.input))
 
                 inputAB.dataset.input = ""
 
                 inputAB.value = ""
 
-                }
+                } // end of function
 
             })
 
@@ -1243,6 +1261,23 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
                     totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(newexpenseamount.dataset.amount)
                     updatetotal()
+
+                    increaser.classList.add('down')
+                    increaser.classList.remove('up')
+                    increaser.dataset.currentValue = parseInt(newexpenseamount.dataset.amount) * 100 / budgetAB.dataset.totalBudgetAddedBudget
+                    increaser.textContent = "-" + Math.round(increaser.dataset.currentValue) + "%"
+
+                    waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
+
+                    if (waythereAB.dataset.percentage > 100) {
+
+                        waythereAB.style.width = '100%'
+                        percentage.textContent = ">100%"
+                    } else {
+                        waythereAB.style.width = waythereAB.dataset.percentage + "%"
+                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
+                    } 
+
                     waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
 
                     if (waythereAB.dataset.percentage > 100) {
@@ -1414,6 +1449,22 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(newexpenseamount.dataset.amount)
                     updatetotal()
                     waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
+
+                    increaser.classList.add('down')
+                    increaser.classList.remove('up')
+                    increaser.dataset.currentValue = parseInt(newexpenseamount.dataset.amount) * 100 / budgetAB.dataset.totalBudgetAddedBudget
+                    increaser.textContent = "-" + Math.round(increaser.dataset.currentValue) + "%"
+
+                    waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
+
+                    if (waythereAB.dataset.percentage > 100) {
+
+                        waythereAB.style.width = '100%'
+                        percentage.textContent = ">100%"
+                    } else {
+                        waythereAB.style.width = waythereAB.dataset.percentage + "%"
+                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
+                    } 
 
                     if (waythereAB.dataset.percentage > 100) {
 
@@ -1594,16 +1645,47 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
 }
 
-let buzzesRemaining
+var alertList = [];
 
-function pushAlert(reason, message) {
+function pushAlert(reason, category, percentage, btn) {
+    alertList.push({r: reason, c: category, p: percentage, b: btn});
+    if (!alertBox.classList.contains('active')) manageAlerts()
+    varListenerAlertList.click()
+}
+
+varListenerAlertList.addEventListener("click", () => {
+    console.log('alertList updated successfully');
+})
+
+function manageAlerts() {
+    if (alertList.length <= 0) return
+    reason = alertList[0].r; 
+    category = alertList[0].c;
+    percentage = alertList[0].p;
+    btn = alertList[0].b;
+    let removed = alertList.shift();
+    console.log(alertList);
+    console.log(`removed:` + removed.r, alertList);
+    if (!alertBox.classList.contains('active')) {
+        displayAlert(reason, category, percentage, btn)
+    }
+}
+
+function displayAlert(reason, category, percentage, btn) {
     if (reason === 'over90') {
-        alertText.textContent = `You have used over 90 percent of your ${message} budget.`
-        alertSubText.textContent = `Consider lowering your ${message} spendings.`
+        alertText.textContent = `You have used over 90 percent of your ${category} budget.`
+        alertSubText.textContent = `Consider lowering your ${category} spendings.`
     } else if (reason === 'over100') {
         alertBox.classList.add('overbudget')
-        alertText.textContent = `You have gone over budget on ${message}.`
-        alertSubText.textContent = `Lower your spendings to stay in you ${message} budget. `        
+        alertText.textContent = `You have gone over budget on ${category}.`
+        alertSubText.textContent = `Lower your spendings to stay in you ${category} budget. `        
+    } else if (reason === 'bigExpense') {
+        alertText.textContent = `Wow! You spent a lot on ${category}. You have used ${Math.round(percentage)}% of your budget.`
+        alertSubText.textContent = `Please confirm your expense.`
+        alertConfirmBtn.textContent = `Undo`
+        alertDismissBtn.textContent = `Keep`
+        undoExpense = btn
+        alertBox.classList.add('bigSpend');
     }
     alertBox.classList.add('active')
     setTimeout(() => {
@@ -1611,17 +1693,5 @@ function pushAlert(reason, message) {
         setTimeout(() => {
             alertBox.classList.remove('buzz')
         }, 400);
-        // setTimeout(() => {
-        //     if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')
-        //     setTimeout(() => {
-        //         alertBox.classList.remove('buzz')
-        //     }, 400);  
-        // },800)
-        // setTimeout(() => {
-        //     if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')   
-        //     setTimeout(() => {
-        //         alertBox.classList.remove('buzz')
-        //     }, 400);  
-        // },1600)
     }, 400)
 }

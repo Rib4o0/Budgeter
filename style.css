@@ -1582,10 +1582,17 @@ body {
     transition: inherit;
 }
 
+.optionsHolder {
+    width: 320px;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+}
+
 .usedBudBeforeConfirmBtn {
-    position: absolute;
     color: var(--main-color);
-    left: 35%;
+    /* left: 35%; */
     width: 130px;
     padding-top: 20px;
     height: 40px;
@@ -1595,9 +1602,8 @@ body {
 }
 
 .usedBudBeforeCancelBtn {
-    position: absolute;
     color:     var(--acc-blue);
-    right: 35%;
+    /* right: 35%; */
     width: 130px;
     padding-top: 20px;
     height: 40px;
@@ -2106,8 +2112,8 @@ input[type="color"].mainColorInput {
 }
 
 .alertBox {
-    width: 380px;
-    height: 140px;
+    width: 420px;
+    aspect-ratio: 19/7;
     background-color: var(--main-color);
     position: fixed;
     top: 23px;
@@ -2132,22 +2138,47 @@ input[type="color"].mainColorInput {
 }
 
 .alertText {
-    color: var(--font-color);
+    color: #fff;
     top: 10px;
     left: 10px;
-    width: calc(100% - 10px);
+    width: calc(100% - 20px);
     word-wrap: break-word;
     font-size: larger;
     font-weight: bold;
 }
 
 .alertSubText {
-    color: var(--font-color);
+    color: #fff;
     opacity: 0.75;
     left: 10px;
     top: 10px;
-    width: calc(100% - 10px);
+    width: calc(100% - 20px);
     word-wrap: break-word;  
+}
+
+
+.alertConfirmBtn {
+    background-color: var(--main-blue);
+    width: 100px;
+    aspect-ratio: 5/2;
+    border: none;
+    border-radius: 10px;
+    position: absolute;
+    right: 120px;
+    bottom: 10px;
+    opacity: 0;
+    pointer-events: none;
+    color: var(--main-color);
+}
+
+.alertBox.bigSpend > .alertConfirmBtn {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.alertBox.overbudget > .alertConfirmBtn {
+    background-color: #fff;
+    color: var(--overbudget-alert-color);
 }
 
 .alertDismissBtn {
@@ -2162,8 +2193,9 @@ input[type="color"].mainColorInput {
 }
 
 .alertBox.overbudget > .alertDismissBtn {
+    color: #fff;
     background-color: var(--overbudget-alert-color);
-    border: var(--font-color) 2px solid;
+    border: #fff 2px solid;
 }
 
 .alertBox.active {
@@ -2223,4 +2255,9 @@ input[type="color"].mainColorInput {
     transition: all var(--animation-speed);
     text-align: right;
     width: 80px;
+}
+
+.variableListener {
+    opacity: 0;
+    pointer-events: none;
 }
