@@ -13,8 +13,10 @@
     <div class="transitionFade" data-fade></div>
     <div class="question-holder hideQuestion" data-quizHolder>
         <div class="questionText" data-quizText>Have you used <div class="blueText smallText" data-BudgeterText>Budgeter</div> before?</div>
-        <div class="usedBudBeforeCancelBtn" data-usedBudBeforeCancel>Nope!</div>
+        <div class="optionsHolder">
             <div class="usedBudBeforeConfirmBtn" data-usedBudBeforeConfirm>Yep!</div>
+            <div class="usedBudBeforeCancelBtn" data-usedBudBeforeCancel>Nope!</div>
+        </div>        
     </div>
     <header class="header">
         <div class="header-title">Budgets</div>
@@ -93,8 +95,10 @@
     <div class="alertBox" data-alert-box>
         <div class="alertText" data-alert-text></div>
         <div class="alertSubText" data-alert-sub-text></div>
+        <button class="alertConfirmBtn" data-alert-confirm-btn>Confirm</button>
         <button class="alertDismissBtn" data-alert-dismiss-btn>Dismiss</button>
     </div>
+    <div class="variableListener" data-var-listener-alertlist value="0"></div>
     <div class="cover-hider" data-cover></div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
