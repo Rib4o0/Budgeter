@@ -1,0 +1,86 @@
+@import url('htotalttps://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+:root {
+    --main-color: #111; /*#fff*/
+    --font-color: #fff; /* #000 */
+    --main-blue: #0C5DD8; /*0C5DD8 */
+    --acc-blue: #0954c5; /*#0954c5*/
+    --lighter-shade: #222;/*#d8d8d8*/
+    --total-color: #111; /*#ecebeb*/
+    --nav-hover-color: #222;/* #ddebff*/
+    --animation-speed: 250ms;
+    --overbudget-color: #3b0505; /*#ecacac*/
+    --overbudget-alert-color: #b04a4a;
+    --overbudget-text-color: #db4848;
+}
+
+* {
+    font-family: 'Montserrat';
+    user-select: none;
+    color: var(--font-color);
+}
+
+.header {
+    width: 100vmax;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: space-between;
+}
+
+body {
+    min-width: 1000px;
+    overflow-x: hidden;
+    background-color: var(--main-color);
+}
+
+.header-title {
+    font-size: 100px;
+}
+
+
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 6vh;
+    width: 100vw;
+    border-top:     var(--acc-blue) 1px solid;
+    display: flex;
+    align-items: center;
+    background-color: var(--main-color);
+    z-index: 99;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon {
+    font-size: 35px;
+    color:     var(--acc-blue);
+}
+
+.navElem {
+    width: 33%;
+    border-right: 1px solid     var(--acc-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transition: all var(--animation-speed) ;
+}
+
+.statsNav {
+    background-color:var(--acc-blue);
+}
+
+.statsNav > .icon {
+    color: var(--main-color);
+}
+
+.navElem:hover {
+    background-color:     var(--nav-hover-color);
+}
+
+.statsNav:hover {
+    background-color: #1b6fed;
+}

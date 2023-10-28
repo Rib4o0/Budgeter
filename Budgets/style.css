@@ -12,75 +12,31 @@
     --overbudget-color: #3b0505; /*#ecacac*/
     --overbudget-alert-color: #b04a4a;
     --overbudget-text-color: #db4848;
-    /* --main-color: #fff;
-    --font-color: #000; 
-    --main-blue: #0C5DD8 ; 
-    --acc-blue: #0954c5 ;
-    --lighter-shade: #d8d8d8;
-    --total-color: #ecebeb; 
-    --nav-hover-color:  #ddebff; */
-
-    /* Presets
-        Ocean 
-        main  26B596
-        acc 09C3A4
-
-    
-    */
 }
 
 * {
-
     font-family: 'Montserrat';
-
     user-select: none;
-
     color: var(--font-color)
-
-
-
 }
 
-
-
 .header {
-
-    /* display: grid;
-
-    grid-template-columns: 1fr 1fr 250px;
-
-    gap: 10px; */
-
     width: 100vmax;
-
     display: flex;
-
     flex-wrap: wrap;
-
     justify-content: space-between;
-
     align-items: space-between;
-
 }
 
 .header-btn-container {
-
     display: flex;
-
-    /* /justify-content: center; */
-
     flex-wrap: nowrap;
-
 }
 
 body {
-
     min-width: 1000px;
-
     overflow-x: hidden;
-
     background-color: var(--main-color);
-
 }
 
 .detaisbudget {
@@ -386,29 +342,16 @@ body {
 }
 
 .expenses {
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     position: relative;
-
     left: 40px;
-
     width: 100px;
-
     height: 40px;
-
     padding: .25em;
-
-    /* border-radius: .5em; */
-    
     background-color: transparent;
-
     border-bottom: 1px solid #ddd;
-
 }
 
 .expenselabel {
@@ -1796,6 +1739,11 @@ body {
     right: 10px;
 }
 
+.expenseDate {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
 .budget-box.overbudget > .expensesboxAddedBudget > .expenses > .removebtn, .budget-box.overbudget > .BudgetNameEditBtn {
     background-color: var(--overbudget-color);
     border: #b04a4a 1px solid;
@@ -2136,7 +2084,7 @@ input[type="color"].mainColorInput {
 }
 
 .alertText {
-    color: #fff;
+    color: var(--font-color);
     top: 10px;
     left: 10px;
     width: calc(100% - 20px);
@@ -2146,12 +2094,16 @@ input[type="color"].mainColorInput {
 }
 
 .alertSubText {
-    color: #fff;
+    color: var(--font-color);
     opacity: 0.75;
     left: 10px;
     top: 10px;
     width: calc(100% - 20px);
     word-wrap: break-word;  
+}
+
+.alertBox.overbudget > .alertText, .alertBox.overbudget > .alertSubText {
+    color: #fff;
 }
 
 
