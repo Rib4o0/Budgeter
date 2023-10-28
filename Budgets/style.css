@@ -573,6 +573,7 @@ body {
     color: hsl(0, 90%, 50%);
 
     top: -34px;
+    
 
     opacity: 0;
 
@@ -777,9 +778,7 @@ body {
 }
 
 .errorppavAddedBudget.show {
-
     opacity: 1;
-
 }
 
 .way-thereAddedBudget.overhalf {

@@ -1677,3 +1677,45 @@ function pushAlert(reason, category, percentage, btn) {
         // },1600)
     }, 400)
 }
+<!-- <div class="budget-box pop-up expanded" data-dashlane-rid="167a2fc9a8619f16" data-form-type="other">
+            <div class="name-budgetAddedBudget ontop">Entertainment</div>
+            <div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="120" data-total-expenses-added-budgetbefore="120" data-total-expenses-added-budget-r-e="132">$120</div>
+            <div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="1200" data-totalbudgethalf="600" data-totalbudgetquarter="300" data-totalbudgetthreeforths="900">/ $1200</div>
+            <div class="percentage-bar-mainAddedBudget ontop" data-divider="10">
+                <div class="way-thereAddedBudget ontop" data-percentage="10" style="width: 10%;"></div>
+            </div>
+            <label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide A Value</label>
+            <input type="number" class="expenseAddedBudget ontop doneonce" id="expenseAddedBudget" data-dashlane-rid="a9d2830024a0fb6e" data-input="" data-form-type="other">
+            <button class="Add-expenseAddedBudget ontop" data-dashlane-rid="d492b4cfe5b1b65e" data-dashlane-label="true" data-form-type="other">Add Expense</button>
+            <button class="View-expensesAddedBudget ontop" data-dashlane-rid="6b6cd2c8d6908f19" data-dashlane-label="true" data-form-type="other">Settings</button>
+            <div class="hiderAddedBudget ontopmid"></div>
+            <div class="expensesboxAddedBudget onbottom">
+                <div class="expenses">
+                    <div class="amount" data-amount="120">$120</div>
+                    <div class="expenseDate">28th October 2023</div>
+                    <button class="removebtn"></button>
+                </div>
+                <div class="expenses">
+                    <div class="amount" data-amount="120">$120</div>
+                    <div class="expenseDate">23th May 2023</div>
+                    <button class="removebtn"></button>
+                </div>
+                <div class="expenses">
+                    <div class="amount" data-amount="120">$120</div>
+                    <div class="expenseDate">3rd September 2023</div>
+                    <button class="removebtn"></button>
+                </div>
+                <div class="expenses">
+                    <div class="amount" data-amount="120">$120</div>
+                    <div class="expenseDate">17th April 2023</div>
+                    <button class="removebtn"></button>
+                </div>
+            </div>
+            <button class="delete-budget-btn"></button>
+            <div class="percentageAddedBudget">10%</div>
+            <div class="increaser neutral down" data-current-value="1">-1%</div>
+            <div class="expensestextAddedBudget">Expenses</div>
+            <div class="BudgetNameEditText">Change Budget Name</div>
+            <div class="BudgetNameEditBtn"></div>
+            <input class="BudgetNameEditInput" data-dashlane-rid="576c32e0a8698799" data-form-type="other">
+        </div> --></input>
