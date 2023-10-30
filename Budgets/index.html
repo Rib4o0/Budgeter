@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/1ee8f271b9.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div class="Container">
     <div class="transitionFade" data-fade></div>
     <div class="question-holder hideQuestion" data-quizHolder>
         <div class="questionText" data-quizText>Have you used <div class="blueText smallText" data-BudgeterText>Budgeter</div> before?</div>
@@ -36,21 +37,31 @@
             <label class="labelforaob" data-labelforaob>Enter The Budget</label>
             <div class="titleCB">Create a budget</div>
         </div>
-
         <div class="settings-container" data-settings-container>
             <div class="titleSettings">Settings</div>
+            <button class="resetSettingsBtn" data-reset-settings-btn>Reset</button>
             <button class="closeSettings" data-close-settings-btn>Close</button>
-            <div class="darkMode">
-                <label class="darkModeTitle">Dark Mode</label>
-                <button class="darkModeToggle" data-dark-mode-toggle><i class="fa-regular fa-sun-bright"></i></button>
+            <div class="settingSection">
+                <div class="settingSectionTitle">Appereance</div>
+                <div class="darkMode">
+                    <label class="darkModeTitle">Dark Mode</label>
+                    <button class="darkModeToggle" data-dark-mode-toggle><i class="fa-regular fa-sun-bright"></i></button>
+                </div>
+                <div class="mainColor">
+                    <label class="mainColor">Main Colour</label>
+                    <input type="color" class="mainColorInput " data-main-color-input>
+                </div>
+                <div class="accColor">
+                    <label class="accColor">Accent Colour</label>
+                    <input type="color" class="accColorInput" data-acc-color-input>
+                </div>
             </div>
-            <div class="mainColor">
-                <label class="mainColor">Main Colour</label>
-                <input type="color" class="mainColorInput " data-main-color-input>
-            </div>
-            <div class="accColor">
-                <label class="accColor">Accent Colour</label>
-                <input type="color" class="accColorInput" data-acc-color-input>
+            <div class="settingSection">
+                <div class="settingSectionTitle">Data</div>
+                <div class="deleteData">
+                    <div class="deleteData">Delete data</div>
+                    <div class="deleteDataBtn" data-delete-data-btn>Delete</div>
+                </div>
             </div>
             <div class="versionNum">v0.04</div>
         </div>
@@ -79,13 +90,6 @@
             <div class="acceptbtn" data-accept-btn>Got it!</div>
             <div class="dismissbtn" data-dismiss-btn>Nope!</div>
         </div>
-        <div class="deleteMemoryContainer hide" data-deleteMemoryContainer>
-            <div class="deleteMemoryText">Want to delete your data?</div>
-            <button class="deleteMemoryBtn" data-deleteMemoryBtn>Yes!</button>
-            <button class="cancelMemoryBtn" data-cancelMemoryBtn>Nope!</button>
-            <div class="deleteMemoryLine"></div>
-            <button class="openDeleteMemorybtn" data-openDeleteMemory></button>
-        </div>
         <nav class="nav-bar">
             <div class="budgetsNav navElem"><i class="fa-solid fa-vault icon"></i></div>
             <div class="statsNav navElem" data-link="/Statistics/index.html"><i class="fa-solid fa-chart-column icon"></i></div>
@@ -100,6 +104,7 @@
     </div>
     <div class="variableListener" data-var-listener-alertlist value="0"></div>
     <div class="cover-hider" data-cover></div>
+    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

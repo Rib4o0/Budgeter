@@ -1,61 +1,64 @@
 const waythere = document.querySelector('[data-way-there]')
+
 const addexpense = document.querySelector('[data-add-expense-btn-budget]')
+
 const viewexpenses = document.querySelector('[data-view-expenses]')
+
 const numberofbox = document.querySelector('[data-number-of-box]')
+
 const totalexpenses = document.querySelector('[data-total-expenses]')
+
 const totalbudget = document.querySelector('[data-total-budget]')
+
 const nameofbudget = document.querySelector('[data-name-budget]')
+
 const budgetcontainer = document.querySelector('[data-budget-container]')
+
 const expense = document.querySelector('[data-expense]')
+
 const label = document.querySelector('[data-label]')
+
 const expensesbox = document.querySelector('[data-expenses-box]')
+
 const hider = document.querySelector('[data-hider]')
 
 const addbudgetbtn = document.querySelector('[data-add-budget-btn]')
+
 const addbudgetdetails = document.querySelector('[data-detail-budget]')
+
 const closedetails = document.querySelector('[data-close-details]')
+
 const inputNameOfBudget = document.querySelector('[data-detailnameofbudget]')
+
 const labelfornameofbudget = document.querySelector('[data-labelfordnob]')
+
 const inputBudget = document.querySelector('[data-amountofbudget]')
+
 const labelforbudget = document.querySelector('[data-labelforaob]')
+
 const addbudgetconfirm = document.querySelector('[data-addbudget-confirm]')
+
 const labelpleaseenterallofthem = document.querySelector('[data-AlertforAddbudget]')
 
 const cookiecontainer = document.querySelector('[data-cookieContainer]')
+
 const cookieAcceptbtn = document.querySelector('[data-accept-btn]')
+
 const cookieDismissbtn = document.querySelector('[data-dismiss-btn]')
 
 const openDeleteMemory = document.querySelector('[data-openDeleteMemory]')
+
 const deleteMemoryContainer = document.querySelector('[data-deleteMemoryContainer]')
+
 const deleteMemoryBtn = document.querySelector('[data-deleteMemoryBtn]')
+
 const cancelMemoryBtn = document.querySelector('[data-cancelMemoryBtn]')
-
-const switchStylesBtn = document.querySelector('[data-switchstyles]')
-
-const styleLink = document.querySelector('[data-styleLink]')
-const cover = document.querySelector('[data-cover]')
-const fade = document.querySelector('[data-fade]')
-const link = document.querySelectorAll('[data-link]')
-
-const settingsBtn = document.querySelector('[data-settings-btn]')
-const settingsContainer = document.querySelector('[data-settings-container]')
-const closeSettingsBtn = document.querySelector('[data-close-settings-btn]')
-const darkModeToggle = document.querySelector('[data-dark-mode-toggle]')
-const mainColorInput = document.querySelector('[data-main-color-input]')
-const accColorInput = document.querySelector('[data-acc-color-input]')
-
-const alertBox = document.querySelector('[data-alert-box]')
-const alertText = document.querySelector('[data-alert-text]')
-const alertSubText = document.querySelector('[data-alert-sub-text]')
-const alertConfirmBtn = document.querySelector('[data-alert-confirm-btn]')
-const alertDismissBtn = document.querySelector('[data-alert-dismiss-btn]')
 
 const budgetscontainer = document.querySelector('[data-budget-container]')
 const totaltotalexpenses = document.querySelector('[data-total-total-expenses]')
 const totaltotalbudget = document.querySelector('[data-total-total-budget]')
 const totalpercentage = document.querySelector('[data-total-percentage-bar-main]')
 const totalwaythere = document.querySelector('[data-total-way-there]')
-const totalpercentageNum = document.querySelector('[data-total-percentage')
 
 const quizHolder = document.querySelector('[data-quizHolder]')
 const quizYes = document.querySelector('[data-usedBudBeforeConfirm]')
@@ -68,48 +71,90 @@ const BudgeterText = document.querySelector('[data-BudgeterText]')
 var firsttime = 1
 
 var expenseeg
+
 var expensesarray = []
+
 var numberofexpense = 0
 
 var showorhide = 1
 
 var budgetname
+
 var budgetAmount
+
 var budgetnameentered = 0
+
 var budgetAmountentered = 0
+
 var numofbudgetcreated = 1
 
 var showorhideAb = 1
+
 var expenseegAb
 
 var closeOrOpenMemory = 0
+
 var usedOrTut = 0 // 0 = used 1 = tut
-var pcOrMob = 0 // 0=pc 1=mobile
-var renameOrClose = 0
 
-var darkMode = 0 // 0 = light mode 1 = dark mode 
-var mainColor = '#0C5DD8'
-var accColor = '#0954c5'
-
-var undoExpense
-
+//
+//GetTheProgressbars()
 
 addEventListeners()
 updatetotal()
 cookiesInitialize()
-fadein()
 
-function fadein() {
-    setTimeout(() => {
-        fade.classList.add('fade')
-    }, 100);
-}
+//update()
 
-function fadeout() {
-    setTimeout(() => {
-        fade.classList.remove('fade')
-    }, 100);
-}
+// function GetTheProgressbars() {
+
+//     const totalbudgetpb = totalbudget.getAttribute('data-total-budget')
+
+//     const totalexpensespb = totalexpenses.getAttribute('data-total-expenses')
+
+//     console.log(totalbudgetpb, totalexpensespb)
+
+//     const dividerpb = totalbudgetpb / totalexpensespb
+
+//     console.log(dividerpb);
+
+//     const percentagepb = 100 / dividerpb + '%'
+
+//     if (100 / dividerpb > 100) {
+
+//         console.log("WHAT")
+
+//         waythere.style.width = '100%'
+
+//         return
+
+//     }
+
+//     console.log(percentagepb);
+
+//     waythere.style.width = percentagepb
+
+// }
+
+// const testThingy = "hello mr meSix look at me"
+// console.log(testThingy.slice(-1));
+// const otherTestThingy = testThingy.slice(0, -1)
+// console.log(otherTestThingy);
+
+// var numOfEs = 0
+// var numofesstring = "132#321#32#213#3#32#23#32#32#23#32#12#342#12#34#12#34#12#43#12#43#12#43#12#34#12#43#12#"
+// var numofesstringB = numofesstring
+// console.log(numofesstring.length);
+
+// for (let i = 1; i < numofesstring.length; i++) {
+//     if (numofesstringB.slice(-1) == "#")
+//     {
+//         numOfEs += 1
+//     }
+//    // console.log(i);
+//     numofesstringB = numofesstringB.slice(0, -1)
+// }
+
+//console.log(numOfEs);
 
 
 function tutorial() {
@@ -177,21 +222,6 @@ function cookiesInitialize() {
     {
         localStorage.setItem("numofbudget", 0)
     }
-    if(!localStorage.getItem("darkMode?")) {
-        localStorage.setItem("darkMode?", 0)
-    }
-    if(!localStorage.getItem("mainColor")) {
-        localStorage.setItem("mainColor", '#0C5DD8')
-    }
-    if(!localStorage.getItem("accColor")) {
-        localStorage.setItem("accColor", '#0954c5')
-    }
-    darkMode = localStorage.getItem("darkMode?")
-    mainColor = localStorage.getItem("mainColor")
-    mainColorInput.value = mainColor
-    accColor = localStorage.getItem("accColor")
-    accColorInput.value = accColor
-    ApplySettings()
     cookieAcceptbtn.addEventListener("click", () => {
         cookieAcceptbtn.disabled = true
         cookieDismissbtn.disabled = true
@@ -238,30 +268,25 @@ function updatetotalpercentage() {
         if (100 / totalwaythere.dataset.divider > 100)
         {
             totalwaythere.style.width = '100%'
-            totalpercentageNum.textContent = '>100%'
             return
         }
         totalwaythere.style.width = 100 / totalwaythere.dataset.divider + "%"
-        totalpercentageNum.textContent = `${totalwaythere.style.width}`
-        
     }
 
 }
 
 function addEventListeners() {
 
+   // expenseGather()
+
     nameofbudgetGather()
 
     gatherBudgetAmount()
 
-    link.forEach(link => {
-        link.addEventListener('click', () => {
-            fadeout()
-            setTimeout(() => {
-                window.location.href = link.dataset.link.toString()
-            }, 600);
-        })
-    })
+   // addexpense.addEventListener('click', AddExpense)
+
+    //
+  //viewexpenses.addEventListener('click', showhideExpenses)
 
     addbudgetbtn.addEventListener('click', DetailsforAddbudget)
 
@@ -286,65 +311,6 @@ function addEventListeners() {
 
     cancelMemoryBtn.addEventListener('click', DeleteMemoryClose)
 
-    darkModeToggle.addEventListener('click', () => {
-        if (darkMode == 1) {
-            darkMode = 0;
-            ApplySettings();
-        } else if (darkMode == 0) {
-            darkMode = 1;
-            ApplySettings();
-        }
-        localStorage.setItem("darkMode?", darkMode);
-        
-        // --main-color: #111; /*#fff*/
-        // --font-color: #fff; /* #000 */
-        // --main-blue: #f6ff00; /*0C5DD8 */
-        // --acc-blue: #e9ff27; /*#0954c5*/
-        // --lighter-shade: #222;/*#d8d8d8*/
-        // --total-color: #111; /*#ecebeb*/
-        // --nav-hover-color: #222;/* #ddebff*/
-    });
-
-    mainColorInput.addEventListener("input", () => {
-       mainColor = mainColorInput.value 
-       ApplySettings()
-       localStorage.setItem("mainColor", mainColor)
-    });
-
-    accColorInput.addEventListener("input", () => {
-        accColor = accColorInput.value 
-        ApplySettings()
-        localStorage.setItem("accColor", accColor)
-     });
-
-    settingsBtn.addEventListener('click', () => {
-        settingsContainer.classList.add('show')
-        cover.classList.add('show')
-    })
-
-    closeSettingsBtn.addEventListener('click', () => {
-        settingsContainer.classList.remove('show')
-        cover.classList.remove('show')
-    });
-
-    alertConfirmBtn.addEventListener('click', () => {
-        alertBox.classList.remove('active')
-        setTimeout(() => {
-            alertBox.classList.remove('bigSpend')
-            alertConfirmBtn.textContent = 'Confirm'
-            alertDismissBtn.textContent = 'Dismiss'
-            undoExpense.click()
-        },400) 
-    })
-
-    alertDismissBtn.addEventListener('click', () => {
-        alertBox.classList.remove('active')
-        setTimeout(() => {
-            alertBox.classList.remove('overbudget')
-            alertBox.classList.remove('bigSpend')
-            alertDismissBtn.textContent = 'Dismiss'
-        },400) 
-    })
 }
 
 function CreateBudget() {
@@ -382,25 +348,13 @@ function CreateBudget() {
 
     console.log(budgetname, budgetAmount);
 
-    var numofbudget = localStorage.getItem('numofbudget');
-
-    localStorage.setItem("nameOfBudget" + numofbudget, budgetname)
-    localStorage.setItem("amountOfBudget" + numofbudget, budgetAmount)
-    localStorage.setItem("loadBudgetExpense" + numofbudget, 0)
-
-    addPreviousBudgets(budgetname, budgetAmount, 0, numofbudget, "")
-
-    localStorage.setItem("numofbudget", parseInt(localStorage.getItem("numofbudget")) + 1)
+    addBudget()
 
     budgetAmount = ""
 
     budgetname = ""
 
-    labelforbudget.classList.remove('hide')
-    labelfornameofbudget.classList.remove('hide')
-
     addbudgetdetails.classList.remove('show')
-    cover.classList.remove('show')
 
     addbudgetconfirm.disabled = true
 
@@ -413,10 +367,10 @@ function CreateBudget() {
         addbudgetconfirm.disabled = false
 
     }, 500)
-    
-}   
 
-function DeleteMemoryOpen() {
+}
+
+function  DeleteMemoryOpen() {
     deleteMemoryContainer.classList.remove('hide')
 }
 
@@ -443,7 +397,7 @@ function gatherBudgetAmount() {
 
         }
 
-        if (e.target.value == "" || e.target.value == null || e.target.value == undefined ) {
+        if (e.target.value == ""){
 
             labelforbudget.classList.remove('hide')
 
@@ -486,40 +440,449 @@ function nameofbudgetGather() {
 function CloseDetails() {
 
     addbudgetdetails.classList.remove('show')
-    cover.classList.remove('show')
 
 }
 
 function DetailsforAddbudget() {
 
     addbudgetdetails.classList.add('show')
-    cover.classList.add('show')
 
+}
+
+ 
+
+function addBudget() {
+
+    var numofbudget = localStorage.getItem("numofbudget")
+
+    localStorage.setItem("nameOfBudget" + numofbudget, budgetname)
+
+    localStorage.setItem("amountOfBudget" + numofbudget, budgetAmount)
+    
+    localStorage.setItem("loadBudgetExpense" + numofbudget, 0)
+
+    const budgetbox = document.createElement('div')
+
+    budgetbox.classList.add('budget-box')
+
+    budgetcontainer.prepend(budgetbox)
+
+    //
+
+    const nameOfBudget = document.createElement('div')
+
+    nameOfBudget.textContent = budgetname
+
+    nameOfBudget.classList.add('name-budgetAddedBudget', 'ontop')
+
+    budgetbox.prepend(nameOfBudget)
+
+    //
+
+    const expensesAB = document.createElement('div')
+
+    expensesAB.classList.add('total-expensesAddedBudget', 'ontop')
+
+    expensesAB.dataset.totalExpensesAddedBudget = 0
+
+    expensesAB.textContent = "$" + 0
+
+    budgetbox.append(expensesAB)
+
+    //
+    totaltotalbudget.dataset.totalTotalBudget =  parseInt(totaltotalbudget.dataset.totalTotalBudget) + parseInt(budgetAmount)
+    updatetotal()
+    const budgetAB = document.createElement('div')
+
+    budgetAB.classList.add('total-budgetAddedBudget', 'ontop')
+
+    budgetAB.dataset.totalBudgetAddedBudget = budgetAmount
+
+    budgetAB.dataset.totalbudgethalf = budgetAB.dataset.totalBudgetAddedBudget / 2
+
+    budgetAB.dataset.totalbudgetquarter = budgetAB.dataset.totalBudgetAddedBudget / 4
+
+    budgetAB.dataset.totalbudgetthreeforths = budgetAB.dataset.totalbudgetquarter * 3
+
+    budgetAB.textContent = "/ $" + budgetAmount
+
+    budgetbox.append(budgetAB)
+
+    //
+
+    const percantagebarmainAB = document.createElement('div')
+
+    percantagebarmainAB.classList.add('percentage-bar-mainAddedBudget', 'ontop')
+
+    percantagebarmainAB.dataset.percentageBarMainAddedBudget
+
+    //percantagebarmainAB.textContent = "pbmab"
+
+    budgetbox.append(percantagebarmainAB)
+
+    //
+
+    const waythereAB = document.createElement('div')
+
+    waythereAB.classList.add('way-thereAddedBudget', 'ontop')
+
+    waythereAB.dataset.wayThereAddedBudget
+
+   //waythereAB.textContent = "hello"
+
+    percantagebarmainAB.append(waythereAB)
+
+    //
+
+    const errormessage = document.createElement('label')
+
+    errormessage.classList.add('errorppavAddedBudget', 'ontop')
+
+    errormessage.dataset.labelAddedBudget
+
+    errormessage.htmlFor = "expenseAddedBudget"
+
+    errormessage.textContent = "Please Provide A Value"
+
+    budgetbox.append(errormessage)
+
+    //
+
+    const inputAB = document.createElement('input')
+
+    inputAB.type = 'number'
+
+    inputAB.classList.add('expenseAddedBudget', 'ontop')
+
+    inputAB.id = 'expenseAddedBudget'
+
+    inputAB.dataset.expenseAddedBudget
+
+    budgetbox.append(inputAB)
+
+    //
+
+    const buttonAddExpenseAB = document.createElement('button')
+
+    buttonAddExpenseAB.classList.add('Add-expenseAddedBudget', 'ontop')
+
+    buttonAddExpenseAB.dataset.addExpenseBtnBudgetAddedBudget
+
+    buttonAddExpenseAB.textContent = "Add Expense"
+
+    budgetbox.append(buttonAddExpenseAB)
+
+    //
+
+    const buttonViewExpensesAB = document.createElement('button')
+
+    buttonViewExpensesAB.classList.add('View-expensesAddedBudget', 'ontop')
+
+    buttonViewExpensesAB.dataset.viewExpensesAddedBudget
+
+    buttonViewExpensesAB.textContent = "View Expenses"
+
+    budgetbox.append(buttonViewExpensesAB)
+
+    //
+
+    const hiderAB = document.createElement('div')
+
+    hiderAB.classList.add('hiderAddedBudget', 'ontopmid')
+
+    budgetbox.append(hiderAB)
+
+    //
+
+    const expensesboxAB = document.createElement('div')
+
+    expensesboxAB.classList.add('expensesboxAddedBudget', 'onbottom')
+
+    expensesboxAB.dataset.expensesbox
+
+    budgetbox.append(expensesboxAB)
+    budgetbox.classList.add('pop-up')
+    //
+    
+    const deleteBudBtn = document.createElement('button')
+    deleteBudBtn.classList.add('delete-budget-btn')
+    expensesboxAB.append(deleteBudBtn)
+
+    //
+
+    deleteBudBtn.addEventListener('click', () => {
+        let sure = "Are you sure you want to Delete This Budget"
+        if(confirm(sure)) {
+                    budgetbox.classList.add('removing')  
+        expensesboxAB.classList.remove('show')
+        setTimeout (() => {
+            deleteBudBtn.parentElement.parentElement.remove()
+        }, 600)
+        totaltotalbudget.dataset.totalTotalBudget =  parseInt(totaltotalbudget.dataset.totalTotalBudget) - parseInt(localStorage.getItem('amountOfBudget' + numofbudget))
+        totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(localStorage.getItem('loadBudgetExpense' + numofbudget))
+        console.log(totaltotalbudget.dataset.totalTotalBudget, totaltotalexpenses.dataset.totalTotalExpenses);
+        updatetotal()
+        localStorage.removeItem('ArrayOfExpenses' + numofbudget)
+        localStorage.removeItem('loadBudgetExpense' + numofbudget)
+        localStorage.removeItem('nameOfBudget' + numofbudget)
+        localStorage.removeItem('amountOfBudget' + numofbudget)
+        }
+    })
+
+  buttonViewExpensesAB.addEventListener('click', () => {
+
+        if (expensesboxAB.classList.contains('show')) {
+
+            expensesboxAB.classList.remove('show')
+
+        }  
+
+        else
+
+        {
+
+            expensesboxAB.classList.add('show') 
+
+        }
+
+    })
+
+    console.log(budgetAB.dataset.totalBudgetAddedBudget, budgetAB.dataset.totalbudgetthreeforths, budgetAB.dataset.totalbudgethalf)
+
+    inputAB.addEventListener('input', e => {
+
+        if(!inputAB.classList.contains('doneonce'))
+
+        {
+
+            inputAB.dataset.input = e.target.value
+
+            inputAB.classList.add('doneonce')
+
+            buttonAddExpenseAB.addEventListener('click', () => {
+
+                if ( inputAB.dataset.input < 0.1 || inputAB.dataset.input > 99999)
+
+                {
+                    errormessage.textContent = "Please enter a VALID value"
+                    errormessage.classList.add('show')
+                    inputAB.classList.add('move-left')
+                    setTimeout(() => {
+
+                    errormessage.classList.remove('show')
+                        setTimeout(() => {
+                            errormessage.textContent = "Please Provide a Value"
+                            inputAB.classList.remove('move-left')
+                        })
+                    }, 1000)
+
+                }
+                else if (inputAB.dataset.input == "" ) {
+
+                }
+
+                else 
+
+                {
+
+                //if (!inputAB.classList.contains('addedremover')) {
+
+                //}
+
+                //console.log("it works!", e.target.value)
+
+                // console.log(inputAB.getAttribute('data-input'))    
+
+                expensesAB.dataset.totalExpensesAddedBudgetbefore = expensesAB.dataset.totalExpensesAddedBudget
+
+                expensesAB.dataset.totalExpensesAddedBudget = parseInt(expensesAB.dataset.totalExpensesAddedBudget) + parseInt(inputAB.dataset.input)
+
+                //console.log(expensesAB.dataset.totalExpensesAddedBudget); 
+
+                expensesAB.textContent = "$" + expensesAB.dataset.totalExpensesAddedBudget
+                totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) + parseInt(inputAB.dataset.input)
+                updatetotal()
+                percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
+
+                waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
+
+                if (waythereAB.dataset.percentage > 100) {
+
+                    waythereAB.style.width = '100%'
+
+                }
+
+                else {
+
+                    waythereAB.style.width = waythereAB.dataset.percentage + "%"
+
+                } 
+
+                if (expensesAB.dataset.totalExpensesAddedBudget > parseInt(budgetAB.dataset.totalBudgetAddedBudget) && !budgetbox.classList.contains('overbudget')){
+
+                    budgetbox.classList.add('overbudget')
+
+                    inputAB.classList.add('overbudget')
+
+                    console.log("overbudget")
+
+                    buttonAddExpenseAB.classList.add('overbudget')
+
+                    buttonViewExpensesAB.classList.add('overbudget')
+
+                    hiderAB.classList.add('overbudget')
+
+                    waythereAB.classList.add('overthreeforths')
+
+                    waythereAB.classList.remove("overhalf")
+
+                }
+
+                else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgetthreeforths) && !waythereAB.classList.contains('overthreeforths')){
+
+                    waythereAB.classList.add('overthreeforths')
+
+                    console.log("over34")
+
+                    waythereAB.classList.remove("overhalf")
+
+                }
+
+                else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
+
+                    console.log("overhalf")
+
+                    waythereAB.classList.add("overhalf")
+
+                }
+
+                const newexpense = document.createElement('div')
+
+                newexpense.classList.add('expenses')
+
+                expensesboxAB.append(newexpense)
+
+                const newexpenseamount = document.createElement('div')
+
+                newexpenseamount.classList.add('amount')
+
+                newexpenseamount.dataset.amount = inputAB.dataset.input
+
+                newexpenseamount.textContent = "$" + inputAB.dataset.input
+
+                newexpense.append(newexpenseamount)
+
+                const newexpensebtn = document.createElement('button')
+
+                newexpensebtn.classList.add('removebtn')
+
+                newexpense.append(newexpensebtn)
+
+                newexpensebtn.addEventListener('click', () => {
+
+                    expensesAB.dataset.totalExpensesAddedBudgetRE = expensesAB.dataset.totalExpensesAddedBudget
+
+                    expensesAB.dataset.totalExpensesAddedBudget = expensesAB.dataset.totalExpensesAddedBudgetRE - newexpenseamount.dataset.amount
+
+                    localStorage.setItem("loadBudgetExpense" + numofbudget, parseInt(localStorage.getItem("loadBudgetExpense" + numofbudget)) - parseInt(newexpenseamount.dataset.amount))
+
+                    removeSavedExpense(newexpenseamount.dataset.amount, numofbudget)
+
+                    expensesAB.textContent = "$" + expensesAB.dataset.totalExpensesAddedBudget
+
+                    percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
+                    totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(newexpenseamount.dataset.amount)
+                    updatetotal()
+                    waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
+
+                    if (waythereAB.dataset.percentage > 100) {
+
+                        waythereAB.style.width = '100%'
+
+                    }
+
+                    else {
+
+                        waythereAB.style.width = waythereAB.dataset.percentage + "%"
+
+                    } 
+
+                    
+
+                    if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalBudgetAddedBudget) )
+
+                    {
+
+                        budgetbox.classList.remove('overbudget')
+
+                        inputAB.classList.remove('overbudget')
+
+                        console.log("averbudget")
+
+                        buttonAddExpenseAB.classList.remove('overbudget')
+
+                        buttonViewExpensesAB.classList.remove('overbudget')
+
+                        hiderAB.classList.remove('overbudget')
+
+                    }
+
+                    
+
+                    if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgetthreeforths))
+
+                    {
+
+                        waythereAB.classList.remove('overthreeforths')
+
+                    }
+
+                    if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf) && !waythereAB.classList.contains("overhalf")){
+
+                        waythereAB.classList.remove('overhalf')
+
+                    }
+
+                    newexpense.remove()
+
+                })
+
+                localStorage.setItem("loadBudgetExpense" + numofbudget, parseInt(parseInt(localStorage.getItem("loadBudgetExpense"+ numofbudget)) + parseInt(inputAB.dataset.input)) )
+                saveExpenses(parseInt(inputAB.dataset.input), numofbudget)
+
+                inputAB.dataset.input = ""
+
+                inputAB.value = ""
+                
+                
+                }
+
+            })
+
+        }
+
+        inputAB.dataset.input = e.target.value
+
+    })
+
+    buttonAddExpenseAB.addEventListener('click', () => {        
+
+        if( inputAB.value == ""){
+
+            errormessage.classList.add('show')
+
+            setTimeout(() => {
+
+                errormessage.classList.remove('show')
+
+            }, 1000)
+
+        }
+
+    })
+    localStorage.setItem("numofbudget", parseInt(localStorage.getItem("numofbudget")) + 1)
 }
 //--------------------------------------------------------------------------------------------------------
-
-function ApplySettings() {
-    if (darkMode == 1) {
-        document.documentElement.style.setProperty('--main-color', '#121212');
-        document.documentElement.style.setProperty('--font-color', '#fff');
-        document.documentElement.style.setProperty('--lighter-shade', '#222');
-        document.documentElement.style.setProperty('--total-color', '#111');
-        document.documentElement.style.setProperty('--nav-hover-color', '#222');
-        document.documentElement.style.setProperty('--overbudget-color', '#3b0505')
-        document.documentElement.style.setProperty('--overbudget-text-color', '#fff')
-    } else if (darkMode == 0) {
-        document.documentElement.style.setProperty('--main-color', '#fff');
-        document.documentElement.style.setProperty('--font-color', '#000');
-        document.documentElement.style.setProperty('--lighter-shade', '#d8d8d8');
-        document.documentElement.style.setProperty('--total-color', '#ecebeb');
-        document.documentElement.style.setProperty('--nav-hover-color', '#ddebff');
-        document.documentElement.style.setProperty('--overbudget-color', '#ecacac')
-        document.documentElement.style.setProperty('--overbudget-text-color', '#db4848')
-    }
-    document.documentElement.style.setProperty('--main-blue', mainColor)
-    document.documentElement.style.setProperty('--acc-blue', accColor)
-}
-
 function loadBudgets() {
     //addPreviousBudgets("test", 1300, 700)
     //totalTotalExpenses = 0
@@ -547,6 +910,14 @@ function removeSavedExpense(amount, ID) {
     localStorage.setItem('ArrayOfExpenses' + ID, StringB)
 }
 
+function loadExpenses()
+{
+
+}
+
+function addToTotal(amount) {
+
+}
 
 function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense, numID, expenseString) {
     if (localStorage.getItem('nameOfBudget' + numID) == null || localStorage.getItem('nameOfBudget' + numID) == undefined || localStorage.getItem('nameOfBudget' + numID) == "") return
@@ -670,7 +1041,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
     buttonViewExpensesAB.dataset.viewExpensesAddedBudget
 
-    buttonViewExpensesAB.textContent = "Settings"
+    buttonViewExpensesAB.textContent = "View Expenses"
 
     budgetbox.append(buttonViewExpensesAB)
 
@@ -696,142 +1067,9 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
         
     const deleteBudBtn = document.createElement('button')
     deleteBudBtn.classList.add('delete-budget-btn')
-    budgetbox.append(deleteBudBtn)
+    expensesboxAB.append(deleteBudBtn)
 
     //  
-
-    const percentage = document.createElement('div')
-    percentage.classList.add("percentageAddedBudget")
-    percentage.textContent = Math.round(loadBudgetExpense / loadBudgetAmount  * 100) + "%"
-    if (loadBudgetExpense / loadBudgetAmount  * 100 > 100)
-    {
-        percentage.textContent = ">100%"
-    }
-    budgetbox.append(percentage)
-
-    //
-
-    const increaser = document.createElement('div')
-    increaser.classList.add("increaser")
-    increaser.classList.add("neutral")
-    increaser.textContent = "0%"
-    budgetbox.append(increaser)
-
-    //
-
-    const expensesText = document.createElement('div')
-    expensesText.classList.add('expensestextAddedBudget')
-    expensesText.textContent = "Expenses"
-    budgetbox.append(expensesText)
-
-    // 
-
-    const BudgetNameEditText = document.createElement('div')
-    BudgetNameEditText.textContent = "Change Budget Name"
-    BudgetNameEditText.classList.add("BudgetNameEditText")
-    budgetbox.append(BudgetNameEditText)
-
-    // 
-
-    const BudgetNameEditBtn = document.createElement('div')
-    BudgetNameEditBtn.classList.add('BudgetNameEditBtn')
-    budgetbox.append(BudgetNameEditBtn)
-
-    // 
-
-    const BudgetNameEditInput = document.createElement('input')
-    BudgetNameEditInput.classList.add('BudgetNameEditInput')
-    budgetbox.append(BudgetNameEditInput)
-    BudgetNameEditInput.addEventListener('input', e => {
-        BudgetNameEditInput.dataset.dataValue = e.target.value
-        if (!BudgetNameEditBtn.classList.contains('confirm'))
-        {
-            if (BudgetNameEditInput.dataset.dataValue != "")
-            {
-                BudgetNameEditBtn.classList.add('confirm')
-                renameOrClose = 2
-            }
-        }
-        else if (BudgetNameEditInput.dataset.dataValue == "")
-        {
-            BudgetNameEditBtn.classList.remove('confirm')
-            renameOrClose = 1
-        }
-       // console.log(BudgetNameEditInput.dataset.dataValue);
-    })
-    BudgetNameEditBtn.addEventListener('click', () => {
-        if (renameOrClose == 0)
-        {
-            BudgetNameEditInput.classList.add('enabled')
-            BudgetNameEditBtn.classList.add('close')
-            renameOrClose = 1
-        }
-        else if (renameOrClose == 1)
-        {
-            BudgetNameEditInput.classList.remove('enabled')
-            BudgetNameEditBtn.classList.remove('close')
-            renameOrClose = 0
-        }
-        else 
-        {
-            nameOfBudget.textContent = BudgetNameEditInput.dataset.dataValue
-            localStorage.setItem('nameOfBudget' + numID, nameOfBudget.textContent)
-            renameOrClose = 0
-            BudgetNameEditInput.classList.remove('enabled')
-            BudgetNameEditBtn.classList.remove('close')
-            BudgetNameEditBtn.classList.remove('confirm')
-            BudgetNameEditInput.dataset.dataValue = ""
-            BudgetNameEditInput.value = ""
-        }
-    })     
-    
-    //
-    // const BudgetAmountEditInput = document.createElement('input')
-    // BudgetAmountEditInput.classList.add('BudgetAmountEditInput')
-    // budgetbox.append(BudgetAmountEditInput)
-    // BudgetAmountEditInput.addEventListener('input', e => {
-    //     BudgetAmountEditInput.dataset.dataValue = e.target.value
-    //     if (!BudgetNameEditBtn.classList.contains('confirm'))
-    //     {
-    //         if (BudgetAmountEditInput.dataset.dataValue != "")
-    //         {
-    //             BudgetNameEditBtn.classList.add('confirm')
-    //             renameOrClose = 2
-    //         }
-    //     }
-    //     else if (BudgetAmountEditInput.dataset.dataValue == "")
-    //     {
-    //         BudgetNameEditBtn.classList.remove('confirm')
-    //         renameOrClose = 1
-    //     }
-    //    // console.log(BudgetAmountEditInput.dataset.dataValue);
-    // })
-    // BudgetNameEditBtn.addEventListener('click', () => {
-    //     if (renameOrClose == 0)
-    //     {
-    //         BudgetAmountEditInput.classList.add('enabled')
-    //         BudgetNameEditBtn.classList.add('close')
-    //         renameOrClose = 1
-    //     }
-    //     else if (renameOrClose == 1)
-    //     {
-    //         BudgetAmountEditInput.classList.remove('enabled')
-    //         BudgetNameEditBtn.classList.remove('close')
-    //         renameOrClose = 0
-    //     }
-    //     else 
-    //     {
-    //         nameOfBudget.textContent = BudgetAmountEditInput.dataset.dataValue
-    //         localStorage.setItem('nameOfBudget' + numID, nameOfBudget.textContent)
-    //         renameOrClose = 0
-    //         BudgetAmountEditInput.classList.remove('enabled')
-    //         BudgetNameEditBtn.classList.remove('close')
-    //         BudgetNameEditBtn.classList.remove('confirm')
-    //         BudgetAmountEditInput.dataset.dataValue = ""
-    //         BudgetAmountEditInput.value = ""
-    //     }
-    // })    
-    
 
     deleteBudBtn.addEventListener('click', () => {
         let sure = "Are you sure you want to Delete This Budget"
@@ -839,7 +1077,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
         budgetbox.classList.add('removing')  
         expensesboxAB.classList.remove('show')
         setTimeout (() => {
-            deleteBudBtn.parentElement.remove()
+            deleteBudBtn.parentElement.parentElement.remove()
         }, 600)
         totaltotalbudget.dataset.totalTotalBudget =  parseInt(totaltotalbudget.dataset.totalTotalBudget) - parseInt(localStorage.getItem('amountOfBudget' + numID))
         totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(localStorage.getItem('loadBudgetExpense' + numID))
@@ -856,15 +1094,9 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
   buttonViewExpensesAB.addEventListener('click', () => {
 
-        if (budgetbox.classList.contains('expanded')) {
+        if (expensesboxAB.classList.contains('show')) {
 
-            budgetbox.classList.remove('expanded')
-            buttonViewExpensesAB.textContent = "Settings"
-            BudgetNameEditInput.classList.remove('enabled')
-            BudgetNameEditBtn.classList.remove('close')
-            BudgetNameEditBtn.classList.remove('confirm')
-            BudgetNameEditInput.value = ""
-            renameOrClose = 0;
+            expensesboxAB.classList.remove('show')
 
         }  
 
@@ -872,8 +1104,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
         {
 
-            budgetbox.classList.add('expanded') 
-            buttonViewExpensesAB.textContent = "Close"
+            expensesboxAB.classList.add('show') 
 
         }
 
@@ -916,9 +1147,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 else 
 
                 {
-                    
-
-                    
 
                 //if (!inputAB.classList.contains('addedremover')) {
 
@@ -939,35 +1167,20 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 updatetotal()
                 saveExpenses(parseInt(inputAB.dataset.input), numID)
                 percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
-                
-                increaser.classList.add('up')
-                increaser.classList.remove('down')
-                increaser.dataset.currentValue = parseInt(inputAB.dataset.input) * 100 / budgetAB.dataset.totalBudgetAddedBudget
-                if (Math.floor(increaser.dataset.currentValue) >= 100)
-                {
-                    increaser.textContent = "100+%"
-                    increaser.classList.add('down')
-                    increaser.classList.remove('up')
-                }
-                increaser.textContent = "+" + Math.round(increaser.dataset.currentValue) + "%"
 
                 waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
 
                 if (waythereAB.dataset.percentage > 100) {
 
                     waythereAB.style.width = '100%'
-                    percentage.textContent = '>100%'
 
-                } else {
+                }
+
+                else {
 
                     waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                    percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
+
                 } 
-                if (waythereAB.dataset.percentage > 100) {
-                    pushAlert('over100', loadBudgetName)
-                } else if (waythereAB.dataset.percentage > 90) {
-                    pushAlert('over90', loadBudgetName)
-                }
 
                 if (expensesAB.dataset.totalExpensesAddedBudget > parseInt(budgetAB.dataset.totalBudgetAddedBudget) && !budgetbox.classList.contains('overbudget')){
 
@@ -982,14 +1195,14 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     buttonViewExpensesAB.classList.add('overbudget')
 
                     hiderAB.classList.add('overbudget')
-                    
-                    expensesboxAB.classList.add('overbudget')
 
                     waythereAB.classList.add('overthreeforths')
 
                     waythereAB.classList.remove("overhalf")
 
-                } else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgetthreeforths) && !waythereAB.classList.contains('overthreeforths')){
+                }
+
+                else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgetthreeforths) && !waythereAB.classList.contains('overthreeforths')){
 
                     waythereAB.classList.add('overthreeforths')
 
@@ -997,7 +1210,9 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     waythereAB.classList.remove("overhalf")
 
-                } else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
+                }
+
+                else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
 
                     console.log("overhalf")
 
@@ -1043,21 +1258,18 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(newexpenseamount.dataset.amount)
                     console.log("removingfromTotal");
                     updatetotal()
-
-                    increaser.classList.add('down')
-                    increaser.classList.remove('up')
-                    increaser.dataset.currentValue = parseInt(newexpenseamount.dataset.amount) * 100 / budgetAB.dataset.totalBudgetAddedBudget
-                    increaser.textContent = "-" + Math.round(increaser.dataset.currentValue) + "%"
-
                     waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
 
                     if (waythereAB.dataset.percentage > 100) {
 
                         waythereAB.style.width = '100%'
-                        percentage.textContent = ">100%"
-                    } else {
+
+                    }
+
+                    else {
+
                         waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
+
                     } 
 
                     
@@ -1077,8 +1289,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         buttonViewExpensesAB.classList.remove('overbudget')
 
                         hiderAB.classList.remove('overbudget')
-
-                        expensesboxAB.classList.remove('overbudget')
 
                     }
 
@@ -1106,13 +1316,12 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     if (waythereAB.dataset.percentage > 100) {
     
                         waythereAB.style.width = '100%'
-                        percentage.textContent = '>100%'
+    
                     }
     
                     else {
     
                         waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
     
                     } 
     
@@ -1127,12 +1336,8 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         buttonAddExpenseAB.classList.add('overbudget')
     
                         buttonViewExpensesAB.classList.add('overbudget')
-
-                        expensesboxAB.classList.add('overbudget')
     
                         hiderAB.classList.add('overbudget')
-
-                        newexpensebtn.classList.add('overbudget')
     
                         waythereAB.classList.add('overthreeforths')
     
@@ -1150,21 +1355,15 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
     
                     }
     
-                    else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf) && !waythereAB.classList.contains('overhalf')){
+                    else if (expensesAB.dataset.totalExpensesAddedBudget >= parseInt(budgetAB.dataset.totalbudgethalf)){
     
                         console.log("overhalf")
     
                         waythereAB.classList.add("overhalf")
     
-                    } else if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf)) {
-                        waythereAB.classList.remove("overhalf")
                     }
 
                 })
-
-                if(inputAB.dataset.input >= 500) {
-                    pushAlert(`bigExpense`, loadBudgetName, waythereAB.dataset.percentage, newexpensebtn)
-                }
 
                 localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) + parseInt(inputAB.dataset.input))
 
@@ -1172,7 +1371,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 inputAB.value = ""
 
-                } // end of function
+                }
 
             })
 
@@ -1216,7 +1415,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 newexpense.classList.add('expenses')
 
-                expensesboxAB.prepend(newexpense)
+                expensesboxAB.append(newexpense)
 
                 const newexpenseamount = document.createElement('div')
 
@@ -1231,7 +1430,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 const newexpensebtn = document.createElement('button')
 
                 newexpensebtn.classList.add('removebtn')
-
+                newexpensebtn.dataset.storageID = numCurRead
                 newexpense.append(newexpensebtn)
 
                 newexpensebtn.addEventListener('click', () => {
@@ -1246,7 +1445,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) - parseInt(newexpenseamount.dataset.amount))
 
-                    removeSavedExpense(parseInt(newexpenseamount.dataset.amount),numID)
+                    removeSavedExpense(newexpensebtn.dataset.storageID,numID)
 
                   //  var afterLB = parseInt(beforeLB - parseInt(localStorage.getItem("loadBudgetExpense" + numID)))
 
@@ -1255,35 +1454,17 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
                     totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(newexpenseamount.dataset.amount)
                     updatetotal()
-
-                    increaser.classList.add('down')
-                    increaser.classList.remove('up')
-                    increaser.dataset.currentValue = parseInt(newexpenseamount.dataset.amount) * 100 / budgetAB.dataset.totalBudgetAddedBudget
-                    increaser.textContent = "-" + Math.round(increaser.dataset.currentValue) + "%"
-
                     waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
 
                     if (waythereAB.dataset.percentage > 100) {
 
                         waythereAB.style.width = '100%'
-                        percentage.textContent = ">100%"
-                    } else {
-                        waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
-                    } 
 
-                    waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
-
-                    if (waythereAB.dataset.percentage > 100) {
-
-                        waythereAB.style.width = '100%'
-                        percentage.textContent = ">100%"
                     }
 
                     else {
 
                         waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
 
                     } 
 
@@ -1305,8 +1486,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                         hiderAB.classList.remove('overbudget')
 
-                        expensesboxAB.classList.remove('overbudget')
-
                     }
 
                     
@@ -1319,7 +1498,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     }
 
-                    if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf) && waythereAB.classList.contains('overhalf')){
+                    if (expensesAB.dataset.totalExpensesAddedBudget < parseInt(budgetAB.dataset.totalbudgethalf) && !waythereAB.classList.contains("overhalf")){
 
                         waythereAB.classList.remove('overhalf')
 
@@ -1334,14 +1513,12 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                      if (waythereAB.dataset.percentage > 100) {
      
                          waythereAB.style.width = '100%'
-                         percentage.textContent = '>100%'
      
                      }
      
                      else {
      
                          waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                         percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
      
                      } 
      
@@ -1403,7 +1580,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 newexpense.classList.add('expenses')
 
-                expensesboxAB.prepend(newexpense)
+                expensesboxAB.append(newexpense)
 
                 const newexpenseamount = document.createElement('div')
 
@@ -1418,7 +1595,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 const newexpensebtn = document.createElement('button')
 
                 newexpensebtn.classList.add('removebtn')
-
+                newexpensebtn.dataset.storageID = numCurRead
                 newexpense.append(newexpensebtn)
 
                 newexpensebtn.addEventListener('click', () => {
@@ -1433,7 +1610,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) - parseInt(newexpenseamount.dataset.amount))
 
-                    removeSavedExpense(parseInt(newexpenseamount.dataset.amount),numID)
+                    removeSavedExpense(newexpensebtn.dataset.storageID,numID)
 
                   //  var afterLB = parseInt(beforeLB - parseInt(localStorage.getItem("loadBudgetExpense" + numID)))
 
@@ -1444,32 +1621,15 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                     updatetotal()
                     waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
 
-                    increaser.classList.add('down')
-                    increaser.classList.remove('up')
-                    increaser.dataset.currentValue = parseInt(newexpenseamount.dataset.amount) * 100 / budgetAB.dataset.totalBudgetAddedBudget
-                    increaser.textContent = "-" + Math.round(increaser.dataset.currentValue) + "%"
-
-                    waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
-
                     if (waythereAB.dataset.percentage > 100) {
 
                         waythereAB.style.width = '100%'
-                        percentage.textContent = ">100%"
-                    } else {
-                        waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
-                    } 
 
-                    if (waythereAB.dataset.percentage > 100) {
-
-                        waythereAB.style.width = '100%'
-                        percentage.textContent = '>100%'
                     }
 
                     else {
 
                         waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                        percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
 
                     } 
 
@@ -1490,8 +1650,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         buttonViewExpensesAB.classList.remove('overbudget')
 
                         hiderAB.classList.remove('overbudget')
-
-                        expensesboxAB.classList.remove('overbudget')
 
                     }
 
@@ -1520,15 +1678,13 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                      if (waythereAB.dataset.percentage > 100) {
      
                          waythereAB.style.width = '100%'
-                         percentage.textContent = '>100%'
      
                      }
      
                      else {
      
                          waythereAB.style.width = waythereAB.dataset.percentage + "%"
-                         percentage.textContent = Math.round(waythereAB.dataset.percentage) + "%"
-                        
+     
                      } 
      
                      if (expensesAB.dataset.totalExpensesAddedBudget > parseInt(budgetAB.dataset.totalBudgetAddedBudget) && !budgetbox.classList.contains('overbudget')){
@@ -1544,8 +1700,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                          buttonViewExpensesAB.classList.add('overbudget')
      
                          hiderAB.classList.add('overbudget')
-
-                         expensesboxAB.classList.add('overbudget')
      
                          waythereAB.classList.add('overthreeforths')
      
@@ -1580,7 +1734,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
     updatetotal()
 
     }
-
+    
     percantagebarmainAB.dataset.divider = budgetAB.dataset.totalBudgetAddedBudget / expensesAB.dataset.totalExpensesAddedBudget
 
                 waythereAB.dataset.percentage = 100 / percantagebarmainAB.dataset.divider
@@ -1611,8 +1765,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     hiderAB.classList.add('overbudget')
 
-                    expensesboxAB.classList.add('overbudget')
-
                     waythereAB.classList.add('overthreeforths')
 
                     waythereAB.classList.remove("overhalf")
@@ -1638,86 +1790,3 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 }
 
 }
-
-let buzzesRemaining
-
-function pushAlert(reason, category, percentage, btn) {
-    if (reason === 'over90') {
-        alertText.textContent = `You have used over 90 percent of your ${category} budget.`
-        alertSubText.textContent = `Consider lowering your ${category} spendings.`
-    } else if (reason === 'over100') {
-        alertBox.classList.add('overbudget')
-        alertText.textContent = `You have gone over budget on ${category}.`
-        alertSubText.textContent = `Lower your spendings to stay in you ${category} budget. `        
-    } else if (reason === 'bigExpense') {
-        alertText.textContent = `Wow! You spent a lot on ${category}. You have used ${Math.round(percentage)}% of your budget.`
-        alertSubText.textContent = `Please confirm your expense.`
-        alertConfirmBtn.textContent = `Undo`
-        alertDismissBtn.textContent = `Keep`
-        undoExpense = btn
-        alertBox.classList.add('bigSpend');
-    }
-    alertBox.classList.add('active')
-    setTimeout(() => {
-        if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')    
-        setTimeout(() => {
-            alertBox.classList.remove('buzz')
-        }, 400);
-        // setTimeout(() => {
-        //     if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')
-        //     setTimeout(() => {
-        //         alertBox.classList.remove('buzz')
-        //     }, 400);  
-        // },800)
-        // setTimeout(() => {
-        //     if (alertBox.classList.contains('active')) alertBox.classList.add('buzz')   
-        //     setTimeout(() => {
-        //         alertBox.classList.remove('buzz')
-        //     }, 400);  
-        // },1600)
-    }, 400)
-}
-<!-- <div class="budget-box pop-up expanded" data-dashlane-rid="167a2fc9a8619f16" data-form-type="other">
-            <div class="name-budgetAddedBudget ontop">Entertainment</div>
-            <div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="120" data-total-expenses-added-budgetbefore="120" data-total-expenses-added-budget-r-e="132">$120</div>
-            <div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="1200" data-totalbudgethalf="600" data-totalbudgetquarter="300" data-totalbudgetthreeforths="900">/ $1200</div>
-            <div class="percentage-bar-mainAddedBudget ontop" data-divider="10">
-                <div class="way-thereAddedBudget ontop" data-percentage="10" style="width: 10%;"></div>
-            </div>
-            <label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide A Value</label>
-            <input type="number" class="expenseAddedBudget ontop doneonce" id="expenseAddedBudget" data-dashlane-rid="a9d2830024a0fb6e" data-input="" data-form-type="other">
-            <button class="Add-expenseAddedBudget ontop" data-dashlane-rid="d492b4cfe5b1b65e" data-dashlane-label="true" data-form-type="other">Add Expense</button>
-            <button class="View-expensesAddedBudget ontop" data-dashlane-rid="6b6cd2c8d6908f19" data-dashlane-label="true" data-form-type="other">Settings</button>
-            <div class="hiderAddedBudget ontopmid"></div>
-            <div class="expensesboxAddedBudget onbottom">
-                <div class="expenses">
-                    <div class="amount" data-amount="120">$120</div>
-                    <div class="expenseDate">28th October 2023</div>
-                    <button class="removebtn"></button>
-                </div>
-                <div class="expenses">
-                    <div class="amount" data-amount="120">$120</div>
-                    <div class="expenseDate">23th May 2023</div>
-                    <button class="removebtn"></button>
-                </div>
-                <div class="expenses">
-                    <div class="amount" data-amount="120">$120</div>
-                    <div class="expenseDate">3rd September 2023</div>
-                    <button class="removebtn"></button>
-                </div>
-                <div class="expenses">
-                    <div class="amount" data-amount="120">$120</div>
-                    <div class="expenseDate">17th April 2023</div>
-                    <button class="removebtn"></button>
-                </div>
-            </div>
-            <button class="delete-budget-btn"></button>
-            <div class="percentageAddedBudget">10%</div>
-            <div class="increaser neutral down" data-current-value="1">-1%</div>
-            <div class="expensestextAddedBudget">Expenses</div>
-            <div class="BudgetNameEditText">Change Budget Name</div>
-            <div class="BudgetNameEditBtn"></div>
-            <input class="BudgetNameEditInput" data-dashlane-rid="576c32e0a8698799" data-form-type="other">
-        </div> --></input>
-
-120-28-10-2023#120-23-5-2023#120-3-9-2022#120-17-4-2023#

@@ -25,10 +25,7 @@ const cookiecontainer = document.querySelector('[data-cookieContainer]')
 const cookieAcceptbtn = document.querySelector('[data-accept-btn]')
 const cookieDismissbtn = document.querySelector('[data-dismiss-btn]')
 
-const openDeleteMemory = document.querySelector('[data-openDeleteMemory]')
-const deleteMemoryContainer = document.querySelector('[data-deleteMemoryContainer]')
-const deleteMemoryBtn = document.querySelector('[data-deleteMemoryBtn]')
-const cancelMemoryBtn = document.querySelector('[data-cancelMemoryBtn]')
+const deleteDataBtn = document.querySelector('[data-delete-data-btn]')
 
 const switchStylesBtn = document.querySelector('[data-switchstyles]')
 
@@ -39,6 +36,7 @@ const link = document.querySelectorAll('[data-link]')
 
 const settingsBtn = document.querySelector('[data-settings-btn]')
 const settingsContainer = document.querySelector('[data-settings-container]')
+const resetSettingsBtn = document.querySelector('[data-reset-settings-btn]')
 const closeSettingsBtn = document.querySelector('[data-close-settings-btn]')
 const darkModeToggle = document.querySelector('[data-dark-mode-toggle]')
 const mainColorInput = document.querySelector('[data-main-color-input]')
@@ -93,6 +91,10 @@ var mainColor = '#0C5DD8'
 var accColor = '#0954c5'
 
 var undoExpense
+
+
+// todo:
+// todo
 
 
 addEventListeners()
@@ -233,9 +235,7 @@ function updatetotalpercentage() {
         }
         totalwaythere.style.width = 100 / totalwaythere.dataset.divider + "%"
         totalpercentageNum.textContent = Math.round(100 / totalwaythere.dataset.divider) + '%'
-        
     }
-
 }
 
 function addEventListeners() {
@@ -259,22 +259,7 @@ function addEventListeners() {
 
     addbudgetconfirm.addEventListener('click', CreateBudget)
 
-    openDeleteMemory.addEventListener('click', () => {
-        if (closeOrOpenMemory == 0)
-        {
-             DeleteMemoryOpen()
-             closeOrOpenMemory = 1
-        }
-        else if (closeOrOpenMemory == 1)
-        {
-            DeleteMemoryClose()
-            closeOrOpenMemory = 0
-        }
-    })
-
-    deleteMemoryBtn.addEventListener('click', DeleteLocalMemory)
-
-    cancelMemoryBtn.addEventListener('click', DeleteMemoryClose)
+    deleteDataBtn.addEventListener('click', DeleteData)
 
     darkModeToggle.addEventListener('click', () => {
         if (darkMode == 1) {
@@ -311,6 +296,24 @@ function addEventListeners() {
         settingsContainer.classList.add('show')
         cover.classList.add('show')
     })
+
+    resetSettingsBtn.addEventListener('click', () => {
+        let reset = "Are you sure you want to reset your settings?"
+        if (confirm(reset)) {
+            darkMode = 0;
+            mainColor = "#0C5DD8"
+            accColor = "#0954c5"
+            mainColorInput.value = mainColor
+            accColorInput.value = accColor
+            localStorage.setItem("mainColor", mainColor)
+            localStorage.setItem("accColor", accColor)
+            localStorage.setItem("darkMode?", darkMode);
+            ApplySettings();
+            // resetSettings();
+            settingsContainer.classList.remove('show')
+            cover.classList.remove('show')
+        }
+    });
 
     closeSettingsBtn.addEventListener('click', () => {
         settingsContainer.classList.remove('show')
@@ -396,13 +399,12 @@ function DeleteMemoryOpen() {
     deleteMemoryContainer.classList.remove('hide')
 }
 
-function DeleteLocalMemory() {
-    localStorage.clear()
-    location.reload()
-}
-
-function DeleteMemoryClose() {
-    deleteMemoryContainer.classList.add('hide')
+function DeleteData() {
+    let deleteData = "Are you sure you want to delete you data?"
+    if (confirm(deleteData)) {
+         localStorage.clear()
+        location.reload()
+    }
 }
 
 function gatherBudgetAmount() {
@@ -464,6 +466,18 @@ function ApplySettings() {
     document.documentElement.style.setProperty('--acc-blue', accColor)
 }
 
+function resetSettings() {
+    document.documentElement.style.setProperty('--main-color', '#fff');
+    document.documentElement.style.setProperty('--font-color', '#000');
+    document.documentElement.style.setProperty('--lighter-shade', '#d8d8d8');
+    document.documentElement.style.setProperty('--total-color', '#ecebeb');
+    document.documentElement.style.setProperty('--nav-hover-color', '#ddebff');
+    document.documentElement.style.setProperty('--overbudget-color', '#ecacac')
+    document.documentElement.style.setProperty('--overbudget-text-color', '#db4848')
+    document.documentElement.style.setProperty('--main-blue', '#0C5DD8')
+    document.documentElement.style.setProperty('--acc-blue', '#0954c5')
+}
+
 function loadBudgets() {
     var readerNum = 0;
     for (let i = 0; i < localStorage.getItem("numofbudget"); i++) {
@@ -482,6 +496,7 @@ function saveExpenses(amount, date, ID) {
 }
 
 function removeSavedExpense(amount, ID) {
+    console.log(amount)
     let StringA = localStorage.getItem('ArrayOfExpenses' + ID)
     let StringB = StringA.replace(amount + "#", '')
     localStorage.setItem('ArrayOfExpenses' + ID, StringB)
@@ -912,6 +927,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         break;
                 }
                 newexpensedate.textContent = `${formattedDay} ${formattedMonth} ${getCurrentDate().year}`
+                let compactedDate = getCurrentDate().day + '-' + getCurrentDate().month + '-' + getCurrentDate().year
                 newexpense.append(newexpensedate)
 
                 const newexpensebtn = document.createElement('button')
@@ -924,7 +940,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) - parseInt(newexpenseamount.dataset.amount))
 
-                    removeSavedExpense(parseInt(newexpenseamount.dataset.amount), numID)
+                    removeSavedExpense(parseInt(newexpenseamount.dataset.amount) + '-' + compactedDate, numID)
 
                     expensesAB.textContent = "$" + expensesAB.dataset.totalExpensesAddedBudget
 
@@ -1002,8 +1018,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 }
 
                 localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) + parseInt(inputAB.dataset.input)/*.toString() + '*' + getCurrentDate().day + '*' + getCurrentDate().month + '*' + getCurrentDate().year*/)
-                let compactedDate = getCurrentDate().day + '-' + getCurrentDate().month + '-' + getCurrentDate().year
-                console.log(compactedDate);
                 saveExpenses(parseInt(inputAB.dataset.input), compactedDate, numID)
                 inputAB.dataset.input = ""
                 inputAB.value = ""
@@ -1027,6 +1041,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 totalExpenseLE = parseInt(totalExpenseLE) + parseInt(numCurRead)
 
                 var expenseFormater = numCurRead
+                var expenseStorageID = numCurRead
                 var curRead = null
                 var date 
                 var dateFormatingNum = 0
@@ -1145,6 +1160,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 const newexpensebtn = document.createElement('button')
                 newexpensebtn.classList.add('removebtn')
+                newexpensebtn.dataset.storageID = numCurRead
                 newexpense.append(newexpensebtn)
                 newexpensebtn.addEventListener('click', () => {
                     expensesAB.dataset.totalExpensesAddedBudgetRE = expensesAB.dataset.totalExpensesAddedBudget
@@ -1152,7 +1168,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
             
                     localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) - parseInt(newexpenseamount.dataset.amount))
 
-                    removeSavedExpense(parseInt(newexpenseamount.dataset.amount),numID)
+                    removeSavedExpense(newexpensebtn.dataset.storageID,numID)
 
                     expensesAB.textContent = "$" + parseFloat(expensesAB.dataset.totalExpensesAddedBudget)
 
@@ -1365,6 +1381,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 const newexpensebtn = document.createElement('button')
                 newexpensebtn.classList.add('removebtn')
+                newexpensebtn.dataset.storageID = numCurRead
                 newexpense.append(newexpensebtn)
                 newexpensebtn.addEventListener('click', () => {
                     expensesAB.dataset.totalExpensesAddedBudgetRE = expensesAB.dataset.totalExpensesAddedBudget
@@ -1372,7 +1389,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                     localStorage.setItem("loadBudgetExpense" + numID, parseInt(localStorage.getItem("loadBudgetExpense" + numID)) - parseInt(newexpenseamount.dataset.amount))
 
-                    removeSavedExpense(parseInt(newexpenseamount.dataset.amount),numID)
+                    removeSavedExpense(newexpensebtn.dataset.storageID,numID)
 
                     expensesAB.textContent = "$" + parseFloat(expensesAB.dataset.totalExpensesAddedBudget)
 

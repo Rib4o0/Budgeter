@@ -1,0 +1,1459 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+*, *:after, *:before {
+
+    font-family: 'Montserrat';
+
+    user-select: none;
+
+}
+
+.header {
+
+    /* display: grid;
+
+    grid-template-columns: 1fr 1fr 250px;
+
+    gap: 10px; */
+
+    width: 100vmax;
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    align-items: space-between;
+
+}
+
+.header-btn-container {
+
+    display: flex;
+
+    /* /justify-content: center; */
+
+    flex-wrap: nowrap;
+
+}
+
+body {
+
+    min-width: 1000px;
+    overflow-x: hidden;
+}
+
+.detaisbudget {
+
+    position: relative;
+
+    top: -830px;
+
+    width: 480px;
+
+    padding-top: 300px;
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+    padding-bottom: 10px;
+
+    border-radius: 1em;
+
+    background-color: white;
+
+    border: 1px solid #aaa;
+
+    box-shadow: 3px 1px 10px grey;
+
+    z-index: 3;
+
+    transition: all 700ms ease-in-out/*cubic-bezier(0.84, 0.32, 0.87, 1.38)/*cubic-bezier(0, 1.2, 0.98, 1.32)*/;
+
+}
+
+.detaisbudget.show {
+
+    top: -415px;
+
+}
+
+/*
+
+    top: -415px;
+
+*/
+
+.detailNameOfBudget {
+
+    position: relative;
+
+    border-radius: 1em;
+
+    top: 40px;
+
+    width: 480px;
+
+    margin: 0;
+
+    height: 40px;
+
+    border: 1px solid #0C5DD8;
+
+}
+
+.AmountOfBudget {
+
+    position: relative;
+
+    border-radius: 1em;
+
+    top: 60px;
+
+    left: -0px;
+
+    margin: 0;
+
+    width: 480px;
+
+    height: 40px;
+
+    border: 1px solid #0C5DD8;
+
+}
+
+.add-budget-confirm {
+
+    position: relative;
+
+    left: 250px;
+
+    top: 70px;
+
+    width: max-content;
+
+    font-size: 20px;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    color: white;
+
+    background-color: #0C5DD8;
+
+}
+
+.createbudgettitle {
+
+    position: relative;
+
+    top: -160px;
+
+    left: -120px;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+}
+
+.labelfordnob {
+
+    position: relative;
+
+    color: rgb(189, 189, 189);
+
+    left: -200px;
+
+    top: -50px;
+
+    transition: all 10ms ease-in-out;
+
+}
+
+.labelfordnob.hide {
+
+    opacity: 0;
+
+}
+
+.AlertforAddbudget {
+
+    position: relative;
+
+    color: hsl(0, 90%, 50%);
+
+    left: -125px;
+
+    top: 40px;
+
+    opacity: 0;
+
+    transition: all 250ms ease-in-out;
+
+}
+
+.AlertforAddbudget.show {
+
+    transition: border 250ms ease-in-out;
+
+    opacity: 1;
+
+}
+
+.labelforaob {
+
+    position: relative;
+
+    color: rgb(189, 189, 189);
+
+    left: -150px;
+
+    top: -70px;
+
+    transition: all 10ms ease-in-out;
+
+}
+
+.labelforaob.hide {
+
+    opacity: 0;
+
+}
+
+.closedetails {
+
+    position: relative;
+
+    left: 250px;
+
+    top: 70px;
+
+    width: max-content;
+
+    padding: 10px;
+
+    border-radius: 1em;
+
+    border: 1px solid #0C5DD8;
+
+    background-color: white;
+
+    color: #0C5DD8;
+
+}
+
+.budgets-container {
+
+    display: grid;
+
+    grid-template-columns: repeat(1, 1fr);
+
+    row-gap: 3em;
+
+    margin-top: 1rem;
+
+}
+
+.budget-box.overbudget {
+
+    background-color: hsl(0, 63%, 80%);
+
+    border: 2px solid hsl(0, 100%, 70%);
+
+}
+
+.budget-box {
+
+    position: relative;
+
+    /* left: -500px; */
+
+    padding: 20px;
+
+    width: 460px;
+
+    height: 160px;
+
+    top: -480px;
+
+    left: -610px;
+
+    border: 1px solid lightgray;
+
+    border-radius: 1em;
+
+    background-color: white;
+
+    /* /margin: 0; */
+
+    /* margin-left: auto; */
+
+    transition: all 250ms ease-in-out;
+
+}
+
+.budget-box.pop-up {
+    animation: add 1s forwards;
+}
+
+@keyframes add {
+    75% {
+        left: 20px;
+    }
+
+    100% {
+        left: 10px;
+    }
+}
+
+.expenses {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    left: 40px;
+
+    width: 100px;
+
+    height: 40px;
+
+    padding: .25em;
+
+    border-radius: .5em;
+
+    border: 1px solid lightgray;
+
+}
+
+.expenselabel {
+
+    display: inline;
+
+    width: max-content;
+
+    color: rgb(87, 87, 87);
+
+    height: 50px;
+
+    position: relative;
+
+    left: -380px;
+
+    top: -17px;
+
+    font-size: 20px;
+
+}
+
+.removebtn {
+
+    /* display: flex;
+
+    align-items: center;
+
+    justify-content: center; */
+
+    border: .5px solid #aaa;
+
+    border-radius: .25em;
+
+    /*content": \2713";*/
+
+    /* margin-left: 1em; */
+
+    margin: 0;
+
+    padding: 0;
+
+    height: 30px;
+
+    width: 30px;
+
+    color: red;
+
+}
+
+.add-expense-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 100px;
+
+    aspect-ratio: 5/2;
+
+    font-size: xx-large;
+
+    border: none;
+
+    margin-left: 10px;
+
+    margin-right: 30px;
+
+    background-color: white;
+
+    color: #0C5DD8;
+
+    border: 1px solid #0C5DD8;
+
+    border-radius: 25px;
+
+    transition: all 250ms ease-in-out;
+
+    flex-shrink: 1;
+
+}
+
+/* .add-expense-btn.overbudget {
+
+} */
+
+.add-budget-btn:hover {
+
+    background-color: #3383fa;
+
+    box-shadow: 5px 5px 18px grey;
+
+}
+
+.add-expense-btn:hover {
+
+    background-color: #f1f7ff;
+
+    box-shadow: 5px 5px 18px grey;
+
+}
+
+.header-title {
+
+    font-size: 100px;
+
+    margin-right: auto;
+
+}
+
+.name-budgetAddedBudget {
+
+    position: relative;
+
+    margin-right: 0px;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    width: 240px;
+
+}
+
+.total-expensesAddedBudget {
+
+    position: relative;
+
+    left: 330px;
+
+    top: -30px;
+
+    width: min-content;
+
+    font-size: 1.6rem;
+
+}
+
+.total-budgetAddedBudget {
+
+    position: relative;
+
+    left: 410px;
+
+    top: -53px;
+
+}
+
+.percentage-bar-mainAddedBudget {
+
+    background-color: #d8d8d8;
+
+	border-radius: 20px;
+
+	position: relative;
+
+    top: -40px;
+
+	margin: 15px 0;
+
+	height: 20px;
+
+	width: 400px;
+
+}
+
+.way-thereAddedBudget {
+
+    background: #0C5DD8;
+
+	border-radius: 20px;
+
+	color: #fff;
+
+	display: flex;
+
+	align-items: center;
+
+	justify-content: center;
+
+    position: relative;
+
+	height: 100%;
+
+    width: 0;
+
+	transition: 1s ease 0.3s;
+
+}
+
+.errorppavAddedBudget {
+
+    position: relative;
+
+    color: hsl(0, 90%, 50%);
+
+    top: -55px;
+
+    opacity: 0;
+
+    transition: all 250ms cubic-bezier(0.25, 0.1, 0, 1.06);
+
+}
+
+.expenseAddedBudget {
+
+    margin: 0;
+
+    position: relative;
+
+    top: -20px;
+
+    width: 190px;
+
+    left: -190px;
+
+    height: 40px;
+
+    border-radius: 50px;
+
+    border: 1px solid #0C5DD8;
+
+    /* /transition: all 250ms ease-in-out; */
+
+}
+
+.Add-expenseAddedBudget {
+
+    position: relative;
+
+    left: 200px;
+
+    top: -60px;
+
+    position: relative;
+
+    height: 40px;
+
+    width: 130px;
+
+    color: #0C5DD8;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    border: 1px solid #0C5DD8;
+
+    transition: all 250ms ease-in-out;
+
+}
+
+.View-expensesAddedBudget {
+
+    position: relative;
+
+    left: 210px;
+
+    top: -60px;
+
+    height: 40px;
+
+    width: 130px;
+
+    color: grey;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    border: 1px solid grey;
+
+    transition: all 250ms ease-in-out;
+
+}
+
+.hiderAddedBudget {
+
+    position: relative;
+
+    border: 1px solid lightgrey;
+
+    left: -22px;
+
+    top: -245px;
+
+    width: 502px;
+
+    height: 202px;
+
+    border-radius: 1em;
+
+    background-color: white;
+
+}
+
+.expensesboxAddedBudget {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 110px);
+
+    grid-template-rows: repeat(3, 55px);
+
+    column-gap: .25em;
+
+    row-gap: .4em;
+
+    position: relative;
+
+    /* left: 450px; */
+
+    width: 440px;
+
+    height: 160px;
+
+    padding: 20px;
+
+    padding-left: 30px;
+
+    left: -20px;
+
+    top: -447px;
+
+    border: 1px solid lightgray;
+
+    background-color: hsl(0, 0%, 97.5%);
+
+    border-radius: 1em;
+
+    overflow-y: auto;
+
+    transition: all 500ms ease-in-out;
+
+}
+
+.expensesboxAddedBudget.show {
+
+    transform: translateX(90%);
+
+}
+
+.ontop {
+
+    z-index: 3;
+
+}
+
+.onbottom {
+
+    z-index: 1;
+
+}
+
+.ontopmid {
+
+    z-index: 2;
+
+}
+
+.errorppavAddedBudget.show {
+
+    opacity: 1;
+
+}
+
+.way-thereAddedBudget.overhalf {
+
+    background-color: hsl(50, 90%, 50%);
+
+}
+
+.way-thereAddedBudget.overthreeforths {
+
+    background-color: hsl(0, 90%, 50%);
+
+}
+
+.overbudget {
+
+    background-color: hsl(0, 63%, 80%);
+
+    border: 1px solid hsl(0, 100%, 70%);
+
+    color: hsl(0, 100%, 70%);
+
+}
+
+.removebtn::after {
+
+    content: "\2715";
+
+    font-weight: bold;
+
+    color: red;
+
+} 
+
+.expensesbox {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 110px);
+
+    grid-template-rows: repeat(3, 55px);
+
+    column-gap: .25em;
+
+    row-gap: .4em;
+
+    position: relative;
+
+    /* left: 450px; */
+
+    width: 440px;
+
+    height: 160px;
+
+    padding: 20px;
+
+    padding-left: 30px;
+
+    left: -20px;
+
+    top: -447px;
+
+    border: 1px solid lightgray;
+
+    background-color: hsl(0, 0%, 97.5%);
+
+    border-radius: 1em;
+
+    overflow-y: auto;
+
+    transition: all 500ms ease-in-out;
+
+    z-index: 0;
+
+}
+
+.expensesbox.show {
+
+    transform: translateX(90%);
+
+}
+
+.label {
+
+    position: relative;
+
+    color: hsl(0, 90%, 50%);
+
+    top: -55px;
+
+    opacity: 0;
+
+    transition: all 250ms cubic-bezier(0.25, 0.1, 0, 1.06);
+
+    z-index: 2;
+
+}
+
+::-webkit-scrollbar {
+
+    width: 1em;
+
+    margin-right: 20px;
+
+    border-radius: 2em;
+
+}
+
+::-webkit-scrollbar-track {
+
+    /* background-color: hsl(209, 70%, 40%); */
+
+    /* border-radius: .5em 1em 1em .5em ; */
+
+    border-radius: 2em;
+
+    border: 1px solid #aaa;
+
+    margin-right: 20px;
+
+    /* background: #0C5DD8; */
+
+}
+
+::-webkit-scrollbar-thumb {
+
+     background: #0C5DD8; 
+
+     border-radius: 10em;
+
+}
+
+.label.show {
+
+    opacity: 1;
+
+    transition: none;
+
+}
+
+.name-budget {
+
+    position: relative;
+
+    margin-right: 0px;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    width: 240px;
+
+    z-index: 2;
+
+}
+
+.hider {
+
+    position: relative;
+
+    border: 1px solid lightgrey;
+
+    left: -22px;
+
+    top: -245px;
+
+    width: 502px;
+
+    height: 202px;
+
+    border-radius: 1em;
+
+    background-color: white;
+
+    z-index: 1;
+
+}
+
+.hider.overbudget {
+
+    background-color: hsl(0, 63%, 80%);
+
+    border: 2px solid hsl(0, 100%, 70%);
+
+}
+
+.total-expenses {
+
+    position: relative;
+
+    left: 330px;
+
+    top: -30px;
+
+    width: min-content;
+
+    font-size: 1.6rem;
+
+    transition: all 250ms ease-in-out;
+
+    z-index: 2;
+
+}
+
+.total-budget {
+
+    position: relative;
+
+    left: 410px;
+
+    top: -53px;
+
+    z-index: 2;
+
+}
+
+.percentage-bar-main {
+
+    background-color: #d8d8d8;
+
+	border-radius: 20px;
+
+	position: relative;
+
+    top: -40px;
+
+	margin: 15px 0;
+
+	height: 20px;
+
+	width: 400px;
+
+    z-index: 2;
+
+}
+
+.way-there {
+
+    background: /*linear-gradient(to left, #F2709C, #FF9472)*/ #0C5DD8;
+
+	/* box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C; */
+
+	border-radius: 20px;
+
+	color: #fff;
+
+	display: flex;
+
+	align-items: center;
+
+	justify-content: center;
+
+    position: relative;
+
+	height: 100%;
+
+    width: 0;
+
+    z-index: 2;
+
+	transition: 1s ease 0.3s;
+
+}
+
+.way-there.overhalf {
+
+    background-color: hsl(50, 90%, 50%);
+
+}
+
+.way-there.overthreeforths {
+
+    background-color: hsl(0, 90%, 50%);
+
+}
+
+.Add-expense {
+
+    position: relative;
+
+    left: 200px;
+
+    top: -60px;
+
+    position: relative;
+
+    height: 40px;
+
+    width: 130px;
+
+    color: #0C5DD8;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    border: 1px solid #0C5DD8;
+
+    transition: all 250ms ease-in-out;
+
+    z-index: 2;
+
+}
+
+.View-expense {
+
+    position: relative;
+
+    left: 200px;
+
+    top: -60px;
+
+    height: 40px;
+
+    width: 130px;
+
+    color: grey;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    border: 1px solid grey;
+
+    transition: all 250ms ease-in-out;
+
+    z-index: 2;
+
+}
+
+.add-budget-btn {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-left: auto;
+
+    height: 100px;
+    
+    position: relative;
+
+    left: -30px;
+    top: 15px;
+
+    aspect-ratio: 6/2;
+
+    font-size: xx-large;
+
+    border: none;
+
+    background-color: #0C5DD8;
+
+    color: white;
+
+    border-radius: 25px;
+
+    transition: all 250ms ease-in-out;
+
+    flex-shrink: 1;
+
+}
+
+.Add-expense:hover {
+
+    background-color: #f1f7ff;
+
+    box-shadow: 5px 5px 18px grey;
+
+}
+
+.View-expense:hover {
+
+    background-color: #f1f7ff;
+
+    box-shadow: 5px 5px 18px grey;
+
+}
+
+.Add-expense.overbudget {
+
+    background-color: hsl(0, 63%, 80%);
+
+    border: 1px solid hsl(0, 100%, 70%);
+
+    color: hsl(0, 100%, 70%);
+
+}
+
+.View-expense.overbudget {
+
+    background-color: hsl(0, 63%, 80%);
+
+    border: 1px solid hsl(0, 100%, 70%);
+
+    color: hsl(0, 100%, 70%);
+
+}
+
+.expense {
+
+    margin: 0;
+
+    position: relative;
+
+    top: -20px;
+
+    width: 190px;
+
+    left: -190px;
+
+    height: 40px;
+
+    border-radius: 50px;
+
+    border: 1px solid #0C5DD8;
+
+    transition: all 250ms ease-in-out;
+
+    z-index: 2;
+
+}
+
+.expense.overbudget {
+
+    background-color: hsl(0, 63%, 80%);
+
+    border: 1px solid hsl(0, 100%, 70%);
+
+    color: hsl(0, 100%, 70%);
+
+}
+
+.total-box {
+    position: relative;
+
+    /* left: -500px; */
+
+    padding: 20px;
+
+    width: 460px;
+
+    height: 100px;
+
+    top: -480px;
+    left: 10px;
+    border: 1px solid lightgray;
+
+    border-radius: 1em;
+
+    background-color: rgb(236, 235, 235);
+
+    /* /margin: 0; */
+
+    /* margin-left: auto; */
+
+    transition: all 250ms ease-in-out;
+}
+
+.total-name {
+    position: relative;
+
+    margin-right: 0px;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    width: 240px;
+
+}
+
+.total-total-expenses {
+    
+    position: relative;
+
+    left: 330px;
+
+    top: -30px;
+
+    width: min-content;
+
+    font-size: 1.6rem;
+
+    transition: all 250ms ease-in-out;
+
+    z-index: 2;
+
+}
+
+.total-total-budget {
+    position: relative;
+
+    left: 410px;
+
+    top: -53px;
+
+    z-index: 2;
+}
+
+.total-percentage-bar-main {
+    
+    background-color: #d8d8d8;
+
+	border-radius: 20px;
+
+	position: relative;
+
+    top: -40px;
+
+	margin: 15px 0;
+
+	height: 20px;
+
+	width: 400px;
+
+    z-index: 2;
+}
+
+.total-way-there {
+    background: /*linear-gradient(to left, #F2709C, #FF9472)*/ #7e7e7e;
+
+	/* box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C; */
+
+	border-radius: 20px;
+
+	color: #fff;
+
+	display: flex;
+
+	align-items: center;
+
+	justify-content: center;
+
+    position: relative;
+
+	height: 100%;
+
+    width: 0;
+
+    z-index: 2;
+
+	transition: 1s ease 0.3s;
+
+}
+
+.move-left {
+    left:  -224px;
+}
+
+.cookie-container {
+    width: 300px;
+    height: 140px;
+    position: fixed; 
+    bottom: 20px;
+    left: -400px;
+    border-radius: 0 25px 25px 0;
+    padding: 40px;
+    background-color: #0C5DD8;
+    transition: all 500ms;
+}
+
+.cookie-container.show {
+    left: 0;
+}
+
+.cookieInfo {
+    color: white;
+    position: relative;
+    top: -20px;
+    font-size: x-large;
+}
+
+.LearnMoreCookies {
+    color: white;
+    position: relative;
+    top: -15px;
+    text-decoration: none;
+    transition: all 1000ms;
+}
+
+.LearnMoreCookies:hover {
+    color: gray;
+}
+
+.acceptbtn {
+    position: relative;
+    left: 100px;
+    top: 00px;
+    width: 50px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 500ms;
+}
+
+.dismissbtn {
+    position: relative;
+    left: 200px;
+    bottom: 50px;
+    width: 50px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    transition: all 500ms;
+}
+
+.acceptbtn:hover, .dismissbtn:hover {
+    background-color: #d8d8d8;
+}
+
+.deleteMemoryContainer {
+    padding: 25px;
+    width: 220px;
+    height: 50px;
+    border-radius: 25px 0 0 25px;
+    position: fixed;
+    right: 0;
+    bottom: 20px;
+    background-color: brown;
+    transition: all 250ms;
+}
+
+.deleteMemoryContainer.hide {
+    right: -240px;
+}
+
+.deleteMemoryText {
+    color: white;
+    position: relative;
+    bottom: 6px;
+    left: 10px;
+}
+
+.deleteMemoryBtn {
+    width: 60px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    position: relative;
+    left: 82px;
+    top: 15px;
+}
+.cancelMemoryBtn {
+    width: 60px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    position: relative;
+    left: 90px;
+    top: 15px;
+}
+
+.deleteMemoryLine {
+    height: 65px;
+    width: 2px;
+    background-color: white;
+    position: relative;
+    bottom: 55px;
+    right: 10px;
+}
+
+.openDeleteMemorybtn {
+    width: 35px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    opacity: 0;
+    bottom: 140px;
+    left: -25px;
+    border-radius: 25px 0 0 25px;
+    /* border: none; */
+}
+
+.delete-budget-btn {
+    background-color: rgb(247, 82, 82);
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid rgb(220, 54, 54);
+    border-radius: 10%;
+}
+
+.delete-budget-btn::after {
+    content: "\2715";
+    color: white;
+}
+
+.removing {
+    transition: all 500ms ease-out;
+    opacity: 0;
+}
+
+.question-holder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 101%;
+    height: 101%;
+    z-index: 100;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;    
+    transition: 400ms all;
+}
+
+.questionText {
+    position: absolute;
+    bottom: 54%;
+    font-size: 52px;
+    transition: inherit;
+}
+
+.blueText {
+    color: #0954c5;
+    font-weight: 600;
+    transition: inherit;
+}
+
+.usedBudBeforeConfirmBtn {
+    position: absolute;
+    color: white;
+    left: 35%;
+    width: 130px;
+    padding-top: 20px;
+    height: 40px;
+    background-color: #0954c5;
+    border-radius: 10px;
+    transition: inherit;
+}
+
+.usedBudBeforeCancelBtn {
+    position: absolute;
+    color: #0954c5;
+    right: 35%;
+    width: 130px;
+    padding-top: 20px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid #0954c5;
+    border-radius: 10px;
+    transition: inherit;
+}
+
+.smallText {
+    font-size: medium;
+}
+
+.hideQuestion {
+    opacity: 0;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgeter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="question-holder hideQuestion" data-quizHolder>
+        <div class="questionText" data-quizText>Have you used <div class="blueText smallText" data-BudgeterText>Budgeter</div> before?</div>
+        <div class="usedBudBeforeConfirmBtn" data-usedBudBeforeConfirm>Yep!</div>
+        <div class="usedBudBeforeCancelBtn" data-usedBudBeforeCancel>Nope!</div>
+    </div>
+    <header class="header">
+        <div class="header-title">Budgets</div>
+        <div class="header-btn-container">
+            <button class="add-budget-btn" data-add-budget-btn>Add Budget</button>
+        </div>
+    </header>
+
+    <center>
+        <div class="detaisbudget" data-detail-budget>
+            <input type="text" class="detailNameOfBudget" data-detailnameofbudget>
+            <input type="number" class="AmountOfBudget" data-amountofbudget>
+            <button class="add-budget-confirm" data-addbudget-confirm>Add Budget</button>
+            <button class="closedetails" data-close-details>Close</button>
+            <label class="labelfordnob" data-labelfordnob>Enter The Name of The budget</label>
+            <label class="AlertforAddbudget" data-AlertforAddbudget>Please Enter All of them</label>
+            <div class="createbudgettitle">Create Budget</div>
+            <label class="labelforaob" data-labelforaob>Enter The Budget</label>
+        </div>
+    </center>
+
+    <main class="budgets-container" data-budget-container>
+        <div class="total-box">
+            <div class="total-name">Total</div>
+            <div class="total-total-expenses" data-total-total-expenses="0">$0</div>
+            <div class="total-total-budget" data-total-total-budget="0">/ $0</div>   
+            <div class="total-percentage-bar-main" data-total-percentage-bar-main>
+                <div class="total-way-there" data-total-way-there>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="cookie-container" data-cookieContainer>
+            <div class="cookieInfo">This site uses cookies to save data.</div>
+            <a href="" class="LearnMoreCookies">Learn more about the cookies of this website.</a>
+            <div class="acceptbtn" data-accept-btn>Got it!</div>
+            <div class="dismissbtn" data-dismiss-btn>Nope!</div>
+        </div>
+        <div class="deleteMemoryContainer hide" data-deleteMemoryContainer>
+            <div class="deleteMemoryText">Want to delete your data?</div>
+            <button class="deleteMemoryBtn" data-deleteMemoryBtn>Yes!</button>
+            <button class="cancelMemoryBtn" data-cancelMemoryBtn>Nope!</button>
+            <div class="deleteMemoryLine"></div>
+            <button class="openDeleteMemorybtn" data-openDeleteMemory></button>
+        </div>
+    </footer>
+</body>
+</html>
