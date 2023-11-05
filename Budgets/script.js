@@ -502,6 +502,12 @@ function removeSavedExpense(amount, ID) {
     localStorage.setItem('ArrayOfExpenses' + ID, StringB)
 }
 
+function replaceSavedExpense(savedExpense, ID, newExpense) {
+    let StringA = localStorage.getItem('ArrayOfExpenses' + ID)
+    let StringB = StringA.replace(savedExpense, newExpense)
+    localStorage.setItem('ArrayOfExpenses' + ID, StringB)
+}
+
 
 function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense, numID, expenseString) {
     if (localStorage.getItem('nameOfBudget' + numID) == null || localStorage.getItem('nameOfBudget' + numID) == undefined || localStorage.getItem('nameOfBudget' + numID) == "") return
@@ -847,11 +853,15 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 newexpense.classList.add('expenses')
                 expensesboxAB.append(newexpense)
 
+                const newexpenseinfo = document.createElement('div')
+                newexpenseinfo.classList.add('expenseInfo')
+                newexpense.append(newexpenseinfo)
+
                 const newexpenseamount = document.createElement('div')
                 newexpenseamount.classList.add('amount')
                 newexpenseamount.dataset.amount = inputAB.dataset.input
                 newexpenseamount.textContent = "$" + inputAB.dataset.input
-                newexpense.append(newexpenseamount)
+                newexpenseinfo.append(newexpenseamount)
 
                 const newexpensedate = document.createElement('div')
                 newexpensedate.classList.add('expenseDate')
@@ -876,19 +886,19 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 let formattedMonth 
                 switch (getCurrentDate().month.toString()) {
                     case `1`:
-                        formattedMonth = `January`
+                        formattedMonth = `Jan`
                         break;
 
                     case `2`:
-                        formattedMonth = `February`
+                        formattedMonth = `Feb`
                         break;
 
                     case `3`:
-                        formattedMonth = `March`
+                        formattedMonth = `Mar`
                         break;
                     
                     case `4`:
-                        formattedMonth = `April`
+                        formattedMonth = `Apr`
                         break;
 
                     case `5`:
@@ -896,39 +906,92 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         break;
 
                     case `6`:
-                        formattedMonth = `June`
+                        formattedMonth = `Jun`
                         break;
 
                     case `7`:
-                        formattedMonth = `July`
+                        formattedMonth = `Jul`
                         break;
                     
                     case `8`: 
-                        formattedMonth = `August`
+                        formattedMonth = `Aug`
                         break;
                     
                     case `9`:
-                        formattedMonth = `September`
+                        formattedMonth = `Sep`
                         break;
                     
                     case `10`:
-                        formattedMonth = `October`
+                        formattedMonth = `Oct`
                         break;
 
                     case `11`:
-                        formattedMonth = `November`
+                        formattedMonth = `Nov`
                         break;
 
                     case `12`:
-                        formattedMonth = `December`
+                        formattedMonth = `Dec`
                         break;
                     default:
                         formattedMonth = null
                         break;
                 }
-                newexpensedate.textContent = `${formattedDay} ${formattedMonth} ${getCurrentDate().year}`
-                let compactedDate = getCurrentDate().day + '-' + getCurrentDate().month + '-' + getCurrentDate().year
-                newexpense.append(newexpensedate)
+                newexpensedate.textContent = `${formattedDay} ${formattedMonth}`
+                let compactedDate = getCurrentDate().day + '-' + getCurrentDate().month + '-�' 
+                let dateForNote = '-' + getCurrentDate().day + '-' + getCurrentDate().month + '-'
+                newexpenseinfo.append(newexpensedate)
+
+                const addnotebtn = document.createElement('button')
+                    addnotebtn.classList.add('addNoteBtn')
+                    newexpense.append(addnotebtn)
+                    const icon = document.createElement('i')
+                    icon.classList.add('fa-regular')
+                    icon.classList.add('fa-notes')
+                    addnotebtn.append(icon)
+
+                    const addNoteInput = document.createElement('input')
+                    addNoteInput.classList.add('addNoteInput')
+                    addNoteInput.dataset.type = 'text'
+                    newexpense.append(addNoteInput)
+
+                    const addNoteConfirmBtn = document.createElement('button')
+                    addNoteConfirmBtn.classList.add('addNoteConfirmBtn')
+                    newexpense.append(addNoteConfirmBtn)
+
+                    addnotebtn.addEventListener('click', () => {
+                        newexpense.classList.add('noting')
+                    })
+
+                    addNoteConfirmBtn.addEventListener('click', () => {
+                        if(!addNoteConfirmBtn.classList.contains('confirm')) newexpense.classList.remove('noting')
+                    })
+
+                    addNoteInput.addEventListener('input', e => {
+                        if (!addNoteConfirmBtn.classList.contains('3123418')) {
+                            addNoteConfirmBtn.addEventListener('click', () => {
+                                if (addNoteConfirmBtn.classList.contains('confirm')) {
+                                    const expenseNoteText = document.createElement('div')
+                                    expenseNoteText.classList.add('expenseNote')
+                                    expenseNoteText.textContent = e.target.value
+                                    newexpenseinfo.append(expenseNoteText)
+                                    newexpensedate.textContent = `${formattedDay} ${formattedMonth} -`
+                                    newexpense.classList.remove('noting')
+                                    addnotebtn.remove()
+                                    addNoteInput.remove()
+                                    addNoteConfirmBtn.remove()
+                                    replaceSavedExpense(parseInt(newexpenseamount.dataset.amount) + '-' + compactedDate,numID,parseInt(newexpenseamount.dataset.amount) + dateForNote + e.target.value)
+                                } else {
+                                    newexpense.classList.remove('noting')
+                                }
+                            })
+                            addNoteConfirmBtn.classList.add('3123418')
+                        }
+                        if (e.target.value != '') {
+                            addNoteConfirmBtn.classList.add('confirm')
+                        } else if (e.target.value == '') {
+                            addNoteConfirmBtn.classList.remove('confirm')
+                        }
+                    })
 
                 const newexpensebtn = document.createElement('button')
                 newexpensebtn.classList.add('removebtn')
@@ -1013,7 +1076,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
 
                 })
 
-                if(inputAB.dataset.input >= 200) {
+                if(inputAB.dataset.input >= parseInt(budgetAB.dataset.totalbudgetquarter)) {
                     pushAlert(`bigExpense`, loadBudgetName, waythereAB.dataset.percentage, newexpensebtn)
                 }
 
@@ -1045,30 +1108,33 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 var curRead = null
                 var date 
                 var dateFormatingNum = 0
+                var expenseNote
 
                 for (let index = 0; index < numCurRead.toString().length; index++) {
                 if (expenseFormater.slice(-1) == '-') {
                     if (dateFormatingNum == 0) {
-                        date = curRead;
+                        console.log(curRead);
+                        expenseNote = curRead
                         curRead = null;
                         dateFormatingNum = 1;
                     } else if (dateFormatingNum == 1) {
                         let formattedMonth 
+                        dateForNote = curRead.toString();
                         switch (curRead.toString()) {
                     case `1`:
-                        formattedMonth = `January`
+                        formattedMonth = `Jan`
                         break;
 
                     case `2`:
-                        formattedMonth = `February`
+                        formattedMonth = `Feb`
                         break;
 
                     case `3`:
-                        formattedMonth = `March`
+                        formattedMonth = `Mar`
                         break;
                     
                     case `4`:
-                        formattedMonth = `April`
+                        formattedMonth = `Apr`
                         break;
 
                     case `5`:
@@ -1076,37 +1142,37 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                         break;
 
                     case `6`:
-                        formattedMonth = `June`
+                        formattedMonth = `Jun`
                         break;
 
                     case `7`:
-                        formattedMonth = `July`
+                        formattedMonth = `Jul`
                         break;
                     
                     case `8`: 
-                        formattedMonth = `August`
+                        formattedMonth = `Aug`
                         break;
                     
                     case `9`:
-                        formattedMonth = `September`
+                        formattedMonth = `Sep`
                         break;
                     
                     case `10`:
-                        formattedMonth = `October`
+                        formattedMonth = `Oct`
                         break;
 
                     case `11`:
-                        formattedMonth = `November`
+                        formattedMonth = `Nov`
                         break;
 
                     case `12`:
-                        formattedMonth = `December`
+                        formattedMonth = `Dec`
                         break;
                     default:
                         formattedMonth = null
                         break;
                         }
-                        date = formattedMonth.toString() + " " + date;
+                        date = formattedMonth.toString()
                         dateFormatingNum = 2;
                         curRead = null;
                     } else if (dateFormatingNum == 2) {
@@ -1129,6 +1195,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                                 break;
                         }
                         date = formattedDay.toString() + " " + date
+                        dateForNote = curRead.toString() + '-' + dateForNote + '-'
                         curRead = null;
                         // console.log(date)
                     }
@@ -1147,17 +1214,81 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 newexpense.classList.add('expenses')
                 expensesboxAB.prepend(newexpense)
 
+                const newexpenseinfo = document.createElement('div')
+                newexpenseinfo.classList.add('expenseInfo')
+                newexpense.append(newexpenseinfo)
+
                 const newexpenseamount = document.createElement('div')
                 newexpenseamount.classList.add('amount')
                 newexpenseamount.dataset.amount = parseInt(curRead)
                 newexpenseamount.textContent = "$" + parseInt(curRead)
-                newexpense.append(newexpenseamount)
+                newexpenseinfo.append(newexpenseamount)
 
                 const newexpensedate = document.createElement('div')
                 newexpensedate.classList.add('expenseDate')
                 newexpensedate.textContent = date
-                newexpense.append(newexpensedate)
+                newexpenseinfo.append(newexpensedate)
 
+                if (expenseNote == '�') {
+                    const addnotebtn = document.createElement('button')
+                    addnotebtn.classList.add('addNoteBtn')
+                    newexpense.append(addnotebtn)
+                    const icon = document.createElement('i')
+                    icon.classList.add('fa-regular')
+                    icon.classList.add('fa-notes')
+                    addnotebtn.append(icon)
+
+                    const addNoteInput = document.createElement('input')
+                    addNoteInput.classList.add('addNoteInput')
+                    addNoteInput.dataset.type = 'text'
+                    newexpense.append(addNoteInput)
+
+                    const addNoteConfirmBtn = document.createElement('button')
+                    addNoteConfirmBtn.classList.add('addNoteConfirmBtn')
+                    newexpense.append(addNoteConfirmBtn)
+
+                    addnotebtn.addEventListener('click', () => {
+                        newexpense.classList.add('noting')
+                    })
+
+                    addNoteConfirmBtn.addEventListener('click', () => {
+                        if(!addNoteConfirmBtn.classList.contains('confirm')) newexpense.classList.remove('noting')
+                    })
+
+                    addNoteInput.addEventListener('input', e => {
+                        if (!addNoteConfirmBtn.classList.contains('3123418')) {
+                            addNoteConfirmBtn.addEventListener('click', () => {
+                                if (addNoteConfirmBtn.classList.contains('confirm')) {
+                                    const expenseNoteText = document.createElement('div')
+                                    expenseNoteText.classList.add('expenseNote')
+                                    expenseNoteText.textContent = e.target.value
+                                    newexpenseinfo.append(expenseNoteText)
+                                    newexpensedate.textContent = date + ' -'
+                                    newexpense.classList.remove('noting')
+                                    addnotebtn.remove()
+                                    addNoteInput.remove()
+                                    addNoteConfirmBtn.remove()
+                                    replaceSavedExpense(newexpensebtn.dataset.storageID,numID,parseInt(newexpenseamount.dataset.amount) + dateForNote + '' + e.target.value)
+                                } else {
+                                    newexpense.classList.remove('noting')
+                                }
+                            })
+                            addNoteConfirmBtn.classList.add('3123418')
+                        }
+                        if (e.target.value != '') {
+                            addNoteConfirmBtn.classList.add('confirm')
+                        } else if (e.target.value == '') {
+                            addNoteConfirmBtn.classList.remove('confirm')
+                        }
+                    })
+                } else {
+                    const expenseNoteText = document.createElement('div')
+                    expenseNoteText.classList.add('expenseNote')
+                    expenseNoteText.textContent = expenseNote
+                    newexpenseinfo.append(expenseNoteText)
+                    newexpensedate.textContent = date + ' -'
+                }
+                
                 const newexpensebtn = document.createElement('button')
                 newexpensebtn.classList.add('removebtn')
                 newexpensebtn.dataset.storageID = numCurRead
@@ -1263,33 +1394,36 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 totalExpenseLE = parseInt(totalExpenseLE) + parseInt(numCurRead)
 
                 var expenseFormater = numCurRead
+                var expenseNote 
                 var curRead = null
                 var date 
                 var dateFormatingNum = 0
+                var dateForNote
 
                 for (let index = 0; index < numCurRead.toString().length; index++) {
                     if (expenseFormater.slice(-1) == '-') {
                         if (dateFormatingNum == 0) {
-                            date = curRead;
+                            expenseNote = curRead
                             curRead = null;
                             dateFormatingNum = 1;
                         } else if (dateFormatingNum == 1) {
                             let formattedMonth 
+                            dateForNote = curRead.toString()
                             switch (curRead.toString()) {
                         case `1`:
-                            formattedMonth = `January`
+                            formattedMonth = `Jan`
                             break;
 
                         case `2`:
-                            formattedMonth = `February`
+                            formattedMonth = `Feb`
                             break;
 
                         case `3`:
-                            formattedMonth = `March`
+                            formattedMonth = `Mar`
                             break;
                             
                         case `4`:
-                            formattedMonth = `April`
+                            formattedMonth = `Apr`
                             break;
 
                         case `5`:
@@ -1297,37 +1431,37 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                             break;
 
                         case `6`:
-                            formattedMonth = `June`
+                            formattedMonth = `Jun`
                             break;
 
                         case `7`:
-                            formattedMonth = `July`
+                            formattedMonth = `Jul`
                             break;
                             
                         case `8`: 
-                            formattedMonth = `August`
+                            formattedMonth = `Aug`
                             break;
                             
                         case `9`:
-                            formattedMonth = `September`
+                            formattedMonth = `Sep`
                             break;
                             
                         case `10`:
-                            formattedMonth = `October`
+                            formattedMonth = `Oct`
                             break;
 
                         case `11`:
-                            formattedMonth = `November`
+                            formattedMonth = `Nov`
                             break;
 
                         case `12`:
-                            formattedMonth = `December`
+                            formattedMonth = `Dec`
                             break;
                         default:
                             formattedMonth = null
                             break;
                             }
-                            date = formattedMonth.toString() + " " + date;
+                            date = formattedMonth.toString();
                             dateFormatingNum = 2;
                             curRead = null;
                         } else if (dateFormatingNum == 2) {
@@ -1350,6 +1484,7 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                                     break;
                             }
                             date = formattedDay.toString() + " " + date
+                            dateForNote = curRead.toString() + '-' + dateForNote + '-'
                             curRead = null;
                             // console.log(date)
                         }
@@ -1368,16 +1503,81 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 newexpense.classList.add('expenses')
                 expensesboxAB.prepend(newexpense)
 
+                const newexpenseinfo = document.createElement('div')
+                newexpenseinfo.classList.add('expenseInfo')
+                newexpense.append(newexpenseinfo)
+
                 const newexpenseamount = document.createElement('div')
                 newexpenseamount.classList.add('amount')
                 newexpenseamount.dataset.amount = parseInt(curRead)
                 newexpenseamount.textContent = "$" + parseInt(curRead)
-                newexpense.append(newexpenseamount)
+                newexpenseinfo.append(newexpenseamount)
 
                 const newexpensedate = document.createElement('div')
                 newexpensedate.classList.add('expenseDate')
                 newexpensedate.textContent = date
-                newexpense.append(newexpensedate)
+                newexpenseinfo.append(newexpensedate)
+
+                if (expenseNote == '�') {
+                    const addnotebtn = document.createElement('button')
+                    addnotebtn.classList.add('addNoteBtn')
+                    newexpense.append(addnotebtn)
+                    const icon = document.createElement('i')
+                    icon.classList.add('fa-regular')
+                    icon.classList.add('fa-notes')
+                    addnotebtn.append(icon)
+
+                    const addNoteInput = document.createElement('input')
+                    addNoteInput.classList.add('addNoteInput')
+                    addNoteInput.dataset.type = 'text'
+                    newexpense.append(addNoteInput)
+
+                    const addNoteConfirmBtn = document.createElement('button')
+                    addNoteConfirmBtn.classList.add('addNoteConfirmBtn')
+                    newexpense.append(addNoteConfirmBtn)
+
+                    addnotebtn.addEventListener('click', () => {
+                        newexpense.classList.add('noting')
+                    })
+
+                    addNoteConfirmBtn.addEventListener('click', () => {
+                        if(!addNoteConfirmBtn.classList.contains('confirm')) newexpense.classList.remove('noting')
+                    })
+
+                    addNoteInput.addEventListener('input', e => {
+                        if (!addNoteConfirmBtn.classList.contains('3123418')) {
+                            addNoteConfirmBtn.addEventListener('click', () => {
+                                if (addNoteConfirmBtn.classList.contains('confirm')) {
+                                    const expenseNoteText = document.createElement('div')
+                                    expenseNoteText.classList.add('expenseNote')
+                                    expenseNoteText.textContent = e.target.value
+                                    newexpenseinfo.append(expenseNoteText)
+                                    newexpensedate.textContent = date + ' -'
+                                    newexpense.classList.remove('noting')
+                                    addnotebtn.remove()
+                                    addNoteInput.remove()
+                                    addNoteConfirmBtn.remove()
+                                    console.log(newexpensebtn.dataset.storageID,parseInt(newexpenseamount.dataset.amount) + dateForNote + e.target.value)
+                                    replaceSavedExpense(newexpensebtn.dataset.storageID,numID,parseInt(newexpenseamount.dataset.amount) + dateForNote + e.target.value)
+                                } else {
+                                    newexpense.classList.remove('noting')
+                                }
+                            })
+                            addNoteConfirmBtn.classList.add('3123418')
+                        }
+                        if (e.target.value != '') {
+                            addNoteConfirmBtn.classList.add('confirm')
+                        } else if (e.target.value == '') {
+                            addNoteConfirmBtn.classList.remove('confirm')
+                        }
+                    })
+                } else {
+                    const expenseNoteText = document.createElement('div')
+                    expenseNoteText.classList.add('expenseNote')
+                    expenseNoteText.textContent = expenseNote
+                    newexpenseinfo.append(expenseNoteText)
+                    newexpensedate.textContent = date + ' -'
+                }
 
                 const newexpensebtn = document.createElement('button')
                 newexpensebtn.classList.add('removebtn')

@@ -1393,19 +1393,6 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
         var expenseLoader = expenseString.slice(0, -1)
     console.log(expenseLoader);
     for (let index = 0; index < expenseString.length - 1; index++) {
-        // if (expenseLoader.slice(-1) == '#') {
-        //     totalExpenseLE = parseInt(totalExpenseLE) + parseInt(numCurRead)
-        // }
-        // else {
-        //     if (numCurRead == "" || numCurRead == undefined || numCurRead == null)
-        //     {
-        //         numCurRead = expenseLoader.slice(-1)
-        //     }
-        //     else {
-        //         numCurRead = numCurRead + expenseLoader.slice(-1)
-        //     }
-            
-        // }
         if (expenseLoader.slice(-1) == '#')
         {
             //console.log(numCurRead);
