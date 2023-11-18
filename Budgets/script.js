@@ -56,6 +56,13 @@ const totalpercentage = document.querySelector('[data-total-percentage-bar-main]
 const totalwaythere = document.querySelector('[data-total-way-there]')
 const totalpercentageNum = document.querySelector('[data-total-percentage')
 
+const summaryContainer = document.querySelector('[data-summary-container]')
+const closeSummaryBtn = document.querySelector('[data-close-summary-btn]')
+const totalSpendingsSummary = document.querySelector('[data-total-spendings-summary]')
+const totalSavingsSummary = document.querySelector('[data-total-savings-summary]')
+const totalProfitSummary = document.querySelector('[data-total-profit-summary]')
+const totalProfitSummaryNum = document.querySelector('[data-total-profit-summary-num]')
+
 const quizHolder = document.querySelector('[data-quizHolder]')
 const quizYes = document.querySelector('[data-usedBudBeforeConfirm]')
 const quizNo = document.querySelector('[data-usedBudBeforeCancel]')
@@ -119,6 +126,7 @@ function tutorial() {
     if (localStorage.getItem('HasGoneTroughTut'))
     {
         quizHolder.remove()
+        openSummary();
         return
     }
     setTimeout(() => {
@@ -164,6 +172,16 @@ function tutorial() {
 }
 
 tutorial()
+
+function openSummary() {
+    totalSpendingsSummary.textContent = totaltotalexpenses.dataset.totalTotalExpenses + '$'
+    totalSavingsSummary.textContent = '0$'
+    totalProfitSummary.textContent = 'Total amount spent this month:'
+    totalProfitSummaryNum.textContent = '-' +  totaltotalexpenses.dataset.totalTotalExpenses + '$'
+    totalProfitSummaryNum.classList.add('negative')
+    summaryContainer.classList.add('show')
+    cover.classList.add('show')
+}
 
 function cookiesInitialize() {
     if(!localStorage.getItem("numofbudget"))
@@ -317,6 +335,11 @@ function addEventListeners() {
 
     closeSettingsBtn.addEventListener('click', () => {
         settingsContainer.classList.remove('show')
+        cover.classList.remove('show')
+    });
+
+    closeSummaryBtn.addEventListener('click', () => {
+        summaryContainer.classList.remove('show')
         cover.classList.remove('show')
     });
 
@@ -755,11 +778,11 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
         totaltotalbudget.dataset.totalTotalBudget =  parseInt(totaltotalbudget.dataset.totalTotalBudget) - parseInt(localStorage.getItem('amountOfBudget' + numID))
         totaltotalexpenses.dataset.totalTotalExpenses = parseInt(totaltotalexpenses.dataset.totalTotalExpenses) - parseInt(localStorage.getItem('loadBudgetExpense' + numID))
         console.log(totaltotalbudget.dataset.totalTotalBudget, totaltotalexpenses.dataset.totalTotalExpenses);
-        updatetotal()
         localStorage.removeItem('ArrayOfExpenses' + numID)
         localStorage.removeItem('loadBudgetExpense' + numID)
         localStorage.removeItem('nameOfBudget' + numID)//
         localStorage.removeItem('amountOfBudget' + numID)
+        updatetotal()
         }
     })
 

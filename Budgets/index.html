@@ -63,19 +63,42 @@
                     <div class="deleteDataBtn" data-delete-data-btn>Delete</div>
                 </div>
             </div>
-            <div class="versionNum">v0.05</div>
+            <div class="versionNum">v0.06</div>
         </div>
-        <div class="summary-container">
-            <div class="summaryTitle">Summary</div>
-            <div class="summaryPeriod">Current period: 1st November - 30th November</div>
-            <div class="summaryTotalSpendings">Total spendings this period: 650$</div>
-            <div class="summaryRecentExpenses">RecentExpenses:</div>
-            <div class="recentExpense">
-                <div class="recentExpenseAmount">123$</div>
-                <div class="recentExpenseBudget">Entertainment</div>
-                <div class="recentExpenseDate">13th November</div>
+        <div class="summary-container" data-summary-container>
+            <div class="summaryTitle">Welcome Back!</div>
+            <div class="summarySubTitle">Here is a quick recap of how you are doing with your budgets</div>
+            <div class="summaryTotal">
+                <div class="summaryTotalSpendings">Total spendings this month: <div class="summaryTotalSpendingsNum" data-total-spendings-summary>650$</div></div>
+                <div class="summaryTotalSavings">Total savings this month: <div class="summaryTotalSavingsNum" data-total-savings-summary>730$</div></div>
+                <div class="summaryTotalProfit"> <div data-total-profit-summary>Total profit this month:</div> <div class="summaryTotalProfitNum" data-total-profit-summary-num>+180$</div></div>
             </div>
-            <button class="closeSummaryBtn">Close</button>
+            <!--
+            <div class="summaryRecentExpenses">RecentExpenses:</div>
+            <div class="recentExpenses">
+                <div class="recentExpense">
+                    <div class="recentExpenseInfo">
+                        <div class="recentExpenseAmount">44444$</div>
+                        <div class="recentExpenseDate">13th Nov</div>
+                    </div>
+                    <div class="recentExpenseNote">Derailleur(disqualification)</div>
+                </div>
+                <div class="recentExpense">
+                    <div class="recentExpenseInfo">
+                        <div class="recentExpenseAmount">35$</div>
+                        <div class="recentExpenseDate">13th Nov</div>
+                    </div>
+                    <div class="recentExpenseNote">Chain(Entertainment)</div>
+                </div>
+                <div class="recentExpense">
+                    <div class="recentExpenseInfo">
+                        <div class="recentExpenseAmount">50$</div>
+                        <div class="recentExpenseDate">13th Nov</div>
+                    </div>
+                    <div class="recentExpenseNote">Cassette(Entertainment)</div>
+                </div>
+            </div> -->
+            <button class="closeSummaryBtn" data-close-summary-btn>Close</button>
         </div>
     </center>
 
