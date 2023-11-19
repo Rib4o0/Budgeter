@@ -25,8 +25,6 @@ const cookiecontainer = document.querySelector('[data-cookieContainer]')
 const cookieAcceptbtn = document.querySelector('[data-accept-btn]')
 const cookieDismissbtn = document.querySelector('[data-dismiss-btn]')
 
-const deleteDataBtn = document.querySelector('[data-delete-data-btn]')
-
 const switchStylesBtn = document.querySelector('[data-switchstyles]')
 
 const styleLink = document.querySelector('[data-styleLink]')
@@ -41,6 +39,7 @@ const closeSettingsBtn = document.querySelector('[data-close-settings-btn]')
 const darkModeToggle = document.querySelector('[data-dark-mode-toggle]')
 const mainColorInput = document.querySelector('[data-main-color-input]')
 const accColorInput = document.querySelector('[data-acc-color-input]')
+const deleteDataBtn = document.querySelector('[data-delete-data-btn]')
 
 const alertBox = document.querySelector('[data-alert-box]')
 const alertText = document.querySelector('[data-alert-text]')
@@ -103,14 +102,21 @@ var undoExpense
 // todo:
 // todo
 
+if (!localStorage.getItem('redirecting')) localStorage.setItem('redirecting', false);
+if (!localStorage.getItem('totalExpenses')) localStorage.setItem('totalExpenses', '0') 
+if (!localStorage.getItem('lastVisited')) localStorage.setItem('lastVisited', 'Budgets')
+if (localStorage.getItem('lastVisited') != 'Budgets' && localStorage.getItem('redirecting') == 'false') window.location.href = `/${localStorage.getItem('lastVisited')}/index.html`
 
 addEventListeners()
 updatetotal()
 cookiesInitialize()
+tutorial()
 fadein()
 
 function fadein() {
     setTimeout(() => {
+        localStorage.setItem('redirecting', false);
+        localStorage.setItem('lastVisited', 'Budgets')
         fade.classList.add('fade')
     }, 100);
 }
@@ -121,12 +127,12 @@ function fadeout() {
     }, 100);
 }
 
-
 function tutorial() {
     if (localStorage.getItem('HasGoneTroughTut'))
     {
         quizHolder.remove()
-        openSummary();
+        // console.log(localStorage.getItem('redirecting'));
+        if (localStorage.getItem('redirecting') == 'false') openSummary();
         return
     }
     setTimeout(() => {
@@ -171,13 +177,11 @@ function tutorial() {
     }, 500)
 }
 
-tutorial()
-
 function openSummary() {
-    totalSpendingsSummary.textContent = totaltotalexpenses.dataset.totalTotalExpenses + '$'
+    totalSpendingsSummary.textContent = localStorage.getItem('totalExpenses') + '$'
     totalSavingsSummary.textContent = '0$'
     totalProfitSummary.textContent = 'Total amount spent this month:'
-    totalProfitSummaryNum.textContent = '-' +  totaltotalexpenses.dataset.totalTotalExpenses + '$'
+    totalProfitSummaryNum.textContent = '-' +  localStorage.getItem('totalExpenses') + '$'
     totalProfitSummaryNum.classList.add('negative')
     summaryContainer.classList.add('show')
     cover.classList.add('show')
@@ -231,6 +235,7 @@ function updatetotal() {
 
 function updatetotalexpenses() {
     totaltotalexpenses.textContent = '$' + totaltotalexpenses.dataset.totalTotalExpenses
+    localStorage.setItem("totalExpenses", totaltotalexpenses.dataset.totalTotalExpenses)
 }
 
 function updatetotalbudget() {
@@ -264,6 +269,7 @@ function addEventListeners() {
 
     link.forEach(link => {
         link.addEventListener('click', () => {
+            localStorage.setItem('redirecting', true)
             fadeout()
             setTimeout(() => {
                 window.location.href = link.dataset.link.toString()

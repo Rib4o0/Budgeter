@@ -9,16 +9,86 @@
     <script src="https://kit.fontawesome.com/1ee8f271b9.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <div class="transitionFade" data-fade></div>
     <header class="header">
         <div class="header-title">Statistics</div>
     </header>
+
+    <center>
+        <div class="settings-container" data-settings-container>
+            <div class="titleSettings">Settings</div>
+            <button class="resetSettingsBtn" data-reset-settings-btn>Reset</button>
+            <button class="closeSettings" data-close-settings-btn>Close</button>
+            <div class="settingSection">
+                <div class="settingSectionTitle">Appereance</div>
+                <div class="darkMode">
+                    <label class="darkModeTitle">Dark Mode</label>
+                    <button class="darkModeToggle" data-dark-mode-toggle><i class="fa-regular fa-sun-bright"></i></button>
+                </div>
+                <div class="mainColor">
+                    <label class="mainColor">Main Colour</label>
+                    <input type="color" class="mainColorInput " data-main-color-input>
+                </div>
+                <div class="accColor">
+                    <label class="accColor">Accent Colour</label>
+                    <input type="color" class="accColorInput" data-acc-color-input>
+                </div>
+            </div>
+            <div class="settingSection">
+                <div class="settingSectionTitle">Data</div>
+                <div class="deleteData">
+                    <div class="deleteData">Delete data</div>
+                    <div class="deleteDataBtn" data-delete-data-btn>Delete</div>
+                </div>
+            </div>
+            <div class="versionNum">v0.06</div>
+        </div>
+        <div class="summary-container" data-summary-container>
+            <div class="summaryTitle">Welcome Back!</div>
+            <div class="summarySubTitle">Here is a quick recap of how you are doing with your budgets</div>
+            <div class="summaryTotal">
+                <div class="summaryTotalSpendings">Total spendings this month: <div class="summaryTotalSpendingsNum" data-total-spendings-summary>650$</div></div>
+                <div class="summaryTotalSavings">Total savings this month: <div class="summaryTotalSavingsNum" data-total-savings-summary>730$</div></div>
+                <div class="summaryTotalProfit"> <div data-total-profit-summary>Total profit this month:</div> <div class="summaryTotalProfitNum" data-total-profit-summary-num>+180$</div></div>
+            </div>
+            <!--
+            <div class="summaryRecentExpenses">RecentExpenses:</div>
+            <div class="recentExpenses">
+                <div class="recentExpense">
+                    <div class="recentExpenseInfo">
+                        <div class="recentExpenseAmount">44444$</div>
+                        <div class="recentExpenseDate">13th Nov</div>
+                    </div>
+                    <div class="recentExpenseNote">Derailleur(disqualification)</div>
+                </div>
+                <div class="recentExpense">
+                    <div class="recentExpenseInfo">
+                        <div class="recentExpenseAmount">35$</div>
+                        <div class="recentExpenseDate">13th Nov</div>
+                    </div>
+                    <div class="recentExpenseNote">Chain(Entertainment)</div>
+                </div>
+                <div class="recentExpense">
+                    <div class="recentExpenseInfo">
+                        <div class="recentExpenseAmount">50$</div>
+                        <div class="recentExpenseDate">13th Nov</div>
+                    </div>
+                    <div class="recentExpenseNote">Cassette(Entertainment)</div>
+                </div>
+            </div> -->
+            <button class="closeSummaryBtn" data-close-summary-btn>Close</button>
+        </div>
+    </center>
+
     <footer>
         <nav class="nav-bar">
-            <div class="budgetsNav navElem"><i class="fa-solid fa-vault icon"data-link="/Budgets/index.html"></i></div>
-            <div class="statsNav navElem" data-link=""><i class="fa-solid fa-chart-column icon"></i></div>
+            <div class="budgetsNav navElem" data-link="D:/Fishes/Budgeter/Budgets/index.html"><i class="fa-solid fa-vault icon"></i></div>
+            <div class="statsNav navElem"><i class="fa-solid fa-chart-column icon"></i></div>
             <div class="settingsNav navElem" data-settings-btn><i class="fa-solid fa-gear icon"></i></div>
         </nav>
     </footer>
+
+    <div class="cover-hider" data-cover></div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
