@@ -508,12 +508,12 @@ function resetSettings() {
 }
 
 function loadBudgets() {
-    var readerNum = 0;
+    var readerNum = 0;  
     for (let i = 0; i < localStorage.getItem("numofbudget"); i++) {
           addPreviousBudgets(localStorage.getItem("nameOfBudget" + readerNum), localStorage.getItem("amountOfBudget" + readerNum), localStorage.getItem("loadBudgetExpense" + readerNum), readerNum, localStorage.getItem("ArrayOfExpenses" + readerNum))
           readerNum += 1
     }
-}
+}   
 
 function saveExpenses(amount, date, ID) {
     if (localStorage.getItem("ArrayOfExpenses" + ID) == null)

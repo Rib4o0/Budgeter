@@ -1,4 +1,4 @@
-@import url('htotalttps://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 :root {
     --main-color: #111; /*#fff*/
@@ -398,4 +398,22 @@ input[type="color"].mainColorInput {
 .percentageSummaryTotal {
     position: relative;
     top: 0px;
+}
+
+.pieChartBudgets {
+    border-radius: 50%;
+    width: 200px;
+    aspect-ratio: 1;
+    position: relative;
+    top: 50px;
+}
+
+.pieChart-box {
+    border: 2px solid lightgray;
+    width: 460px;
+    height: 250px;
+    padding: 20px;
+    position: relative;
+    left: 20px;
+    border-radius: 1em;
 }

@@ -11,6 +11,8 @@ const mainColorInput = document.querySelector('[data-main-color-input]')
 const accColorInput = document.querySelector('[data-acc-color-input]')
 const deleteDataBtn = document.querySelector('[data-delete-data-btn]')
 
+const pieChartBudgets = document.querySelector('[data-pie-chart-budgets]')
+const consoleText = document.querySelector('[data-console]')
 
 const summaryContainer = document.querySelector('[data-summary-container]')
 const closeSummaryBtn = document.querySelector('[data-close-summary-btn]')
@@ -19,7 +21,7 @@ const totalSavingsSummary = document.querySelector('[data-total-savings-summary]
 const totalProfitSummary = document.querySelector('[data-total-profit-summary]')
 const totalProfitSummaryNum = document.querySelector('[data-total-profit-summary-num]')
 
-if (localStorage.getItem('redirecting') == 'false') openSummary();
+// if (localStorage.getItem('redirecting') == 'false') openSummary();
 if (!localStorage.getItem('lastVisited')) localStorage.setItem('lastVisited', 'Statistics');
 if (localStorage.getItem('lastVisited') != 'Statistics' && localStorage.getItem('redirecting') == 'false') window.location.href = `/${localStorage.getItem('lastVisited')}/index.html`
 addEventListeners()
@@ -169,6 +171,7 @@ function ApplySettings() {
     }
     document.documentElement.style.setProperty('--main-blue', mainColor)
     document.documentElement.style.setProperty('--acc-blue', accColor)
+    createPieChartBudgets()
 }
 
 function DeleteData() {
@@ -177,4 +180,79 @@ function DeleteData() {
          localStorage.clear()
         location.reload()
     }
+}
+
+function createPieChartBudgets() {
+    // let total = value1 + value2 + value3
+    // let perV1 = Math.round(100 / (total / value1))
+    // let perV2 = Math.round(100 / (total / value2))
+    // let perv3 = Math.round(100 / (total / value3))
+    // closeSettingsBtn.textContent = perV1 + '"' + perV2 + '"' + perv
+    // pieChartBudgets.style.background = `conic-gradient(yellow 0% ${perV1}%, orange ${perV1}% ${perV1 + perV2}%, red ${perV1 + perV2}%)`
+    let listValues = [0]
+    for (let i = 0; i < localStorage.getItem("numofbudget"); i++) {
+       if (localStorage.getItem('amountOfBudget' + i) == null || localStorage.getItem('amountOfBudget' + i) == undefined || localStorage.getItem('amountOfBudget' + i) == "") {} else { 
+            let value = localStorage.getItem("amountOfBudget" + i)
+            listValues.push(value)
+        }
+    }
+    let total = 0
+    for (let i = 0; i < listValues.length; i++) {
+        total += parseFloat(listValues[i])
+        // consoleText.textContent = consoleText.textContent + ' ' + parseFloat(listValues[i]) + listValues.length
+    }
+    // consoleText.textContent = total
+    let color = hexToHSL(localStorage.getItem('mainColor'))
+    color = {h:color.h,s:color.s,l:95}
+    let colorChangeInterval = 50 / listValues.length
+    let conicGradText = ''
+    let curPercentage = 0
+    let lastPercentage 
+    for (let i = 0; i < listValues.length; i++) {
+        lastPercentage = curPercentage
+        curPercentage = lastPercentage + 100 / (total / parseInt(listValues[i]))
+        color = {h: color.h, s: color.s, l: parseInt(color.l) - colorChangeInterval}
+        if (i == listValues.length - 1) {
+            conicGradText += ` hsl(${color.h}, ${color.s}%, ${color.l}%) ${lastPercentage}% ${curPercentage}%`
+        } else {
+            conicGradText += ` hsl(${color.h}, ${color.s}%, ${color.l}%) ${lastPercentage}% ${curPercentage}%,`
+        }
+    }
+    // consoleText.textContent = conicGradText
+    // consoleText.textContent = listValues + ' ' + total 
+    pieChartBudgets.style.background = `conic-gradient(${conicGradText})`
+}
+
+function hexToHSL(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+    var r = parseInt(result[1], 16);
+    var g = parseInt(result[2], 16);
+    var b = parseInt(result[3], 16);
+
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0; // achromatic
+    } else {
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+
+    s = s*100;
+    s = Math.round(s);
+    l = l*100;
+    l = Math.round(l);
+    h = Math.round(360*h);
+
+    var colorInHSL = {h: h, s: s, l: l}
+    return colorInHSL
 }
