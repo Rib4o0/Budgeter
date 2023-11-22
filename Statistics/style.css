@@ -78,11 +78,9 @@ body {
 }
 
 .navElem:hover {
-    background-color:     var(--nav-hover-color);
-}
-
-.statsNav:hover {
-    background-color: #1b6fed;
+    /* background-color:     var(--nav-hover-color); */
+    /* background-color: var(--main-blue); */
+    opacity: 0.8;
 }
 
 .transitionFade {
@@ -134,7 +132,7 @@ body {
 .titleSettings {
     font-size: 37px;
     position: absolute;
-    top: 17px;
+    top: 10px;
     left: 20px;
 }
 
@@ -416,4 +414,36 @@ input[type="color"].mainColorInput {
     position: relative;
     left: 20px;
     border-radius: 1em;
+}
+
+.pieChartTitle {
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+}
+
+.pieChartBudgetsLegend {
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 250px;
+    height: 210px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pieChartLegendEntry {
+    display: flex;
+    width: 100%;
+    justify-content: start;
+}
+
+.pieChartLegendEntryColor {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-bottom: 7px;
 }

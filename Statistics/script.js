@@ -12,6 +12,8 @@ const accColorInput = document.querySelector('[data-acc-color-input]')
 const deleteDataBtn = document.querySelector('[data-delete-data-btn]')
 
 const pieChartBudgets = document.querySelector('[data-pie-chart-budgets]')
+const pieChartBudgetsLegend = document.querySelector('[data-pie-chart-budgets-legend]')
+const pieChartBudgetsTitle = document.querySelector('[data-pie-chart-budgets-title]')
 const consoleText = document.querySelector('[data-console]')
 
 const summaryContainer = document.querySelector('[data-summary-container]')
@@ -107,14 +109,14 @@ function addEventListeners() {
 
     mainColorInput.addEventListener("input", () => {
        mainColor = mainColorInput.value 
-       ApplySettings()
        localStorage.setItem("mainColor", mainColor)
+       ApplySettings()
     });
 
     accColorInput.addEventListener("input", () => {
         accColor = accColorInput.value 
-        ApplySettings()
         localStorage.setItem("accColor", accColor)
+        ApplySettings()
      });
 
     settingsBtn.addEventListener('click', () => {
@@ -183,25 +185,20 @@ function DeleteData() {
 }
 
 function createPieChartBudgets() {
-    // let total = value1 + value2 + value3
-    // let perV1 = Math.round(100 / (total / value1))
-    // let perV2 = Math.round(100 / (total / value2))
-    // let perv3 = Math.round(100 / (total / value3))
-    // closeSettingsBtn.textContent = perV1 + '"' + perV2 + '"' + perv
-    // pieChartBudgets.style.background = `conic-gradient(yellow 0% ${perV1}%, orange ${perV1}% ${perV1 + perV2}%, red ${perV1 + perV2}%)`
-    let listValues = [0]
+    pieChartBudgetsLegend.innerHTML = ''
+    let listValues = []
+    let totalAmount = 0
     for (let i = 0; i < localStorage.getItem("numofbudget"); i++) {
-       if (localStorage.getItem('amountOfBudget' + i) == null || localStorage.getItem('amountOfBudget' + i) == undefined || localStorage.getItem('amountOfBudget' + i) == "") {} else { 
-            let value = localStorage.getItem("amountOfBudget" + i)
+        if (localStorage.getItem('loadBudgetExpense' + i) == null || localStorage.getItem('loadBudgetExpense' + i) == undefined || localStorage.getItem('loadBudgetExpense' + i) == "" || localStorage.getItem('loadBudgetExpense' + i) == '0') {} else { 
+            let value = {amount: localStorage.getItem("loadBudgetExpense" + i), name: localStorage.getItem('nameOfBudget' + i)}
             listValues.push(value)
         }
+        if (localStorage.getItem('amountOfBudget' + i) == null || localStorage.getItem('amountOfBudget' + i) == undefined || localStorage.getItem('amountOfBudget' + i) == "") {} else {totalAmount += parseInt(localStorage.getItem('amountOfBudget' + i))}
     }
     let total = 0
     for (let i = 0; i < listValues.length; i++) {
-        total += parseFloat(listValues[i])
-        // consoleText.textContent = consoleText.textContent + ' ' + parseFloat(listValues[i]) + listValues.length
+        total += parseFloat(listValues[i].amount)
     }
-    // consoleText.textContent = total
     let color = hexToHSL(localStorage.getItem('mainColor'))
     color = {h:color.h,s:color.s,l:95}
     let colorChangeInterval = 50 / listValues.length
@@ -210,17 +207,29 @@ function createPieChartBudgets() {
     let lastPercentage 
     for (let i = 0; i < listValues.length; i++) {
         lastPercentage = curPercentage
-        curPercentage = lastPercentage + 100 / (total / parseInt(listValues[i]))
-        color = {h: color.h, s: color.s, l: parseInt(color.l) - colorChangeInterval}
+        curPercentage = lastPercentage + 100 / (total / parseInt(listValues[i].amount))
+        color = {h: color.h - Math.random() * 360, s: color.s, l: parseInt(color.l) - colorChangeInterval}
         if (i == listValues.length - 1) {
             conicGradText += ` hsl(${color.h}, ${color.s}%, ${color.l}%) ${lastPercentage}% ${curPercentage}%`
         } else {
             conicGradText += ` hsl(${color.h}, ${color.s}%, ${color.l}%) ${lastPercentage}% ${curPercentage}%,`
         }
+        const legendEntry = document.createElement('div')
+        legendEntry.classList.add('pieChartLegendEntry')
+        pieChartBudgetsLegend.append(legendEntry)
+
+        const legendEntryColor = document.createElement('div')
+        legendEntryColor.classList.add('pieChartLegendEntryColor')
+        legendEntryColor.style.backgroundColor = `hsl(${color.h}, ${color.s}%, ${color.l}%)`
+        legendEntry.append(legendEntryColor)
+
+        const legendEntryName = document.createElement('div')
+        legendEntryName.classList.add('pieChartLegendEntryName')
+        legendEntryName.textContent = listValues[i].name + `(${Math.round(100 / (total / parseInt(listValues[i].amount))*10)/10}%)`
+        legendEntry.append(legendEntryName)
     }
-    // consoleText.textContent = conicGradText
-    // consoleText.textContent = listValues + ' ' + total 
     pieChartBudgets.style.background = `conic-gradient(${conicGradText})`
+    pieChartBudgetsTitle.textContent = `Budgets - ${total}$/${totalAmount}$`
 }
 
 function hexToHSL(hex) {
