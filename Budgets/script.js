@@ -98,14 +98,16 @@ var accColor = '#0954c5'
 
 var undoExpense
 
+var alertList = [];
 
 // todo:
 // todo
-
+if (localStorage.getItem('redirectingError') == 'true') pushAlert(localStorage.getItem('redirectingErrorMessage'),0,0,0); localStorage.setItem('redirectingError', false); localStorage.setItem('redirectingErrorMessage', '')
 if (!localStorage.getItem('redirecting')) localStorage.setItem('redirecting', false);
 if (!localStorage.getItem('totalExpenses')) localStorage.setItem('totalExpenses', '0') 
 if (!localStorage.getItem('lastVisited')) localStorage.setItem('lastVisited', 'Budgets')
 if (localStorage.getItem('lastVisited') != 'Budgets' && localStorage.getItem('redirecting') == 'false') window.location.href = `/${localStorage.getItem('lastVisited')}/index.html`
+if (localStorage.getItem('redirecting') == 'false') openSummary();
 
 addEventListeners()
 updatetotal()
@@ -1735,12 +1737,11 @@ function addPreviousBudgets(loadBudgetName, loadBudgetAmount, loadBudgetExpense,
                 }
 }
 
-var alertList = [];
-
 function pushAlert(reason, category, percentage, btn) {
     alertList.push({r: reason, c: category, p: percentage, b: btn});
     if (!alertBox.classList.contains('active')) manageAlerts()
     varListenerAlertList.click()
+    console.log(alertList);
 }
 
 varListenerAlertList.addEventListener("click", () => {
@@ -1753,9 +1754,7 @@ function manageAlerts() {
     category = alertList[0].c;
     percentage = alertList[0].p;
     btn = alertList[0].b;
-    let removed = alertList.shift();
-    console.log(alertList);
-    console.log(`removed:` + removed.r, alertList);
+    alertList.shift()
     if (!alertBox.classList.contains('active')) {
         displayAlert(reason, category, percentage, btn)
     }
@@ -1776,6 +1775,9 @@ function displayAlert(reason, category, percentage, btn) {
         alertDismissBtn.textContent = `Keep`
         undoExpense = btn
         alertBox.classList.add('bigSpend');
+    } else if (reason === 'noBudgets') {
+        alertText.textContent = `You don't have any budgets.`
+        alertSubText.textContent = `Please add some before going to the Statistics tab.`
     }
     alertBox.classList.add('active')
     setTimeout(() => {
