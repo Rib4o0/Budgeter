@@ -107,7 +107,7 @@ if (!localStorage.getItem('redirecting')) localStorage.setItem('redirecting', fa
 if (!localStorage.getItem('totalExpenses')) localStorage.setItem('totalExpenses', '0') 
 if (!localStorage.getItem('lastVisited')) localStorage.setItem('lastVisited', 'Budgets')
 if (localStorage.getItem('lastVisited') != 'Budgets' && localStorage.getItem('redirecting') == 'false') window.location.href = `/${localStorage.getItem('lastVisited')}/index.html`
-if (localStorage.getItem('redirecting') == 'false') openSummary();
+// if (localStorage.getItem('redirecting') == 'false' && localStorage.getItem('HasGoneTroughTut')) openSummary();
 
 addEventListeners()
 updatetotal()

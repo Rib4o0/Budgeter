@@ -23,7 +23,8 @@ const totalSavingsSummary = document.querySelector('[data-total-savings-summary]
 const totalProfitSummary = document.querySelector('[data-total-profit-summary]')
 const totalProfitSummaryNum = document.querySelector('[data-total-profit-summary-num]')
 
-if (!localStorage.getItem('lastVisited')) localStorage.setItem('lastVisited', 'Statistics');
+if (!localStorage.getItem('HasGoneTroughTut')) {localStorage.setItem('lastVisited', 'Budgets'); window.location.href = `/Budgets/index.html`}
+if (!localStorage.getItem('lastVisited')) {localStorage.setItem('lastVisited', 'Budgets');window.location.href = `/Budgets/index.html`}
 if (localStorage.getItem('lastVisited') != 'Statistics' && localStorage.getItem('redirecting') == 'false') window.location.href = `/${localStorage.getItem('lastVisited')}/index.html`
 if (parseInt(localStorage.getItem('numofbudget')) < 1) { localStorage.setItem('lastVisited', 'Budgets'); localStorage.setItem('redirectingError', true); localStorage.setItem('redirectingErrorMessage', `noBudgets`); localStorage.setItem('redirecting', true); window.location.href = `/Budgets/index.html` }
 if (localStorage.getItem('redirecting') == 'false') openSummary();

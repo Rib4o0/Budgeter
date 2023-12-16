@@ -8,10 +8,13 @@
     <script src="script.js" defer></script>
     <script src="https://kit.fontawesome.com/1ee8f271b9.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body data-body>
     <div class="transitionFade" data-fade></div>
     <header class="header">
-        <div class="header-title">Statistics</div>
+        <div class="header-title">Goals</div>
+        <div class="header-btn-container">
+            <button class="add-goal-btn" data-add-budget-btn>Add Goal</button>
+        </div>
     </header>
 
     <center>
@@ -58,7 +61,8 @@
     <footer>
         <nav class="nav-bar">
             <div class="budgetsNav navElem" data-link="/Budgets/index.html"><i class="fa-solid fa-vault icon"></i></div>
-            <div class="statsNav navElem"><i class="fa-solid fa-chart-column icon"></i></div>
+            <div class="goalsNav navElem"><i class="fa-solid fa-coins icon"></i></div>
+            <div class="statsNav navElem" data-link="/Statistics/index.html"><i class="fa-solid fa-chart-column icon"></i></div>
             <div class="settingsNav navElem" data-settings-btn><i class="fa-solid fa-gear icon"></i></div>
         </nav>
     </footer>

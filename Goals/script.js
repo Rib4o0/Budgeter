@@ -18,6 +18,10 @@ const cover = document.querySelector('[data-cover]')
 const fade = document.querySelector('[data-fade]')
 const link = document.querySelectorAll('[data-link]')
 
+var darkMode = 0 // 0 = light mode 1 = dark mode 
+var mainColor = '#0C5DD8'
+var accColor = '#0954c5'
+
 // if (localStorage.getItem('redirectingError') == 'true') pushAlert(localStorage.getItem('redirectingErrorMessage'),0,0,0); localStorage.setItem('redirectingError', false); localStorage.setItem('redirectingErrorMessage', '')
 if (!localStorage.getItem('redirecting')) localStorage.setItem('redirecting', false);
 if (!localStorage.getItem('totalExpenses')) localStorage.setItem('totalExpenses', '0') 
@@ -172,4 +176,12 @@ function ApplySettings() {
     }
     document.documentElement.style.setProperty('--main-blue', mainColor)
     document.documentElement.style.setProperty('--acc-blue', accColor)
+}
+
+function DeleteData() {
+    let deleteData = "Are you sure you want to delete you data?"
+    if (confirm(deleteData)) {
+         localStorage.clear()
+        location.reload()
+    }
 }
