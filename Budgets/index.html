@@ -19,7 +19,7 @@
             <div class="usedBudBeforeCancelBtn" data-usedBudBeforeCancel>Nope!</div>
         </div>        
     </div>
-    <header class="header">
+    <header class="header lowerOpacity" data-header>
         <div class="header-title">Budgets</div>
         <div class="header-btn-container">
             <button class="add-budget-btn" data-add-budget-btn>Add Budget</button>
@@ -55,6 +55,10 @@
                     <label class="accColor">Accent Colour</label>
                     <input type="color" class="accColorInput" data-acc-color-input>
                 </div>
+                <div class="immLights">
+                    <label class="immLights">Immersive Lights</label>
+                    <button class="immLightsToggle" data-imm-lights-toggle><i class="fa-solid fa-lightbulb-slash"></i></button>
+                </div>
             </div>
             <div class="settingSection">
                 <div class="settingSectionTitle">Data</div>
@@ -63,7 +67,7 @@
                     <div class="deleteDataBtn" data-delete-data-btn>Delete</div>
                 </div>
             </div>
-            <div class="versionNum">v0.06</div>
+            <div class="versionNum">v0.07</div>
         </div>
         <div class="summary-container" data-summary-container>
             <div class="summaryTitle">Welcome Back!</div>
@@ -79,6 +83,35 @@
 
     
     <main class="budgets-container" data-budget-container>
+        <div class="budget-box pop-up">
+            <div class="name-budgetAddedBudget ontop">Entertainment</div>
+            <div class="total-expensesAddedBudget ontop" data-total-expenses-added-budget="320">$320</div>
+            <div class="total-budgetAddedBudget ontop" data-total-budget-added-budget="1200" data-totalbudgethalf="600" data-totalbudgetquarter="300" data-totalbudgetthreeforths="900">/ $1200</div>
+            <div class="percentage-bar-mainAddedBudget ontop" data-divider="3.75">
+                <div class="way-thereAddedBudget ontop" data-percentage="26.666666666666668" style="width: 26.6667%;"></div>
+            </div>
+            <label class="errorppavAddedBudget ontop" for="expenseAddedBudget">Please Provide A Value</label>
+            <input type="number" class="expenseAddedBudget ontop" id="expenseAddedBudget">
+            <button class="Add-expenseAddedBudget ontop">Add Expense</button>
+            <button class="View-expensesAddedBudget ontop">Settings</button>
+            <div class="hiderAddedBudget ontopmid"></div>
+            <div class="expensesboxAddedBudget onbottom">
+                <div class="expenses">
+                    <div class="expenseInfo">
+                        <div class="amount" data-amount="32017">$32017</div>
+                        <div class="expenseDate">Dec -</div>
+                        <div class="expenseNote">Bansko Ski Card</div>
+                    </div>
+                    <button class="removebtn" data-storage-i-d="32017-12-Bansko Ski Card"></button>
+                </div>
+            </div>
+            <button class="delete-budget-btn"></button>
+            <div class="percentageAddedBudget">27%</div>
+            <div class="increaser neutral">0%</div>
+            <div class="expensestextAddedBudget">Expenses</div>
+            <div class="BudgetNameEditText">Change Budget Name</div>
+            <div class="BudgetNameEditBtn"></div>
+            <input class="BudgetNameEditInput"></div>
         <div class="total-box">
             <div class="total-name">Total</div>
             <div class="total-total-expenses" data-total-total-expenses="0">$0</div>
@@ -115,7 +148,8 @@
     </div>
     <div class="variableListener" data-var-listener-alertlist value="0"></div>
     <div class="cover-hider" data-cover></div>
-    <div class="backCircle1"></div>
+    <div class="backCircle1" data-circle1></div>
+    <div class="backCircle2" data-circle2></div>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

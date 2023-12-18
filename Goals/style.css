@@ -14,18 +14,46 @@
     --overbudget-text-color: #db4848;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     font-family: 'Montserrat';
     user-select: none;
     color: var(--font-color);
+    transition: all 250ms;
 }
 
 .header {
-    width: 100vmax;
+    width: 100vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: space-between;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    width: 10000px;
+    height: 340px;
+    top: -200px;
+    left: -1000px;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.7; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+    filter: blur(15px);
+    transition: all 500ms;
+}
+
+.header.lowerOpacity::before {
+    opacity: 0
 }
 
 .add-goal-btn {
@@ -45,6 +73,7 @@
     border-radius: 25px;
     transition: all var(--animation-speed) ease-in-out;
     flex-shrink: 1;
+    pointer-events: all;
 }
 
 body {
@@ -119,13 +148,30 @@ body {
     opacity: 0;
 }
 
+::-webkit-scrollbar {
+    width: 1em;
+    margin-right: 20px;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 2em;
+    border: 1px solid #aaa;
+    margin-right: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--main-blue); 
+    border-radius: 10em;
+}
+
 .settings-container {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 480px;
-    height: 200px;
+    height: 230px;
 
     padding-top: 60px;
     padding-left: 20px;
@@ -142,7 +188,7 @@ body {
 .settings-container.show {
     position: fixed;
     opacity: 1;
-    z-index: 100;
+    z-index: 101;
 
     display: flex;
     justify-content: space-evenly;
@@ -153,7 +199,7 @@ body {
 .titleSettings {
     font-size: 37px;
     position: absolute;
-    top: 10px;
+    top: 17px;
     left: 20px;
 }
 
@@ -171,10 +217,11 @@ body {
 
 .settingSection {
     width: 100%;
-    height: 140px;
+    height: 170px;
     display: flex;
     flex-direction: column;
     align-items: start;
+    /* justify-content: space-between; */
 }
 
 .settingSectionTitle {
@@ -183,7 +230,13 @@ body {
     opacity: 0.7;
 }
 
-.darkMode,.accColor, .mainColor, .deleteData {
+.darkMode,.accColor, .mainColor, .deleteData, .immLights {
+    /* width: auto;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -195,19 +248,16 @@ body {
 
 .darkMode {
     position: relative;
+    /* top: 15px; */
 }
 
-.darkModeTitle, .deleteData {
+.darkModeTitle, .deleteData, .mainColor, .accColor, .immLights {
     font-size: 26px;
 }
 
-.mainColor, .accColor {
-    font-size: 26px;
-}
-
-.darkModeToggle {
+.darkModeToggle, .immLightsToggle {
     height: 35px;
-    width: 35px;
+    width: 37px;
     background-color: var(--lighter-shade);
     border: none;
     position: relative;
@@ -223,12 +273,24 @@ body {
     padding: 0;
 }
 
-.darkModeToggle:hover {
+.immLightsToggle > i {
+    font-size: 20px;
+}
+
+.immLightsToggle.off > i {
+    color: #676767;
+}
+
+.immLightsToggle.on > i {
+    color: white;
+}
+
+.darkModeToggle:hover, .immLightsToggle:hover {
     background-color: var(--font-color);
     color: var(--main-color);
 }
 
-.darkModeToggle:hover > i {
+.darkModeToggle:hover > i, .immLightsToggle:hover > i {
     color: var(--main-color);
 }
 
@@ -286,15 +348,49 @@ input[type="color"].mainColorInput {
     font-size: 14px;
     color: #fff;
 }
+.backCircle1 {
+    position: fixed;
+    z-index: -1000;
+    top: 100px;
+    left: 700px;
+    width: 300px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 1;
+    background-color: var(--main-blue);
+    filter: blur(10rem);
+}
 
+.backCircle2 {
+    position: fixed;
+    z-index: -1000;
+    top: 600px;
+    left: -100px;
+    width: 500px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 1;
+    background-color: var(--acc-blue);
+    filter: blur(10rem);
+}
+
+.backCircle1.show, .backCircle2.show {
+    transition: left  10s,opacity 2s,top 10s;
+}
+
+.versionNum {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.5;
+}
 
 .cover-hider {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
     height: 100vh;
-    background-color: #fff;
+    background-color: transparent;
     z-index: -99;
     opacity: 0;
     transition: opacity 200ms ease-in-out;
@@ -399,4 +495,240 @@ input[type="color"].mainColorInput {
 .percentageSummaryTotal {
     position: relative;
     top: 0px;
+}
+
+.total-box {
+    position: relative;
+    padding: 20px;
+    width: 460px;
+    height: 100px;
+    left: 10px;
+    border: 1px solid lightgray;
+    border-radius: 1em;
+    background-color: transparent;
+    transition: all var(--animation-speed) ease-in-out;
+}
+
+.total-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 1em;
+    background-color: var(--total-color); /* Your background color */
+    opacity: 0.5; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+}
+
+.Container.solidBoxes > .budgets-container > .total-box::before {
+    opacity: 1;
+}
+
+.total-name {
+    position: relative;
+    margin-right: 0px;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 240px;
+}
+
+.total-savings {
+    position: relative;
+    left: 330px;
+    top: -30px;
+    width: min-content;
+    font-size: 1.6rem;
+    transition: all var(--animation-speed) ease-in-out;
+    z-index: 2;
+}
+
+.total-goal {
+    position: relative;
+    left: 410px;
+    top: -53px;
+    z-index: 2;
+}
+
+.total-percentage-bar-main {
+    background-color: var(--lighter-shade);
+	border-radius: 20px;
+	position: relative;
+    top: -40px;
+	margin: 15px 0;
+	height: 20px;
+	width: 350px;
+    z-index: 2;
+}
+
+.total-way-there {
+    background: /*linear-gradient(to left, #F2709C, #FF9472)*/ #7e7e7e;
+	border-radius: 20px;
+	color: var(--main-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    position: relative;
+	height: 100%;
+    width: 0;
+    z-index: 2;
+	transition: 1s ease 0.3s;
+}
+
+.total-percentage {
+    position: relative;
+    bottom: 80px;
+    left: 365px;
+    font-size: 24px;
+    z-index: 10;
+    transition: all var(--animation-speed);
+    text-align: right;
+    width: 80px;
+}
+
+.goals-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 500px);
+    row-gap: calc(2.2em - 10px);
+    column-gap: calc(2.2em - 14px);
+    margin-top: 2.5rem;
+    top: 100px;
+}
+
+.detailsGoal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 170px;
+    padding-top: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border-radius: 1em;
+    background-color: var(--main-color);
+    opacity: 0;
+    z-index: -100;
+    transition: opacity 200ms ease-in-out;
+}
+
+.detailsGoal.show {
+    position: fixed;
+    opacity: 1;
+    z-index: 101;
+}
+
+.titleCG {
+    font-size: 30px;
+    position: relative;
+    top: -195px;
+    left: -140px;
+}
+
+.detailNameOfGoal {
+    position: relative;
+    border-radius: 1em;
+    top: 10px;
+    width: 480px;
+    margin: 0;
+    height: 40px;
+    border: 1px solid var(--main-blue);
+    background-color: var(--main-color);
+}
+
+.AmountOfGoal {
+    position: relative;
+    border-radius: 1em;
+    top: 30px;
+    left: -0px;
+    margin: 0;
+    width: 480px;
+    height: 40px;
+    border: 1px solid var(--main-blue);
+    background-color: var(--main-color);
+
+}
+
+.add-goal-confirm {
+    position: relative;
+    left: 259px;
+    top: 40px;
+    width: max-content;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: var(--main-color);
+    background-color: var(--main-blue);
+
+}
+
+.labelfordnob {
+    position: relative;
+    color: rgb(189, 189, 189);
+    left: -210px;
+    bottom: 80px;
+    pointer-events: none;
+    transition: all 10ms ease-in-out;
+}
+
+.labelfordnob.hide {
+    opacity: 0;
+}
+
+.alertForAddGoal {
+    position: relative;
+    color: hsl(0, 90%, 50%);
+    left: -50px;
+    top: 10px;
+    opacity: 0;
+    transition: all var(--animation-speed) ease-in-out;
+    display: inline-block;
+}
+
+.alertForAddGoal.show {
+    transition: border var(--animation-speed) ease-in-out;
+    opacity: 1;
+}
+
+.labelforaob {
+    position: relative;
+    color: rgb(189, 189, 189);
+    left: -232px;
+    pointer-events: none;
+    top: -45px;
+    transition: all 10ms ease-in-out;
+}
+
+.labelforaob.hide {
+    opacity: 0;
+}
+
+.closedetails {
+    position: relative;
+    left: 266px;
+    top: 40px;
+    width: 70px;
+    padding: 10px;
+    border-radius: 1em;
+    border: 1px solid var(--main-blue);
+    background-color: var(--main-color);
+    color: var(--main-blue);
+}
+
+.goalBox {
+    width: 500px;
+    height: 230px;
+    background-color: rebeccapurple;
+    border-radius: 1em;
+    position: relative;
+    left: 10px;
+}
+
+.goalName  {
+    font-size: 2rem;
+    font-weight: bold; width: 260px;
 }

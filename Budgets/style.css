@@ -14,10 +14,15 @@
     --overbudget-text-color: #db4848;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     font-family: 'Montserrat';
     user-select: none;
-    color: var(--font-color)
+    color: var(--font-color);
+    transition: all 250ms;
 }
 
 .header {
@@ -26,6 +31,29 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: space-between;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    width: 10000px;
+    height: 340px;
+    top: -200px;
+    left: -1000px;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.7; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+    filter: blur(15px);
+    transition: all 500ms;
+}
+
+.header.lowerOpacity::before {
+    opacity: 0
 }
 
 .header-btn-container {
@@ -61,7 +89,7 @@ body {
 .detaisbudget.show {
     position: fixed;
     opacity: 1;
-    z-index: 100;
+    z-index: 101;
 }
 
 .titleCB {
@@ -179,6 +207,7 @@ body {
     row-gap: calc(2.2em - 10px);
     column-gap: calc(2.2em - 14px);
     margin-top: 2.5rem;
+    top: 100px;
 }
 
 .budget-box.overbudget {
@@ -194,8 +223,25 @@ body {
     left: -610px;
     border: 1px solid lightgray;
     border-radius: 1em;
-    background-color: var(--main-color);
+    background-color: transparent;
     transition: all var(--animation-speed) ease-in-out;
+}
+
+.budget-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 1em;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.3; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+}
+
+.Container.solidBoxes > .budgets-container > .budget-box::before {
+    opacity: 1;
 }
 
 .budget-box.expanded {
@@ -472,7 +518,6 @@ body {
 }
 
 .expenseAddedBudget {
-    margin: 0;
     position: relative;
     top: 0px;
     width: 190px;
@@ -480,13 +525,26 @@ body {
     height: 40px;
     border-radius: 50px;
     border: 1px solid var(--main-blue);
-    background-color: var(--main-color);
+    background-color: transparent;
     transition: all var(--animation-speed) ease-in-out;
 }
 
 .expenseAddedBudget:focus {
     outline: none;
     outline: 1px solid var(--main-blue);
+}
+
+.expenseAddedBudget::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 15px;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.3; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
 }
 
 .Add-expenseAddedBudget {
@@ -497,12 +555,25 @@ body {
     height: 40px;
     width: 130px;
     color: var(--main-blue);
-    background-color: var(--main-color);
+    background-color: transparent;
     border-radius: 15px;
     border: 1px solid var(--main-blue);
     transition: all var(--animation-speed) ease-in-out;
 
 }
+
+.Add-expenseAddedBudget::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 15px;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.3; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+  }
 
 .View-expensesAddedBudget {
     position: relative;
@@ -511,11 +582,24 @@ body {
     height: 40px;
     width: 120px;
     color: grey;
-    background-color: var(--main-color);
+    background-color: transparent;
     border-radius: 15px;
     border: 1px solid grey;
     transition: all var(--animation-speed) ease-in-out;
 }
+
+.View-expensesAddedBudget::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 15px;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.3; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+  }
 
 .increaser {
     position: relative;
@@ -569,7 +653,7 @@ body {
     left: -20px;
     top: -447px;
     border: 1px solid lightgray;
-    background-color: var(--main-color);
+    background-color: transparent;
     border-radius: 1em;
     overflow-y: auto;
     transition: all 500ms ease-in-out;
@@ -765,6 +849,7 @@ body {
     border-radius: 25px;
     transition: all var(--animation-speed) ease-in-out;
     flex-shrink: 1;
+    pointer-events: all;
 }
 
 .Add-expense:hover {
@@ -817,8 +902,25 @@ body {
     left: 10px;
     border: 1px solid lightgray;
     border-radius: 1em;
-    background-color: var(--total-color);
+    background-color: transparent;
     transition: all var(--animation-speed) ease-in-out;
+}
+
+.total-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 1em;
+    background-color: var(--total-color); /* Your background color */
+    opacity: 0.5; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+}
+
+.Container.solidBoxes > .budgets-container > .total-box::before {
+    opacity: 1;
 }
 
 .total-name {
@@ -1038,7 +1140,7 @@ body {
     left: 0;
     width: 101%;
     height: 101%;
-    z-index: 100;
+    z-index: 101;
     background-color: var(--main-color);
     display: flex;
     justify-content: center;
@@ -1123,9 +1225,26 @@ body {
     width: 300px;
     aspect-ratio: 1;
     border-radius: 50%;
+    opacity: 1;
     background-color: var(--main-blue);
-    opacity: 0.3;
-    backdrop-filter: blur(300px);
+    filter: blur(10rem);
+}
+
+.backCircle2 {
+    position: fixed;
+    z-index: -1000;
+    top: 600px;
+    left: -100px;
+    width: 500px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 1;
+    background-color: var(--acc-blue);
+    filter: blur(10rem);
+}
+
+.backCircle1.show, .backCircle2.show {
+    transition: left  10s,opacity 2s,top 10s;
 }
 
 .cover-hider {
@@ -1142,7 +1261,7 @@ body {
 
 .cover-hider.show {
     opacity: 1;
-    z-index: 99;
+    z-index: 100;
 }
 
 .imgProfile {
@@ -1233,7 +1352,7 @@ body {
     transition: all var(--animation-speed);
     border-radius: 0;
     border:  none;
-    background-color: var(--main-color);
+    background-color: transparent;
     border-right: 1px solid #aaa;
     padding: 0;
     transition: all var(--animation-speed) ease-in-out;
@@ -1386,15 +1505,27 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 6vh;
+    height: 55px;
     width: 100vw;
     border-top:     var(--acc-blue) 1px solid;
     display: flex;
     align-items: center;
-    background-color: var(--main-color);
+    background-color: transparent transparent;
     z-index: 99;
     display: flex;
     justify-content: space-around;
+}
+
+.nav-bar::before  {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.5; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
 }
 
 .icon {
@@ -1404,7 +1535,7 @@ body {
 
 .navElem {
     width: 33%;
-    border-right: 1px solid     var(--acc-blue);
+    border-right: 1px solid var(--acc-blue);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1413,20 +1544,20 @@ body {
 }
 
 .budgetsNav {
-    background-color:     var(--acc-blue);
+    background-color: var(--acc-blue);
 }
 
 .budgetsNav > .icon {
     color: var(--main-color);
 }
 
-.navElem:hover {
+/* .navElem:hover {
     background-color:     var(--nav-hover-color);
 }
 
 .budgetsNav:hover {
     background-color: #1b6fed;
-}
+} */
 
 .settings-container {
     position: fixed;
@@ -1434,7 +1565,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 480px;
-    height: 200px;
+    height: 230px;
 
     padding-top: 60px;
     padding-left: 20px;
@@ -1451,7 +1582,7 @@ body {
 .settings-container.show {
     position: fixed;
     opacity: 1;
-    z-index: 100;
+    z-index: 101;
 
     display: flex;
     justify-content: space-evenly;
@@ -1480,7 +1611,7 @@ body {
 
 .settingSection {
     width: 100%;
-    height: 140px;
+    height: 170px;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -1493,7 +1624,7 @@ body {
     opacity: 0.7;
 }
 
-.darkMode,.accColor, .mainColor, .deleteData {
+.darkMode,.accColor, .mainColor, .deleteData, .immLights {
     /* width: auto;
     margin-top: 15px;
     display: flex;
@@ -1514,17 +1645,13 @@ body {
     /* top: 15px; */
 }
 
-.darkModeTitle, .deleteData {
+.darkModeTitle, .deleteData, .mainColor, .accColor, .immLights {
     font-size: 26px;
 }
 
-.mainColor, .accColor {
-    font-size: 26px;
-}
-
-.darkModeToggle {
+.darkModeToggle, .immLightsToggle {
     height: 35px;
-    width: 35px;
+    width: 37px;
     background-color: var(--lighter-shade);
     border: none;
     position: relative;
@@ -1540,12 +1667,24 @@ body {
     padding: 0;
 }
 
-.darkModeToggle:hover {
+.immLightsToggle > i {
+    font-size: 20px;
+}
+
+.immLightsToggle.off > i {
+    color: #676767;
+}
+
+.immLightsToggle.on > i {
+    color: white;
+}
+
+.darkModeToggle:hover, .immLightsToggle:hover {
     background-color: var(--font-color);
     color: var(--main-color);
 }
 
-.darkModeToggle:hover > i {
+.darkModeToggle:hover > i, .immLightsToggle:hover > i {
     color: var(--main-color);
 }
 
@@ -1768,7 +1907,7 @@ input[type="color"].mainColorInput {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    z-index: 100;
+    z-index: -101;
 
     padding-top: 60px;
     padding-left: 20px;
@@ -1787,7 +1926,7 @@ input[type="color"].mainColorInput {
 
 .summary-container.show {
     opacity: 1;
-    z-index: 100;
+    z-index: 101;
 }
 
 .summaryTitle {
