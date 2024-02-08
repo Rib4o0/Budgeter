@@ -176,7 +176,7 @@ function ApplySettings() {
     }
     document.documentElement.style.setProperty('--main-blue', mainColor)
     document.documentElement.style.setProperty('--acc-blue', accColor)
-    createPieChartBudgets()
+    // createPieChartBudgets()
 }
 
 function DeleteData() {

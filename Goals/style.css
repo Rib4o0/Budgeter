@@ -84,6 +84,7 @@ body {
 
 .header-title {
     font-size: 100px;
+    font-weight: 700;
 }
 
 .header-btn-container {
@@ -348,6 +349,24 @@ input[type="color"].mainColorInput {
     font-size: 14px;
     color: #fff;
 }
+
+::-webkit-scrollbar {
+    width: 1em;
+    margin-right: 20px;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 2em;
+    border: 1px solid #aaa;
+    margin-right: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--main-blue); 
+    border-radius: 10em;
+}
+
 .backCircle1 {
     position: fixed;
     z-index: -1000;
@@ -720,15 +739,79 @@ input[type="color"].mainColorInput {
 }
 
 .goalBox {
-    width: 500px;
-    height: 230px;
-    background-color: rebeccapurple;
+    width: 350px;
+    height: 350px;
+    background-color: transparent;
     border-radius: 1em;
     position: relative;
     left: 10px;
+    border: 1px solid lightgray;
+}
+
+.goalBox::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 1em;
+    background-color: var(--main-color); /* Your background color */
+    opacity: 0.5; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
 }
 
 .goalName  {
     font-size: 2rem;
     font-weight: bold; width: 260px;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+.currentSavings {
+    opacity: 0;
+}
+
+.goal {
+    opacity: 0;
+}
+
+.percentage-bar {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    width: 20px;
+    height: 215px;
+    background-color: var(--lighter-shade);
+    border-radius: 50px;
+}
+
+.goalInput {
+ opacity: 0;
+}
+
+.addSavingsBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    height: 40px;
+    background-color: var(--main-blue);
+    color: white;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+}
+
+.goalSettingsBtn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    height: 40px;
+    width: 100px;
+    border-radius: 15px;
+    background-color: transparent;
+    border: 1px solid var(--main-blue);
+    font-weight: bold;
 }

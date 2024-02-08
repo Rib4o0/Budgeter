@@ -33,6 +33,10 @@
                     <label class="accColor">Accent Colour</label>
                     <input type="color" class="accColorInput" data-acc-color-input>
                 </div>
+                <div class="immLights">
+                    <label class="immLights">Immersive Lights</label>
+                    <button class="immLightsToggle" data-imm-lights-toggle><i class="fa-solid fa-lightbulb-slash"></i></button>
+                </div>
             </div>
             <div class="settingSection">
                 <div class="settingSectionTitle">Data</div>
@@ -41,7 +45,7 @@
                     <div class="deleteDataBtn" data-delete-data-btn>Delete</div>
                 </div>
             </div>
-            <div class="versionNum">v0.06</div>
+            <div class="versionNum">v0.07</div>
         </div>
         <div class="summary-container" data-summary-container>
             <div class="summaryTitle">Welcome Back!</div>
@@ -55,13 +59,23 @@
         </div>
     </center>
 
-    <div class="pieChart-box">
-        <div class="pieChartTitle" data-pie-chart-budgets-title></div>
-        <div class="pieChartBudgets" data-pie-chart-budgets></div>
-        <div class="pieChartBudgetsLegend" data-pie-chart-budgets-legend>
+    <div class="statsContainer">
+        <div class="statsElem">
+            <div class="statsTitle">Budgets</div>
+            <div class="statsBoxContainer">
+                <div class="statsBox"></div>
+                <div class="statsBox"></div>
+                <div class="statsBox"></div>
+                <div class="statsBox"></div>
+                <div class="statsBox"></div>
+            </div>
+            
+        <!-- <div class="pieChartBudgets" data-pie-chart-budgets></div> -->
+        <!-- <div class="pieChartBudgetsLegend" data-pie-chart-budgets-legend> -->
         </div>
-        <div class="divider"></div>
-        <!-- <div class="noExpensesText">No expenses added yet.</div> -->
+        <div class="statsElem">Goals</div>
+        <div class="statsElem">Total</div>
+        <div class="statsElem">TLDR</div>
     </div>
     <div class="console" data-console=""></div>
 
