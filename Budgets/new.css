@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+:root {
+    --main-color: #111; /*#fff*/
+    --font-color: #fff; /* #000 */
+    --main-blue: #fbff00; /*0C5DD8 */
+    --acc-blue: #3509c5; /*#0954c5*/
+    --lighter-shade: #222;/*#d8d8d8*/
+    --total-color: #111; /*#ecebeb*/
+    --nav-hover-color: #222;/* #ddebff*/
+    --btn-text-color: #003;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-color);
+}
+
+* {
+    font-family: 'Montserrat';
+    user-select: none;
+    color: var(--font-color);
+    transition: all 250ms;
+}
+
+header {
+    width: calc(100vw - 2vh);
+    height: 8vh;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1vh;
+}
+
+header > .title {
+    font-size: 5vh;
+    font-weight: 600;
+}
+
+.addBudgetBtn {
+    width: 20vh;
+    height: 5vh;
+    background-color: var(--main-blue);
+    border: none;
+    color: var(--btn-text-color);
+    font-size: 2.3vh;
+    border-radius: 5px;
+}
+
