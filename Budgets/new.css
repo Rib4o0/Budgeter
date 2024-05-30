@@ -47,6 +47,7 @@ header {
     padding-inline: 1vh;
     z-index: 15;
 }
+/*  */
 
 .header::before {
     content: "";
