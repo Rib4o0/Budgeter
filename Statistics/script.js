@@ -269,3 +269,7 @@ function hexToHSL(hex) {
     var colorInHSL = {h: h, s: s, l: l}
     return colorInHSL
 }
+
+function createChart() {
+    
+}

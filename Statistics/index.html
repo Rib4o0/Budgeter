@@ -6,12 +6,12 @@
     <title>Budgeter: Statistics</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <script src="https://kit.fontawesome.com/1ee8f271b9.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/30d2125a90.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="transitionFade" data-fade></div>
     <header class="header">
-        <div class="header-title">Statistics</div>
+        <div class="title">Statistics</div>
     </header>
 
     <center>
@@ -59,24 +59,21 @@
         </div>
     </center>
 
-    <div class="statsContainer">
-        <div class="statsElem">
-            <div class="statsTitle">Budgets</div>
-            <div class="statsBoxContainer">
-                <div class="statsBox"></div>
-                <div class="statsBox"></div>
-                <div class="statsBox"></div>
-                <div class="statsBox"></div>
-                <div class="statsBox"></div>
-            </div>
-            
-        <!-- <div class="pieChartBudgets" data-pie-chart-budgets></div> -->
-        <!-- <div class="pieChartBudgetsLegend" data-pie-chart-budgets-legend> -->
+    <div class="overview">
+        <div class="title">Overview</div>
+        <div class="monthly">
+            <div class="monthlyTitle">Monthly Spending And Saving</div>
+            <div class="monthlySpending" data-monthly-spending-num>Money spent this month: <span class="special">500$</span></div>
+            <div class="monthlySaving" data-monthly-spending-num>Money saved this month: <span class="special">500$</span></div>
         </div>
-        <div class="statsElem">Goals</div>
-        <div class="statsElem">Total</div>
-        <div class="statsElem">TLDR</div>
+        <div class="comparision">
+            <div class="spending">You have spent <span class="special">500$</span> less than last month</div>
+            <div class="saving">You have saved <span class="special">500$</span> more this month</div>
+            <div class="overall">You have wasted <span class="special">500$</span> more than last month/div>
+        </div>
     </div>
+   
+
     <div class="console" data-console=""></div>
 
     <footer>

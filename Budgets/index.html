@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,38 +8,45 @@
     <title>Budgeter: Budgets</title>
     <link rel="stylesheet" href="new.css">
     <script src="script.js" defer></script>
-    <script src="https://kit.fontawesome.com/1ee8f271b9.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/30d2125a90.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="Container">
     <div class="transitionFade" data-fade></div>
-    <div class="question-holder hideQuestion" data-quizHolder>
-        <div class="questionText" data-quizText>Have you used <div class="blueText smallText" data-BudgeterText>Budgeter</div> before?</div>
+    <div class="questionHolder hideQuestion" data-quizHolder>
+        <div class="questionText" data-quizText>Have you used <div class="blueText" data-BudgeterText>Budgeter</div> before?</div>
         <div class="optionsHolder">
-            <div class="usedBudBeforeConfirmBtn" data-usedBudBeforeConfirm>Yep!</div>
-            <div class="usedBudBeforeCancelBtn" data-usedBudBeforeCancel>Nope!</div>
+            <button class="confirm" data-usedBudBeforeConfirm>Yep!</button>
+            <button class="cancel" data-usedBudBeforeCancel>Nope!</button  >
         </div>        
     </div>
-    <header class="lowerOpacity" data-header>
+    <header class="lowerOpacity header" data-header>
         <div class="title">Budgets</div>
-        <button class="addBudgetBtn" data-add-budget-btn>Add Budget</button>
+        <div class="btns">
+            <button class="addBudgetBtn" data-add-budget-btn>Add Budget</button>
+            <button class="settingsBtn" data-settings-btn><i class="fa-solid fa-sliders"></i></button>
+        </div>
     </header>
 
     <center>
-        <div class="detaisbudget" data-detail-budget>
-            <input type="text" class="detailNameOfBudget" data-detailnameofbudget>
-            <input type="number" class="AmountOfBudget" data-amountofbudget>
-            <button class="add-budget-confirm" data-addbudget-confirm>Add Budget</button>
-            <button class="closedetails" data-close-details>Close</button>
-            <label class="labelfordnob" data-labelfordnob>Enter The Name of The budget</label>
-            <label class="AlertforAddbudget" data-AlertforAddbudget>Please Enter All of them</label>
-            <label class="labelforaob" data-labelforaob>Enter The Budget</label>
-            <div class="titleCB">Create a budget</div>
+        <div class="detailsBudget" data-detail-budget>
+            <div class="title">Create a budget</div>
+            <div class="inputFields">
+                <input type="text" class="nameBudget" data-detailnameofbudget placeholder="Budget name">
+                <input type="number" class="amountBudget" data-amountofbudget placeholder="Budget limit">
+            </div>
+            <div class="btns">
+                <button class="addBudgetConfirm" data-addbudget-confirm>Add Budget</button>
+            <button class="closeBudgetDetails" data-close-details>Close</button>
+            </div>
         </div>
-        <div class="settings-container" data-settings-container>
-            <div class="titleSettings">Settings</div>
-            <button class="resetSettingsBtn" data-reset-settings-btn>Reset</button>
-            <button class="closeSettings" data-close-settings-btn>Close</button>
+        <div class="settingsContainer" data-settings-container>
+            <div class="top">
+                <div class="title">Settings</div>
+                <div class="btns">
+                    <button class="resetSettings" data-reset-settings-btn>Reset</button>
+                    <button class="closeSettings" data-close-settings-btn>Close</button>
+                </div>
+            </div>
             <div class="settingSection">
                 <div class="settingSectionTitle">Appereance</div>
                 <div class="darkMode">
@@ -57,12 +65,16 @@
                     <label class="immLights">Immersive Lights</label>
                     <button class="immLightsToggle" data-imm-lights-toggle><i class="fa-solid fa-lightbulb-slash"></i></button>
                 </div>
+                <div class="glassyBoxes">
+                    <label class="glassyBoxes">Glass Boxes</label>
+                    <button class="glassyBoxesToggle" data-glassy-boxes-toggle><i class="fa-solid fa-browser"></i></button>
+                </div>
             </div>
             <div class="settingSection">
                 <div class="settingSectionTitle">Data</div>
                 <div class="deleteData">
                     <div class="deleteData">Delete data</div>
-                    <div class="deleteDataBtn" data-delete-data-btn>Delete</div>
+                    <button class="deleteDataBtn" data-delete-data-btn>Delete</button>
                 </div>
             </div>
             <div class="versionNum">v0.07</div>
@@ -80,33 +92,35 @@
     </center>
 
     
-    <main class="budgets-container" data-budget-container>
-        <div class="total-box">
-            <div class="total-name">Total</div>
-            <div class="total-total-expenses" data-total-total-expenses="0">$0</div>
-            <div class="total-total-budget" data-total-total-budget="0">/ $0</div>   
-            <div class="total-percentage-bar-main" data-total-percentage-bar-main>
-                <div class="total-way-there" data-total-way-there>
+    <main class="budgetsContainer" data-budget-container>
+        <div class="total-box budget-box">
+            <div class="totalName">Total</div>
+            <div class="totalMiddle">
+                <div class="totalInfo">
+                    <div class="totalExpenses" data-total-total-expenses="0">$0</div>
+                    <div class="totalBudget" data-total-total-budget="0">/ $0</div>
+                </div> 
+                <div class="total-percentage" data-total-percentage>0%</div>  
+            </div>
+            <div class="totalPercentageBar" data-total-percentage-bar-main>
+                <div class="totalProgress" data-total-way-there>
                 </div>
             </div>
-            <div class="total-percentage" data-total-percentage>0%</div>
         </div>
     </main>
 
     <div class="blackout" data-blackout></div>
 
     <footer>
-        <div class="cookie-container" data-cookieContainer>
-            <div class="cookieInfo">This site uses cookies to save data.</div>
-            <a href="" class="LearnMoreCookies">Learn more about the cookies of this website.</a>
-            <div class="acceptbtn" data-accept-btn>Got it!</div>
-            <div class="dismissbtn" data-dismiss-btn>Nope!</div>
+        <div class="cookieContainer" data-cookieContainer>
+            <i class="fa-regular fa-cookie-bite"></i>
+            <div class="main">This site uses cookies to save data and to improve your experience as a Budgeter user</div>
+            <div class="accept" data-accept-btn>Got it!</div>
         </div>
         <nav class="nav-bar">
-            <div class="budgetsNav navElem"><i class="fa-solid fa-vault icon"></i></div>
-            <div class="goalsNav navElem" data-link="/Goals/index.html"><i class="fa-solid fa-coins icon"></i></div>
-            <div class="statsNav navElem" data-link="/Statistics/index.html"><i class="fa-solid fa-chart-column icon"></i></div>
-            <div class="settingsNav navElem" data-settings-btn><i class="fa-solid fa-gear icon"></i></div>
+            <div class="budgetsNav navElem curNav"><i class="fa-solid fa-vault icon"></i></div>
+            <div class="goalsNav navElem" data-link="./../Goals/index.html"><i class="fa-solid fa-coins icon"></i></div>
+            <div class="statsNav navElem" data-link="./../Statistics/index.html"><i class="fa-solid fa-chart-column icon"></i></div>
         </nav>
     </footer>
     <div class="alertBox" data-alert-box>
@@ -119,8 +133,9 @@
     <div class="cover-hider" data-cover></div>
     <div class="backCircle1" data-circle1></div>
     <div class="backCircle2" data-circle2></div>
-    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
+index.html
+Displaying index.html.

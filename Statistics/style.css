@@ -1,42 +1,77 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     --main-color: #111; /*#fff*/
     --font-color: #fff; /* #000 */
-    --main-blue: #0C5DD8; /*0C5DD8 */
-    --acc-blue: #0954c5; /*#0954c5*/
+    --main-blue: #fbff00; /*0C5DD8 */
+    --acc-blue: #3509c5; /*#0954c5*/
     --lighter-shade: #222;/*#d8d8d8*/
     --total-color: #111; /*#ecebeb*/
     --nav-hover-color: #222;/* #ddebff*/
-    --animation-speed: 250ms;
-    --overbudget-color: #3b0505; /*#ecacac*/
-    --overbudget-alert-color: #b04a4a;
-    --overbudget-text-color: #db4848;
+    --btn-text-color: #003;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(var(--main-color));
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 * {
     font-family: 'Montserrat';
     user-select: none;
     color: var(--font-color);
+    transition: all 250ms;
 }
 
-.header {
-    width: 100vmax;
+input:focus {
+    outline: none;
+}
+
+/* Header Styles ------------------------------------ */
+
+header {
+    position: fixed;
+    top: 0; left: 0;
+    width: calc(100vw - 2vh);
+    height: 8vh;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: space-between;
+    align-items: center;
+    padding-inline: 1vh;
+    z-index: 15;
 }
 
-body {
-    min-width: 1000px;
-    overflow-x: hidden;
-    background-color: var(--main-color);
+.header::before {
+    content: "";
+    position: fixed;
+    top: -7vh;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: rgb(var(--main-color)); /* Your background color */
+    opacity: 0.7; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+    filter: blur(3vh);
+    transition: all 500ms;
 }
 
-.header-title {
-    font-size: 100px;
-    font-weight: 700;
+.header.lowerOpacity::before {
+    opacity: .1;
+}
+
+header > .title {
+    font-size: 5vh;
+    font-weight: 600;
+    color: transparent;
+    background: linear-gradient(90deg, var(--font-color), #7d7d7d,var(--font-color));
+    background-clip: text;
 }
 
 
@@ -575,4 +610,13 @@ input[type="color"].mainColorInput {
 
 .statsBox:nth-last-child(-n+2){
     grid-column: span 3;
+}
+
+.special {
+    color: var(--main-blue);
+    font-weight: 700;
+}
+
+.overview {
+    background-color: red;
 }

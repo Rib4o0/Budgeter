@@ -16,7 +16,11 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: var(--main-color);
+    background-color: rgb(var(--main-color));
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 * {
@@ -26,19 +30,48 @@ body {
     transition: all 250ms;
 }
 
+input:focus {
+    outline: none;
+}
+
+/* Header Styles ------------------------------------ */
+
 header {
+    position: fixed;
+    top: 0; left: 0;
     width: calc(100vw - 2vh);
     height: 8vh;
-    background-color: red;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-inline: 1vh;
+    z-index: 15;
+}
+
+.header::before {
+    content: "";
+    position: fixed;
+    top: -7vh;
+    left: 0;
+    width: 100%;
+    height: 18vh;
+    background-color: rgb(var(--main-color)); /* Your background color */
+    opacity: 0.7; /* 50% opacity */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+    filter: blur(3vh);
+    transition: all 500ms;
+}
+
+.header.lowerOpacity::before {
+    opacity: .1;
 }
 
 header > .title {
     font-size: 5vh;
     font-weight: 600;
+    color: transparent;
+    background: linear-gradient(90deg, var(--font-color), #7d7d7d,var(--font-color));
+    background-clip: text;
 }
 
 .addBudgetBtn {
@@ -49,5 +82,692 @@ header > .title {
     color: var(--btn-text-color);
     font-size: 2.3vh;
     border-radius: 5px;
+    font-weight: 600;
 }
 
+.settingsBtn {
+    width: 5vh;
+    height: 5vh;
+    position: relative;
+    top: .2vh;
+    background-color: transparent;
+    border: none;
+}
+
+.settingsBtn > i {
+    font-size: 2vh;
+    color: var(--font-color);
+}
+
+/* Budget-Adding Styles ----------------------------------------------- */
+
+.detailsBudget {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(var(--main-color));
+    width: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 2vh;
+    border-radius: 1vh;
+    z-index: 25;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.detailsBudget.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.detailsBudget > .title {
+    color: var(--font-color);
+    font-weight: 600;
+    font-size: 3.5vh;
+    margin-bottom: 1vh;
+}
+
+.detailsBudget > .inputFields {
+    width: 100%;
+    height: 4vh;
+    margin-bottom: 1.5vh;
+}
+
+.detailsBudget > .inputFields > * {
+    width: calc(69% - 2vh);
+    height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: .5vh;
+    padding-inline: 1vh;
+    border: .3vh solid var(--main-blue);
+    color: #aaa;
+    background-color: rgb(var(--main-color));
+    font-weight: 600;
+}
+
+.detailsBudget > .inputFields > .amountBudget {
+    width: calc(29% - 2vh);
+}
+
+.detailsBudget > .btns {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    column-gap: .5vh;
+}
+
+.addBudgetConfirm, .closeBudgetDetails {
+    width: 15vh;
+    height: 4.5vh;
+    background-color: var(--main-blue);
+    color: var(--btn-text-color);
+    border: .3vh solid var(--main-blue);
+    border-radius: .7vh;
+    font-weight: 600;
+}
+
+.closeBudgetDetails {
+    width: 8vh;
+    background-color: rgb(var(--main-color));
+    color: var(--main-blue);   
+}
+
+/* Miscellaneous Styles ---------------------------------------- */
+
+.cover-hider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--main-blue);
+    filter: saturate(17%) brightness(10%);
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cover-hider.show {
+    opacity: .7;
+    pointer-events: all;
+}
+
+/* Settings styles ------------------------------------ */
+
+.settingsContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(var(--main-color));
+    width: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 2vh;
+    border-radius: 1vh;
+    z-index: 25;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.settingsContainer.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.settingsContainer > .top > .title {
+    color: var(--font-color);
+    font-weight: 600;
+    font-size: 3.5vh;
+    margin-bottom: 1vh;
+}
+
+.settingsContainer > .top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}    
+
+.settingsContainer > .top > .btns {
+    width: min-content;
+    display: flex;
+    justify-content: start;
+    column-gap: .5vh;
+    height: 5vh;
+}
+
+.resetSettings {
+    background-color: var(--main-blue);
+    color: var(--btn-text-color);
+    border: .2vh solid var(--main-blue);
+    border-radius: .5vh;
+    font-weight: 600;
+    padding-inline: 1.5vh;
+}
+
+.closeSettings {
+    background-color: rgb(var(--main-color));
+    color: var(--main-blue);
+    border: .2vh solid var(--main-blue);
+    border-radius: .5vh;
+    padding-inline: 1.5vh;
+}
+
+.settingSection {
+    width: 100%;
+}
+
+.settingSectionTitle {
+    font-size: 3vh;
+}
+
+.darkMode, .mainColor, .accColor, .immLights, .deleteData, .glassyBoxes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5vh;
+}
+
+.darkModeToggle, .immLightsToggle, .glassyBoxesToggle {
+    aspect-ratio: 1;
+    height: 90%;
+    background-color: rgb(var(--main-color));
+    border: none;
+    border-radius: .5vh;
+    color: rgb(var(--main-color));
+}
+
+.darkModeToggle > i, .immLightsToggle > i, .glassyBoxesToggle > i {
+    font-size: 2.5vh;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 4.5vh;
+    width: 4.5vh;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 15px;
+    border: none;
+}
+
+input[type="color"]::-moz-color-swatch {
+    border-radius: 15px;
+    border: none;
+}
+
+.mainColorInput, .accColorInput {
+    aspect-ratio: 1;
+    height: 90%;
+    background-color: var(--main-blue);
+    border: none;
+    border-radius: .5vh;
+}
+
+.accColorInput {
+    background-color: var(--acc-blue);
+}
+
+.deleteDataBtn {
+    background-color: #b04a4a;
+    color: white;
+    height: 4.5vh;
+    width: 10vh;
+    border-radius: .5vh;
+    border: none;
+}
+
+/* Cookie Related Styles ---------------------------- */
+
+.cookieContainer {
+    position: fixed;
+    bottom: 4vh;
+    padding: 2vh;
+    left: 0;
+    width: 50vh;
+    background-color: var(--main-blue);
+    border-radius: 0 1vh 1vh 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-100%);
+}
+
+.cookieContainer > .main {
+    font-size: 2.5vh;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+.cookieContainer > i {
+    font-size: 5vh;
+    margin-bottom: 2vh;
+}
+
+.cookieContainer > .accept {
+    background-color: rgb(var(--main-color));
+    color: var(--main-blue);
+    padding: 1vh;
+    border-radius: .5vh;
+}
+
+.cookieContainer.show {
+    transform: translate(0%);
+}
+
+.cookieContainer > * {
+    color: var(--btn-text-color);
+}
+
+/* Budget Related Styles ---------------------------- */
+
+.budgetsContainer {
+    width: calc(100% - 4vh);
+    margin-inline: 2vh;
+    position: relative; 
+    top: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(1, minmax(1fr, 70vh));
+    gap: 2vh;
+    place-content: center;
+    padding-bottom: 2vh;
+}
+
+@media screen and (min-width: 128vh) {
+    .budgetsContainer {
+        grid-template-columns: repeat( 1, minmax(1fr, 70vh));
+    }
+}
+
+.budget-box {
+    background-color: rgba(var(--main-color), 1);
+    width: 60vh;
+    border-radius: 1vh;
+    padding: 2vh;
+    border: .3vh solid var(--lighter-shade);
+    backdrop-filter: blur(10vh);
+    overflow: hidden;
+}
+
+body.glassyBoxes > .budgetsContainer > .budget-box {
+    background-color: rgba(var(--main-color), .3);
+}
+
+.budgetHeader {
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4vh;
+    height: 4vh;
+}
+
+.budgetName {
+    font-size: 3vh;
+    font-weight: 600;
+    /* color: var(--font-color); */
+    background-size: 200% 100%;
+    background: linear-gradient(90deg, var(--main-blue), var(--acc-blue));
+    background-clip: text;
+    color: transparent;
+}
+
+.budgetSettings {
+    background-color: transparent;
+    border-radius: .5vh;
+    border: .1vh solid #aaa;
+    color: #aaa;
+    font-weight: 600;
+    width: 10vh;
+}
+
+.budgetFooter {
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 0;
+}
+
+.budgetMiddle {
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+}
+
+.budgetInfo {
+    /* background-color: brown; */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0;
+}
+
+.percentageBar {
+    width: 100%;
+    height: 2vh;
+    background-color: var(--lighter-shade);
+    border-radius: 2vh;
+    margin-bottom: 2vh;
+    overflow: hidden;
+    position: relative;
+    bottom: 0;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient( 90deg,var(--acc-blue), var(--main-blue));
+    border-radius: inherit;
+}
+
+.addExpense {
+    width: 15vh;
+    height: 4vh;
+    background-color: var(--main-blue);
+    color: var(--btn-text-color);
+    border: none;
+    border-radius: .5vh;
+    font-weight: 600;
+}
+
+.expenseAmount {
+    width: calc(100% - 17vh);
+    border-radius: 4vh;
+    /* background-color: rgb(var(--main-color)); */
+    background-color: transparent;
+    border: .1vh solid var(--acc-blue);
+}
+
+.expensesBox {
+    position: absolute;
+    top: 11vh;
+    transform: translate(-110%);
+    width: 70%;
+    height: 12vh;
+    overflow-y: scroll;
+    background-color: transparent;
+}
+
+.expenses {
+    background-color: transparent;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 32%;
+    position: relative;
+}
+
+
+.expenses:not(.expenses:last-child) {
+    border-bottom: .1vh solid var(--acc-blue);
+}
+
+
+.amount {
+    font-size: 2vh;
+}
+
+.expenseDate {
+    font-size: 1.5vh;
+    color: rgb(87, 87, 87)
+}
+
+.expenseInfo {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+}
+
+.removebtn {
+    position: absolute;
+    right: 1vh;
+    background-color: transparent;
+    border: none;
+}
+
+.removebtn > i {
+    color: red;
+}
+
+.delete-budget-btn {
+    width: 4vh;
+    height: 4vh;
+    position: absolute;
+    bottom: 1vh;
+    right: 1vh;
+    background-color: red;
+    color: white;
+    transform: translate(200%);
+    border-radius: .5vh;
+    border: none;
+}
+
+.delete-budget-btn > i {
+    color: white;
+}
+
+.delete-budget-btn::before {
+    content: 'Delete';
+    position: absolute;
+    right: 5vh;
+    transform: translate(200%);
+}
+
+/* Opened Budget Styles */
+
+.budget-box.expanded > .budgetHeader > .budgetName {
+    font-size: 2.5vh;
+}
+
+.percentage {
+    position: relative;
+    top: 0;
+    right: 0;
+    transition: all 250ms;
+}
+
+.budget-box.expanded > .budgetMiddle > .percentage {
+    right: 11vh;
+    top: -7.5vh;
+}
+
+.budget-box.expanded > .budgetMiddle > .budgetInfo {
+    bottom: 5vh;
+    transform: scale(90%);
+    transform-origin: left;
+}
+
+.budget-box.expanded > .percentageBar {
+    width: 75%;
+    bottom: 5vh;
+}
+
+.budget-box.expanded > .budgetFooter {
+    top: 10vh;
+}
+
+.budget-box.expanded > .expensesBox, 
+.budget-box.expanded > .delete-budget-btn::before,
+.budget-box.expanded > .delete-budget-btn {
+    transform: translate(0%);
+}
+
+/* Total Related Styles */
+
+.totalName {
+    font-size: 3vh;
+    font-weight: 600;
+    color: var(--font-color);
+    margin-bottom: 4vh;
+}
+
+.totalMiddle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+}
+
+.totalInfo {
+    display: flex;
+}
+
+.totalPercentageBar {
+    width: 100%;
+    height: 2vh;
+    background-color: var(--lighter-shade);
+    border-radius: 2vh;
+    overflow: hidden;
+}
+
+.totalProgress {
+    height: 100%;
+    background: linear-gradient( 90deg, var(--acc-blue), var(--main-blue));
+    border-radius: inherit;
+}
+
+/* Atmosphere Related Styles */
+
+::-webkit-scrollbar {
+    width: .3vh;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-blue);
+}
+
+.backCircle1 {
+    position: fixed;
+    z-index: -1000;
+    top: 100px;
+    left: 700px;
+    width: 300px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 1;
+    background-color: var(--main-blue);
+    filter: blur(10rem);
+}
+
+.backCircle2 {
+    position: fixed;
+    z-index: -1000;
+    top: 600px;
+    left: -100px;
+    width: 500px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 1;
+    background-color: var(--acc-blue);
+    filter: blur(10rem);
+}
+
+.backCircle1.show, .backCircle2.show {
+    transition: left  10s,opacity 2s,top 10s;
+}
+
+/* Tutorial Styles */
+
+.questionHolder {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(var(--main-color));
+    z-index: 35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.questionText {
+    font-size: 4vh;
+    text-align: center;
+}
+
+.blueText {
+    color: var(--main-blue);
+    font-weight: 700;
+}
+
+.optionsHolder {
+    display: flex;
+    justify-content: center;
+    gap: 2vh;
+}
+
+.optionsHolder > .confirm, .optionsHolder > .cancel {
+    background-color: var(--main-blue);
+    width: 10vh;
+    color: var(--btn-text-color);
+    padding: 1vh 2vh;
+    border: .1vh solid var(--main-blue);
+    border-radius: .5vh;
+}
+
+.optionsHolder > .cancel {
+    background-color: var(--main-color);
+    color: var(--main-blue);
+}
+
+/* Nav bar */
+
+.nav-bar {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 3vh;
+    padding: 2vh;
+    border-radius: .5vh .5vh 0 0;
+}
+
+.curNav > i {
+    color: var(--main-blue);
+    text-shadow: 0 0 3vh var(--font-color);
+}
+
+/* DEV THINGS ------------------------------------------- */
+
+.closeSummaryBtn {
+    position: relative;
+    z-index: 1000;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+
+.expensestext, 
+.BudgetNameEditBtn,
+.BudgetNameEditInput, 
+.BudgetNameEditText, 
+.errorppav, 
+.increaser, 
+.alertBox, 
+.addNoteInput {
+    display: none;
+}
